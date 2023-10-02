@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="RestóUml">
+  <ClassDiagramComponents>
+    <Class name="Mesa" package="" visibility="public" xPosition="159.0" yPosition="80.0">
+      <Fields>
+        <Field name="id_mesa" type="int" visibility="private"/>
+        <Field name="estado" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Pedido" package="" visibility="public" xPosition="474.0" yPosition="77.0">
+      <Fields>
+        <Field name="producto" type="Producto" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Reserva" package="" visibility="public" xPosition="159.0" yPosition="258.0">
+      <Fields>
+        <Field name="id_reserva" type="int" visibility="private"/>
+        <Field name="mesa" type="Mesa" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="fecha" type="LocalDate" visibility="private"/>
+        <Field name="hora" type="LocalTime" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Mesero" package="" visibility="public" xPosition="474.0" yPosition="248.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Producto" package="" visibility="public" xPosition="717.0" yPosition="91.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="Tiene varios" source="Mesa" target="Pedido" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="Tiene" source="Mesa" target="Reserva" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="Toma" source="Mesero" target="Pedido" sourceCardinality="1..*" targetCardinality="1..1"/>
+    <HasRelation name="Tiene" source="Pedido" target="Producto" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
