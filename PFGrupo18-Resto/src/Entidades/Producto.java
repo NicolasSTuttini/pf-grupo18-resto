@@ -3,28 +3,34 @@ package Entidades;
 public class Producto {
 
     private int id_producto;
-    private Pedido pedido;
     private String nombre;
-    private int cantidad;
     private double precio;
+    private boolean estado;
 
     public Producto() {
     }
 
-    public Producto(Pedido pedido, String nombre, int cantidad, double precio) {
-        this.pedido = pedido;
+    public Producto(String nombre, double precio, boolean estado) {
         this.nombre = nombre;
-        this.cantidad = cantidad;
         this.precio = precio;
+        this.estado = estado;
     }
 
-    public Producto(int id_producto, Pedido pedido, String nombre, int cantidad, double precio) {
+    public Producto(int id_producto, String nombre, double precio, boolean estado) {
         this.id_producto = id_producto;
-        this.pedido = pedido;
         this.nombre = nombre;
-        this.cantidad = cantidad;
         this.precio = precio;
+        this.estado = estado;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
 
     public int getId_producto() {
         return id_producto;
@@ -34,28 +40,12 @@ public class Producto {
         this.id_producto = id_producto;
     }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     public double getPrecio() {
