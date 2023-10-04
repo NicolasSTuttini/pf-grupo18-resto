@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nstut
@@ -15,6 +17,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
+        mostrarLogin ();
+        jmMenuBarra.setVisible(false);
     }
 
     /**
@@ -26,32 +31,55 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        Escritorio = new javax.swing.JDesktopPane();
+        jmMenuBarra = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jmMeseros = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+        Escritorio.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                EscritorioComponentRemoved(evt);
+            }
+        });
+        Escritorio.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                EscritorioComponentHidden(evt);
+            }
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                EscritorioComponentMoved(evt);
+            }
+        });
+        Escritorio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                EscritorioPropertyChange(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
+        Escritorio.setLayout(EscritorioLayout);
+        EscritorioLayout.setHorizontalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 587, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+        EscritorioLayout.setVerticalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 305, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Productos");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("Agregar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,52 +89,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Carta");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
         jMenuItem3.setText("Modificar");
         jMenu1.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu1);
+        jmMenuBarra.add(jMenu1);
 
         jMenu2.setText("Mesas");
-        jMenuBar1.add(jMenu2);
+        jmMenuBarra.add(jMenu2);
 
         jMenu3.setText("Pedidos");
-        jMenuBar1.add(jMenu3);
+        jmMenuBarra.add(jMenu3);
 
-        jMenu4.setText("Meseros");
-        jMenuBar1.add(jMenu4);
+        jmMeseros.setText("Meseros");
+        jmMenuBarra.add(jmMeseros);
 
         jMenu5.setText("         ");
         jMenu5.setPreferredSize(new java.awt.Dimension(300, 21));
-        jMenuBar1.add(jMenu5);
+        jmMenuBarra.add(jMenu5);
 
         jMenu6.setText("Salir");
-        jMenuBar1.add(jMenu6);
+        jmMenuBarra.add(jMenu6);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jmMenuBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
+            .addComponent(Escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
+            .addComponent(Escritorio)
         );
 
         pack();
@@ -116,9 +130,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void EscritorioComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_EscritorioComponentRemoved
+       
+    }//GEN-LAST:event_EscritorioComponentRemoved
+
+    private void EscritorioComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentHidden
+       
+    }//GEN-LAST:event_EscritorioComponentHidden
+
+    private void EscritorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_EscritorioPropertyChange
+      
+    }//GEN-LAST:event_EscritorioPropertyChange
+
+    private void EscritorioComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentMoved
+        Login login = new Login();
+      validarMenuMostrar(login.isAdmin(),login.isMesero());
+    }//GEN-LAST:event_EscritorioComponentMoved
 
     /**
      * @param args the command line arguments
@@ -156,16 +187,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuBar jmMenuBarra;
+    private javax.swing.JMenu jmMeseros;
     // End of variables declaration//GEN-END:variables
+private void mostrarLogin () {
+    Escritorio.removeAll();
+    Escritorio.repaint();
+    Login login = new Login();
+    login.setVisible(true);
+    Escritorio.add(login);
+    Escritorio.moveToFront(login);
+    
+}
+private void validarMenuMostrar (boolean admin, boolean mesero) {
+    if (admin) {
+        jmMenuBarra.setVisible(true);
+    } else if (mesero) {
+        jmMenuBarra.setVisible(true);
+        jmMeseros.setVisible(false);
+    } else {
+        JOptionPane.showMessageDialog(null, "error");
+    }
+}
 }
