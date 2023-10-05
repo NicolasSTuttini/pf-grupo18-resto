@@ -20,8 +20,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.mesero = mesero;
         initComponents();
         setLocationRelativeTo(null);
-        JOptionPane.showMessageDialog(this, admin);
-        JOptionPane.showMessageDialog(this, mesero);
         validarMenuMostrar();
         
     }
@@ -38,7 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio = new javax.swing.JDesktopPane();
         jmMenuBarra = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmAgregarProducto = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -75,7 +73,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 305, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Productos");
@@ -85,15 +83,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Agregar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmAgregarProducto.setText("Agregar");
+        jmAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmAgregarProductoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jmAgregarProducto);
 
         jMenuItem3.setText("Modificar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jmMenuBarra.add(jMenu1);
@@ -130,9 +133,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jmAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarProductoActionPerformed
+    Escritorio.removeAll();
+    Escritorio.repaint();
+    ProductosAgregar pa = new ProductosAgregar();
+    pa.setVisible(true);
+    Escritorio.add(pa);
+    Escritorio.moveToFront(pa);
+    }//GEN-LAST:event_jmAgregarProductoActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
@@ -153,6 +161,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void EscritorioComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentMoved
 
     }//GEN-LAST:event_EscritorioComponentMoved
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    Escritorio.removeAll();
+    Escritorio.repaint();
+    ProductosModificar pmodif = new ProductosModificar();
+    pmodif.setVisible(true);
+    Escritorio.add(pmodif);
+    Escritorio.moveToFront(pmodif);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,8 +213,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jmAgregarProducto;
     private javax.swing.JMenuBar jmMenuBarra;
     private javax.swing.JMenu jmMeseros;
     // End of variables declaration//GEN-END:variables

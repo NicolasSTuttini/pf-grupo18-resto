@@ -44,7 +44,12 @@ public class ProductoData {
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog (null, "Error al ejecutar la consulta sql");
+            /*if (ex.getClass() == SQLIntegrityConstraintViolationException ) {
+                JOptionPane.showMessageDialog (null, "El producto ya existe.");
+            } else {*/
+                 JOptionPane.showMessageDialog (null, "Error al ejecutar la consulta sql");
+            /*}*/
+           
         }
         
     }

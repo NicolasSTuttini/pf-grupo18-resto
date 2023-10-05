@@ -4,17 +4,25 @@
  */
 package Vistas;
 
+import AccesoDatos.ProductoData;
+import Entidades.Producto;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nstut
  */
 public class ProductosModificar extends javax.swing.JInternalFrame {
-
+    DefaultTableModel modelo = new DefaultTableModel(); 
     /**
      * Creates new form ProductosModificar
      */
     public ProductosModificar() {
         initComponents();
+        armarCabecera();
+        vaciarTabla();
+        cargarActivos();
     }
 
     /**
@@ -27,50 +35,86 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        jrActivos = new javax.swing.JRadioButton();
+        jrInactivos = new javax.swing.JRadioButton();
+        jbAlta = new javax.swing.JButton();
+        jbActualizar = new javax.swing.JButton();
+        jbBaja = new javax.swing.JButton();
+        jtNombre = new javax.swing.JTextField();
+        jbBuscar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTablaProductos = new javax.swing.JTable();
 
         jLabel1.setText("Actualizar carta");
 
-        jRadioButton1.setText("activos");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        jrActivos.setSelected(true);
+        jrActivos.setText("activos");
+        jrActivos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrActivosItemStateChanged(evt);
+            }
+        });
+        jrActivos.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jrActivosStateChanged(evt);
+            }
+        });
+        jrActivos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrActivosMouseClicked(evt);
+            }
+        });
+        jrActivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                jrActivosActionPerformed(evt);
+            }
+        });
+        jrActivos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jrActivosPropertyChange(evt);
             }
         });
 
-        jRadioButton2.setText("inactivos");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        jrInactivos.setText("inactivos");
+        jrInactivos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrInactivosItemStateChanged(evt);
+            }
+        });
+        jrInactivos.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jrInactivosStateChanged(evt);
+            }
+        });
+        jrInactivos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrInactivosMouseClicked(evt);
+            }
+        });
+        jrInactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                jrInactivosActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Alta");
+        jbAlta.setText("Alta");
 
-        jButton2.setText("Actualizar");
+        jbActualizar.setText("Actualizar");
 
-        jButton3.setText("Baja");
+        jbBaja.setText("Baja");
 
-        jButton4.setText("Buscar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbBuscarActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Nombre:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -81,7 +125,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTablaProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,20 +158,20 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(jrActivos)
                                 .addGap(75, 75, 75)
-                                .addComponent(jRadioButton2))
+                                .addComponent(jrInactivos))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
-                                .addComponent(jButton4))))))
+                                .addComponent(jbBuscar))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jButton1)
+                .addComponent(jbAlta)
                 .addGap(47, 47, 47)
-                .addComponent(jButton3)
+                .addComponent(jbBaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jbActualizar)
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
                 .addGap(162, 162, 162)
@@ -140,51 +184,146 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscar)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jrActivos)
+                    .addComponent(jrInactivos))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(jbAlta)
+                    .addComponent(jbBaja)
+                    .addComponent(jbActualizar))
                 .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void jrActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrActivosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jrActivosActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jrInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrInactivosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_jrInactivosActionPerformed
+
+    private void jrActivosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jrActivosPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrActivosPropertyChange
+
+    private void jrActivosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrActivosStateChanged
+       
+    }//GEN-LAST:event_jrActivosStateChanged
+
+    private void jrInactivosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrInactivosStateChanged
+     
+    }//GEN-LAST:event_jrInactivosStateChanged
+
+    private void jrActivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrActivosMouseClicked
+       
+       
+    }//GEN-LAST:event_jrActivosMouseClicked
+
+    private void jrInactivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrInactivosMouseClicked
+
+    }//GEN-LAST:event_jrInactivosMouseClicked
+
+    private void jrActivosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrActivosItemStateChanged
+        vaciarTabla ();
+       if (jrActivos.isSelected()) {
+        jrInactivos.setSelected(false);
+        jbAlta.setEnabled(false);
+        jbBaja.setEnabled(true);
+        cargarActivos ();
+    } else {
+        jrInactivos.setSelected(true);
+        jbAlta.setEnabled(true);
+        jbBaja.setEnabled(false);
+    }
+    }//GEN-LAST:event_jrActivosItemStateChanged
+
+    private void jrInactivosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrInactivosItemStateChanged
+        vaciarTabla ();
+        if (jrInactivos.isSelected()) {
+        jrActivos.setSelected(false);
+        jbAlta.setEnabled(true);
+        jbBaja.setEnabled(false);
+        cargarInactivos ();
+        } else {
+        jrActivos.setSelected(true);
+        jbAlta.setEnabled(false);
+        jbBaja.setEnabled(true);
+        
+    }
+    }//GEN-LAST:event_jrInactivosItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbActualizar;
+    private javax.swing.JButton jbAlta;
+    private javax.swing.JButton jbBaja;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JRadioButton jrActivos;
+    private javax.swing.JRadioButton jrInactivos;
+    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTable jtTablaProductos;
     // End of variables declaration//GEN-END:variables
+
+private void armarCabecera(){
+    modelo.addColumn("ID");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Precio");
+    jtTablaProductos.setModel(modelo);
+}
+private void vaciarTabla () {
+    for (int i = modelo.getRowCount()-1; i >= 0;i--){
+        modelo.removeRow(i);
+    }
+}
+private void cargarActivos (){
+        ProductoData prod = new ProductoData();
+        List <Producto> listaActivos = prod.listarProductos();
+        
+        for (Producto aux : listaActivos){
+            if (aux.isEstado()){
+                modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
+            }
+        }
+}
+private void cargarInactivos (){
+        ProductoData prod = new ProductoData();
+        List <Producto> listaActivos = prod.listarProductos();
+        
+        for (Producto aux : listaActivos){
+            if (!aux.isEstado()){
+                modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
+            }
+        }
+}
+/*private void mostrarSeleccion () {
+    if (jrActivos.isSelected()) {
+        jrInactivos.setSelected(false);
+        jbAlta.setEnabled(false);
+        jbBaja.setEnabled(true);
+        cargarActivos ();
+    } else {
+        jrActivos.setSelected(false);
+        jbAlta.setEnabled(true);
+        jbBaja.setEnabled(false);
+        cargarInactivos ();
+    }
+}*/
 }

@@ -6,8 +6,6 @@ package Vistas;
 
 import AccesoDatos.Conexion;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author nstut
  */
 public class LoginFrame extends javax.swing.JFrame {
-     private boolean admin ,mesero ;
+     private boolean admin,mesero ;
      
     /**
      * Creates new form LoginFrame
