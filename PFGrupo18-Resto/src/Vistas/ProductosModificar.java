@@ -41,11 +41,12 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         jbActualizar = new javax.swing.JButton();
         jbBaja = new javax.swing.JButton();
         jtNombre = new javax.swing.JTextField();
-        jbBuscar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaProductos = new javax.swing.JTable();
+
+        setClosable(true);
 
         jLabel1.setText("Actualizar carta");
 
@@ -105,10 +106,9 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
 
         jbBaja.setText("Baja");
 
-        jbBuscar.setText("Buscar");
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreKeyReleased(evt);
             }
         });
 
@@ -148,35 +148,30 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbAlta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbBaja)
+                        .addGap(73, 73, 73)
+                        .addComponent(jbActualizar))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jrActivos)
                                 .addGap(75, 75, 75)
                                 .addComponent(jrInactivos))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(jbBuscar))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jbAlta)
-                .addGap(47, 47, 47)
-                .addComponent(jbBaja)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbActualizar)
-                .addGap(24, 24, 24))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtNombre)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +180,6 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscar)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,10 +201,6 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
     private void jrActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrActivosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jrActivosActionPerformed
-
-    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jrInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrInactivosActionPerformed
         // TODO add your handling code here:
@@ -266,6 +256,17 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
     }
     }//GEN-LAST:event_jrInactivosItemStateChanged
 
+    private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
+        if (jrActivos.isSelected()) {
+            vaciarTabla();
+            cargarActivos ();
+        } else {
+            vaciarTabla();
+            cargarInactivos ();
+        }
+        
+    }//GEN-LAST:event_jtNombreKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -275,7 +276,6 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
-    private javax.swing.JButton jbBuscar;
     private javax.swing.JRadioButton jrActivos;
     private javax.swing.JRadioButton jrInactivos;
     private javax.swing.JTextField jtNombre;
@@ -299,19 +299,24 @@ private void cargarActivos (){
         
         for (Producto aux : listaActivos){
             if (aux.isEstado()){
-                modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
+                if(aux.getNombre().startsWith(jtNombre.getText()) || jtNombre.getText().equals("") ) {
+                    modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
+                }
             }
         }
 }
+
 private void cargarInactivos (){
         ProductoData prod = new ProductoData();
         List <Producto> listaActivos = prod.listarProductos();
         
         for (Producto aux : listaActivos){
             if (!aux.isEstado()){
+                if(aux.getNombre().startsWith(jtNombre.getText()) || jtNombre.getText().equals("") ) {
                 modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
+                }
             }
-        }
+        }    
 }
 /*private void mostrarSeleccion () {
     if (jrActivos.isSelected()) {
@@ -325,5 +330,14 @@ private void cargarInactivos (){
         jbBaja.setEnabled(false);
         cargarInactivos ();
     }
-}*/
+
+}
+// Agregar KeyListener al JTextField para detectar la tecla "Enter"
+        jtContrasenia.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    realizarAccionIngresar();
+                }
+            }
+        });*/
 }
