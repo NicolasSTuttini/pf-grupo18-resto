@@ -11,15 +11,19 @@ import javax.swing.JOptionPane;
  * @author nstut
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-
+    private boolean admin  ,mesero;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(boolean admin, boolean mesero) {
+        this.admin = admin;
+        this.mesero = mesero;
         initComponents();
         setLocationRelativeTo(null);
-        mostrarLogin ();
-        jmMenuBarra.setVisible(false);
+        JOptionPane.showMessageDialog(this, admin);
+        JOptionPane.showMessageDialog(this, mesero);
+        validarMenuMostrar();
+        
     }
 
     /**
@@ -139,16 +143,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_EscritorioComponentRemoved
 
     private void EscritorioComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentHidden
-       
+
     }//GEN-LAST:event_EscritorioComponentHidden
 
     private void EscritorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_EscritorioPropertyChange
-      
+   
     }//GEN-LAST:event_EscritorioPropertyChange
 
     private void EscritorioComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentMoved
-        Login login = new Login();
-      validarMenuMostrar(login.isAdmin(),login.isMesero());
+
     }//GEN-LAST:event_EscritorioComponentMoved
 
     /**
@@ -179,11 +182,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuPrincipal().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -198,23 +201,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jmMenuBarra;
     private javax.swing.JMenu jmMeseros;
     // End of variables declaration//GEN-END:variables
-private void mostrarLogin () {
-    Escritorio.removeAll();
-    Escritorio.repaint();
-    Login login = new Login();
-    login.setVisible(true);
-    Escritorio.add(login);
-    Escritorio.moveToFront(login);
-    
-}
-private void validarMenuMostrar (boolean admin, boolean mesero) {
-    if (admin) {
-        jmMenuBarra.setVisible(true);
+
+public void validarMenuMostrar () {
+    if (admin){
+         jmMenuBarra.setVisible(true);
     } else if (mesero) {
-        jmMenuBarra.setVisible(true);
-        jmMeseros.setVisible(false);
+         jmMenuBarra.setVisible(true);
+         jmMeseros.setVisible(false);
     } else {
-        JOptionPane.showMessageDialog(null, "error");
+         JOptionPane.showMessageDialog(null, "Error al mostrar el menu");
     }
 }
+
 }
