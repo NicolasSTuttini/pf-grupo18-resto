@@ -16,7 +16,15 @@ import javax.swing.table.DefaultTableModel;
  * @author nstut
  */
 public class ProductosModificar extends javax.swing.JInternalFrame {
-    DefaultTableModel modelo = new DefaultTableModel(); 
+    DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int fila, int column) {
+                if (column == 0) {
+                    return false;
+                }else{
+                    return true;
+                }
+        }
+    };    
     /**
      * Creates new form ProductosModificar
      */
@@ -47,6 +55,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaProductos = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -103,6 +112,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         });
 
         jbAlta.setText("Alta");
+        jbAlta.setEnabled(false);
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAltaActionPerformed(evt);
@@ -110,6 +120,11 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         });
 
         jbActualizar.setText("Actualizar");
+        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarActionPerformed(evt);
+            }
+        });
 
         jbBaja.setText("Baja");
         jbBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -143,49 +158,58 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(21, 21, 21))
         );
+
+        jLabel3.setText("\"Debe presionar enter antes de intentar actaulizar el valor\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jbAlta)
-                        .addGap(38, 38, 38)
-                        .addComponent(jbBaja)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbActualizar)
-                        .addContainerGap())
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jrActivos)
-                                .addGap(75, 75, 75)
-                                .addComponent(jrInactivos))
-                            .addComponent(jtNombre)))))
+                                .addGap(21, 21, 21)
+                                .addComponent(jbAlta)
+                                .addGap(38, 38, 38)
+                                .addComponent(jbBaja)
+                                .addGap(194, 194, 194)
+                                .addComponent(jbActualizar))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jrActivos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jrInactivos)
+                        .addGap(80, 80, 80))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(164, 164, 164))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +219,9 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrActivos)
                     .addComponent(jrInactivos))
@@ -247,11 +273,13 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         jrInactivos.setSelected(false);
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
+        jbActualizar.setEnabled(true);
         cargarActivos ();
     } else {
         jrInactivos.setSelected(true);
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
+        jbActualizar.setEnabled(false);
     }
     }//GEN-LAST:event_jrActivosItemStateChanged
 
@@ -261,11 +289,13 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         jrActivos.setSelected(false);
         jbAlta.setEnabled(true);
         jbBaja.setEnabled(false);
+        jbActualizar.setEnabled(false);
         cargarInactivos ();
         } else {
         jrActivos.setSelected(true);
         jbAlta.setEnabled(false);
         jbBaja.setEnabled(true);
+        jbActualizar.setEnabled(true);
         
     }
     }//GEN-LAST:event_jrInactivosItemStateChanged
@@ -330,10 +360,33 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jbBajaActionPerformed
 
+    private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
+        ProductoData prod = new ProductoData();
+        int fila = jtTablaProductos.getSelectedRow();
+        try {
+            if( fila >= 0) {
+                int id = Integer.parseInt(jtTablaProductos.getValueAt(fila, 0).toString());
+                String nombre = jtTablaProductos.getValueAt(fila, 1).toString();
+                double precio = Double.parseDouble(jtTablaProductos.getValueAt(fila, 2).toString());
+
+                prod.modificarProducto(nombre, precio, id);
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El precio debe ser un valor numerico.");
+        }
+            vaciarTabla();
+            if (jrActivos.isSelected()) {
+                cargarActivos ();
+            }
+    }//GEN-LAST:event_jbActualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
