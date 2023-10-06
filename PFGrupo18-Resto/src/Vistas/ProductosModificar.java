@@ -6,7 +6,9 @@ package Vistas;
 
 import AccesoDatos.ProductoData;
 import Entidades.Producto;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -101,10 +103,20 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         });
 
         jbAlta.setText("Alta");
+        jbAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaActionPerformed(evt);
+            }
+        });
 
         jbActualizar.setText("Actualizar");
 
         jbBaja.setText("Baja");
+        jbBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBajaActionPerformed(evt);
+            }
+        });
 
         jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -154,13 +166,15 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addComponent(jbAlta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(38, 38, 38)
                         .addComponent(jbBaja)
-                        .addGap(73, 73, 73)
-                        .addComponent(jbActualizar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbActualizar)
+                        .addContainerGap())
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -267,6 +281,55 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jtNombreKeyReleased
 
+    private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
+        if (jtTablaProductos.getSelectedRowCount() > 0) {
+            ProductoData prod = new ProductoData();
+            int exito = 0;
+            for (int i = 0; i < jtTablaProductos.getSelectedRowCount(); i++) {
+                int fila = jtTablaProductos.getSelectedRows()[i];
+                int id = Integer.parseInt(jtTablaProductos.getValueAt(fila, 0).toString());
+                if(prod.altaProducto(id) > 0) {
+                    exito++;
+                }
+            }
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se dió de alta el producto.");
+            } else if (exito > 1) {
+                JOptionPane.showMessageDialog(null, "Se dieron de alta los productos.");
+            }
+            vaciarTabla();
+            cargarInactivos ();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.");
+        }
+        
+    }//GEN-LAST:event_jbAltaActionPerformed
+
+    private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
+
+        if (jtTablaProductos.getSelectedRowCount() > 0) {
+            ProductoData prod = new ProductoData();
+            int exito = 0;
+            for (int i = 0; i < jtTablaProductos.getSelectedRowCount(); i++) {
+                int fila = jtTablaProductos.getSelectedRows()[i];
+                int id = Integer.parseInt(jtTablaProductos.getValueAt(fila, 0).toString());
+                if(prod.eliminarProducto(id) > 0) {
+                    exito++;
+                }
+            }
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se dió de baja el producto.");
+            } else if (exito > 1) {
+                JOptionPane.showMessageDialog(null, "Se dieron de baja los productos.");
+            }
+            vaciarTabla();
+            cargarActivos ();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.");
+        }
+        
+    }//GEN-LAST:event_jbBajaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -340,4 +403,14 @@ private void cargarInactivos (){
                 }
             }
         });*/
+/*private int devolverId () {
+    int fila = jtTablaProductos.getSelectedRow();
+        if (fila >= 0) {
+            int id = Integer.parseInt(jtTablaProductos.getValueAt(fila, 0).toString());
+            return id;
+        } else {
+            return 0;
+        }    
+    
+}*/
 }

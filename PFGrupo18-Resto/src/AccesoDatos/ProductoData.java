@@ -54,16 +54,17 @@ public class ProductoData {
         
     }
     
-     public void eliminarProducto(int id) {
+     public int eliminarProducto(int id) {
         String sql = "UPDATE producto SET estado = false WHERE id_producto = ? AND estado = true";
-
+        int retorno = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             int eliminar = ps.executeUpdate();
             if (eliminar > 0) {
-                JOptionPane.showMessageDialog(null, "Se eliminó el producto.");
+                /*JOptionPane.showMessageDialog(null, "Se eliminó el producto.");*/
+                retorno = eliminar;
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el producto");
             }
@@ -71,17 +72,17 @@ public class ProductoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No existe el producto");
         }
-
+        return retorno;
     }
      
-     public void modificarProducto(Producto prod) {
+     public void modificarProducto(String nombre, double precio, int id) {
         String sql = "UPDATE producto "
                 + "SET nombre = ?, precio = ? WHERE id_producto = ? AND estado = true";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, prod.getNombre());
-            ps.setDouble(2, prod.getPrecio());
-            ps.setInt(3, prod.getId_producto());
+            ps.setString(1, nombre);
+            ps.setDouble(2, precio);
+            ps.setInt(3, id);
             int modif = ps.executeUpdate();
             if (modif == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificó el producto exitosamente.");
@@ -94,29 +95,33 @@ public class ProductoData {
         }
         
     }
-     public void altaProducto(int id) {
+     public int altaProducto(int id) {
         
-                    String sql = "UPDATE producto SET estado = true WHERE id_producto = ? AND estado = false";
+        String sql = "UPDATE producto SET estado = true WHERE id_producto = ? AND estado = false";
+        int retorno = 0;    
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
 
-                    try {
-                        PreparedStatement ps = con.prepareStatement(sql);
-                        ps.setInt(1, id);
-                        
-                        int eliminar = ps.executeUpdate();
-                        if (eliminar > 0) {
-                            JOptionPane.showMessageDialog(null, "Producto dado de alta.");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "No existe el producto");
-                        }
-                        ps.close();
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "No existe el producto");
-                    }
+            int alta = ps.executeUpdate();
+            if (alta > 0) {
+                /*JOptionPane.showMessageDialog(null, "Producto dado de alta.");*/
+                retorno = alta;
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el producto");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No existe el producto");
+        }
 
+        return retorno;
     }
+     
      public List<Producto> listarProductos() {
         List<Producto> productos = new ArrayList<>();
-        String sql = "SELECT * FROM producto";
+        String sql = "SELECT * FROM producto ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
