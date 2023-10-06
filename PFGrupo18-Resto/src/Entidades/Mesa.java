@@ -3,19 +3,32 @@ package Entidades;
 public class Mesa {
 
     private int id_mesa;
+    private int capacidad;
     private boolean estado;
 
     public Mesa() {
     }
 
-    public Mesa(boolean estado) {
+    public Mesa(int capacidad, boolean estado) {
+        this.capacidad = capacidad;
         this.estado = estado;
     }
 
-    public Mesa(int id_mesa, boolean estado) {
+    public Mesa(int id_mesa, int capacidad, boolean estado) {
         this.id_mesa = id_mesa;
+        this.capacidad = capacidad;
         this.estado = estado;
     }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    
 
     public int getId_mesa() {
         return id_mesa;

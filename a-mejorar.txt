@@ -1,3 +1,4 @@
 1- celdas editables en inactivos en tabla de modificar productos
 2- presionar botón agregar por defecto al presionar enter
-3- 
+3- jinternalframe para agregar mesas, hacer que se abra correctamente
+4- si producto ya se encuentra en la base de datos, se de el mensaje de error correspondiente
