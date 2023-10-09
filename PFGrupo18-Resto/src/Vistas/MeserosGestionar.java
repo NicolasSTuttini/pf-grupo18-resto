@@ -5,17 +5,27 @@
  */
 package Vistas;
 
+import AccesoDatos.MeseroData;
+import Entidades.Mesero;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author fliac
  */
 public class MeserosGestionar extends javax.swing.JInternalFrame {
-
+    private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form MeserosGestionar
      */
     public MeserosGestionar() {
         initComponents();
+        agregarCabecera();
+        vaciarTabla();
+        cargarActivos ();
+        
     }
 
     /**
@@ -28,21 +38,28 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbAgregarNuevoMesero = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtTablaMeseros = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
 
+        setClosable(true);
+
         jLabel1.setText("Meseros");
 
-        jButton1.setText("Agregar nuevo mesero/a");
+        jbAgregarNuevoMesero.setText("Agregar nuevo mesero/a");
+        jbAgregarNuevoMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarNuevoMeseroActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaMeseros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +70,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtTablaMeseros);
 
         jButton3.setText("Baja");
 
@@ -105,7 +122,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbAgregarNuevoMesero)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(84, Short.MAX_VALUE)
@@ -127,7 +144,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(37, 37, 37)
-                .addComponent(jButton1)
+                .addComponent(jbAgregarNuevoMesero)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
@@ -144,9 +161,19 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jbAgregarNuevoMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarNuevoMeseroActionPerformed
+       this.dispose();
+       MenuPrincipal.Escritorio.removeAll();
+       MenuPrincipal.Escritorio.repaint();
+       MeseroAgregarNuevo ma = new MeseroAgregarNuevo();
+       ma.setVisible(true);
+       MenuPrincipal.Escritorio.add(ma);
+       MenuPrincipal.Escritorio.moveToFront(ma);
+       ma.setLocation(50, 80);
+    }//GEN-LAST:event_jbAgregarNuevoMeseroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -155,6 +182,29 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbAgregarNuevoMesero;
+    private javax.swing.JTable jtTablaMeseros;
     // End of variables declaration//GEN-END:variables
+
+private void agregarCabecera() {
+    modelo.addColumn("ID");
+    modelo.addColumn("DNI");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Apellido");
+    jtTablaMeseros.setModel(modelo);
+}
+private void vaciarTabla() {
+    for (int i = jtTablaMeseros.getRowCount()-1; i >= 0; i--) {
+        modelo.removeRow(i);
+    }
+}
+private void cargarActivos () {
+    MeseroData md = new MeseroData();
+    List<Mesero> meseros = md.listarMeseros();
+    for (Mesero aux : meseros) {
+        if (aux.isEstado()) {
+            modelo.addRow(new Object[]{aux.getId_mesero(),aux.getDni(),aux.getNombre(),aux.getApellido()});
+        }
+    }
+}
 }

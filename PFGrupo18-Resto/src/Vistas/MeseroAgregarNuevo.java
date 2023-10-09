@@ -37,6 +37,25 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
+        setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
         jLabel1.setText("DNI: ");
 
         jLabel2.setText("Nombre: ");
@@ -105,6 +124,16 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+       MenuPrincipal.Escritorio.removeAll();
+       MenuPrincipal.Escritorio.repaint();
+       MeserosGestionar mg = new MeserosGestionar();
+       mg.setVisible(true);
+       MenuPrincipal.Escritorio.add(mg);
+       MenuPrincipal.Escritorio.moveToFront(mg);
+//       mg.setLocation(50, 80);
+    }//GEN-LAST:event_formInternalFrameClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

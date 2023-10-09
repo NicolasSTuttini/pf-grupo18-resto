@@ -23,10 +23,10 @@ public class PFGrupo18Resto {
 //            System.out.println("no funca");
 //        }
     ProductoData prod = new ProductoData();
-    /*prod.agregarProducto("hamburguesa", 100000);*/
-//    prod.eliminarProducto(1);
-//    prod.modificarProducto(3,"coca", 1);
-    prod.altaProducto(1);
+//    prod.agregarProducto("sorrentinos", 1000);
+//    prod.eliminarProducto(7);
+//    prod.modificarProducto("zorrentinos", 1500,7);
+    /*prod.altaProducto(1);*/
     }
 
 }

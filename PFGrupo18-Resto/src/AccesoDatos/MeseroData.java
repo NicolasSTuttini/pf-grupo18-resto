@@ -4,7 +4,11 @@
  */
 package AccesoDatos;
 
+import Entidades.Mesa;
+import Entidades.Mesero;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -105,5 +109,28 @@ public class MeseroData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "El/la mesero/a no esta disponible");
         }
+    }
+    public List<Mesero> listarMeseros() {
+        List<Mesero> meseros = new ArrayList<>();
+        String sql = "SELECT * FROM mesero ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Mesero mesero;
+            while (rs.next()) {
+                mesero = new Mesero();
+                mesero.setId_mesero(rs.getInt("id_mesero"));
+                mesero.setDni(rs.getInt("dni"));
+                mesero.setNombre(rs.getString("nombre"));
+                mesero.setApellido(rs.getString("apellido"));
+                mesero.setContrasenia(rs.getString("contrasenia"));
+                mesero.setEstado(rs.getBoolean("estado"));
+                meseros.add(mesero);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return meseros;
     }
 }

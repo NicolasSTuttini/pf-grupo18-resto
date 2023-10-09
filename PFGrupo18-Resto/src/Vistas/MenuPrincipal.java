@@ -127,6 +127,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMeseros.setText("Meseros");
 
         jmGestionarMesero.setText("Gestionar");
+        jmGestionarMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGestionarMeseroActionPerformed(evt);
+            }
+        });
         jmMeseros.add(jmGestionarMesero);
 
         jmMenuBarra.add(jmMeseros);
@@ -216,6 +221,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(mg);
         Escritorio.moveToFront(mg);
     }//GEN-LAST:event_jmMesasGestionActionPerformed
+
+    private void jmGestionarMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionarMeseroActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        MeserosGestionar mg = new MeserosGestionar();
+        mg.setVisible(true);
+        Escritorio.add(mg);
+        Escritorio.moveToFront(mg);
+    }//GEN-LAST:event_jmGestionarMeseroActionPerformed
 
     /**
      * @param args the command line arguments
