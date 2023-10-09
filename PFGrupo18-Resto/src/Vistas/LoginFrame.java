@@ -52,6 +52,12 @@ public class LoginFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña:");
 
+        jtContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtContraseniaActionPerformed(evt);
+            }
+        });
+
         jbIngresar.setText("Ingresar");
         jbIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +171,10 @@ public class LoginFrame extends javax.swing.JFrame {
        MenuPrincipal menu = new MenuPrincipal(admin,mesero);
        menu.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void jtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtContraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtContraseniaActionPerformed
 
     /**
      * @param args the command line arguments

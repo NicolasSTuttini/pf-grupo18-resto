@@ -43,6 +43,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMesasGestion = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmMeseros = new javax.swing.JMenu();
+        jmGestionarMesero = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenu();
 
@@ -124,6 +125,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMenuBarra.add(jMenu3);
 
         jmMeseros.setText("Meseros");
+
+        jmGestionarMesero.setText("Gestionar");
+        jmMeseros.add(jmGestionarMesero);
+
         jmMenuBarra.add(jmMeseros);
 
         jMenu5.setText("         ");
@@ -255,6 +260,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmAgregarProducto;
+    private javax.swing.JMenuItem jmGestionarMesero;
     private javax.swing.JMenuBar jmMenuBarra;
     private javax.swing.JMenuItem jmMesasGestion;
     private javax.swing.JMenu jmMeseros;
