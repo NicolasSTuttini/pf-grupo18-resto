@@ -5,6 +5,7 @@
 package Vistas;
 
 import javax.swing.JOptionPane;
+import sun.awt.AWTAccessor;
 
 /**
  *
@@ -43,7 +44,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jmMeseros = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        jmSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,11 +71,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 587, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 413, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Productos");
@@ -126,16 +127,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMenuBarra.add(jmMeseros);
 
         jMenu5.setText("         ");
-        jMenu5.setPreferredSize(new java.awt.Dimension(300, 21));
+        jMenu5.setEnabled(false);
+        jMenu5.setPreferredSize(new java.awt.Dimension(315, 21));
         jmMenuBarra.add(jMenu5);
 
-        jMenu6.setText("Salir");
-        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+        jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu6ActionPerformed(evt);
+                jmSalirActionPerformed(evt);
             }
         });
-        jmMenuBarra.add(jMenu6);
+        jmMenuBarra.add(jmSalir);
 
         setJMenuBar(jmMenuBarra);
 
@@ -143,11 +145,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,9 +195,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     Escritorio.moveToFront(pmodif);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jMenu6ActionPerformed
+    }//GEN-LAST:event_jmSalirActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
        
@@ -244,17 +248,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane Escritorio;
+    public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmAgregarProducto;
     private javax.swing.JMenuBar jmMenuBarra;
     private javax.swing.JMenuItem jmMesasGestion;
     private javax.swing.JMenu jmMeseros;
+    private javax.swing.JMenu jmSalir;
     // End of variables declaration//GEN-END:variables
 
 public void validarMenuMostrar () {
@@ -267,5 +271,4 @@ public void validarMenuMostrar () {
          JOptionPane.showMessageDialog(null, "Error al mostrar el menu");
     }
 }
-
 }

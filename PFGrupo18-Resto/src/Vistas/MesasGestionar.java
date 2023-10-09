@@ -5,10 +5,9 @@
 package Vistas;
 
 import AccesoDatos.MesaData;
-import AccesoDatos.ProductoData;
 import Entidades.Mesa;
-import Entidades.Producto;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,15 +36,14 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        EscritorioMesa = new javax.swing.JDesktopPane();
         jbAgregarMesa = new javax.swing.JButton();
         jrActivas = new javax.swing.JRadioButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaMesas = new javax.swing.JTable();
         jrInactivas = new javax.swing.JRadioButton();
         jbAlta = new javax.swing.JButton();
         jbBaja = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtTablaMesas = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -71,6 +69,28 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jrInactivas.setText("Mesas inactivas");
+        jrInactivas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrInactivasItemStateChanged(evt);
+            }
+        });
+
+        jbAlta.setText("Alta");
+        jbAlta.setEnabled(false);
+        jbAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAltaActionPerformed(evt);
+            }
+        });
+
+        jbBaja.setText("Baja");
+        jbBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBajaActionPerformed(evt);
+            }
+        });
+
         jtTablaMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -88,88 +108,13 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-
-        jrInactivas.setText("Mesas inactivas");
-        jrInactivas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jrInactivasItemStateChanged(evt);
-            }
-        });
-
-        jbAlta.setText("Alta");
-        jbAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAltaActionPerformed(evt);
-            }
-        });
-
-        jbBaja.setText("Baja");
-        jbBaja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBajaActionPerformed(evt);
-            }
-        });
-
-        EscritorioMesa.setLayer(jbAgregarMesa, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscritorioMesa.setLayer(jrActivas, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscritorioMesa.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscritorioMesa.setLayer(jrInactivas, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscritorioMesa.setLayer(jbAlta, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EscritorioMesa.setLayer(jbBaja, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout EscritorioMesaLayout = new javax.swing.GroupLayout(EscritorioMesa);
-        EscritorioMesa.setLayout(EscritorioMesaLayout);
-        EscritorioMesaLayout.setHorizontalGroup(
-            EscritorioMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioMesaLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jbAlta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbBaja)
-                .addGap(111, 111, 111))
-            .addGroup(EscritorioMesaLayout.createSequentialGroup()
-                .addGroup(EscritorioMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EscritorioMesaLayout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jbAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(EscritorioMesaLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jrActivas)
-                        .addGap(52, 52, 52)
-                        .addComponent(jrInactivas))
-                    .addGroup(EscritorioMesaLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        EscritorioMesaLayout.setVerticalGroup(
-            EscritorioMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EscritorioMesaLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jbAgregarMesa)
-                .addGap(18, 18, 18)
-                .addGroup(EscritorioMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrActivas)
-                    .addComponent(jrInactivas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(EscritorioMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAlta)
-                    .addComponent(jbBaja))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,78 +122,134 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(EscritorioMesa)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(126, 126, 126)
+                                .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addComponent(jrActivas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrInactivas)))
+                        .addComponent(jbAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EscritorioMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jbAgregarMesa)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrActivas)
+                    .addComponent(jrInactivas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbAlta)
+                    .addComponent(jbBaja))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jrActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrActivasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jrActivasActionPerformed
-
-    private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbAltaActionPerformed
-
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
-        // TODO add your handling code here:
+        MesaData md =new MesaData();
+        int  filasSelec = jtTablaMesas.getSelectedRowCount();
+        if ( filasSelec> 0) {
+            for (int i = 0; i < filasSelec; i++ ) {
+                int fila = jtTablaMesas.getSelectedRows()[i];
+                int id = Integer.parseInt(jtTablaMesas.getValueAt(fila , 0).toString());
+                md.eliminarMesa(id);
+                
+            }
+            vaciarTabla ();
+            cargarActivas ();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
+        }
+        
+        
+        
     }//GEN-LAST:event_jbBajaActionPerformed
 
-    private void jbAgregarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarMesaActionPerformed
-        EscritorioMesa.removeAll();
-        EscritorioMesa.repaint();
-        MesasAgregar ma = new MesasAgregar();
-        ma.setVisible(true);
-        EscritorioMesa.add(ma);
-        EscritorioMesa.moveToFront(ma);
-        
-    }//GEN-LAST:event_jbAgregarMesaActionPerformed
-
-    private void jrActivasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrActivasItemStateChanged
-        vaciarTabla ();
-        if (jrActivas.isSelected()) {
-         jrInactivas.setSelected(false);
-         jbAlta.setEnabled(false);
-         jbBaja.setEnabled(true);
-         cargarActivas ();
+    private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
+        MesaData md =new MesaData();
+        int  filasSelec = jtTablaMesas.getSelectedRowCount();
+        if ( filasSelec> 0) {
+            for (int i = 0; i < filasSelec; i++ ) {
+                int fila = jtTablaMesas.getSelectedRows()[i];
+                int id = Integer.parseInt(jtTablaMesas.getValueAt(fila , 0).toString());
+                md.altaMesa(id);
+            }
+            vaciarTabla ();
+            cargarInactivas ();
         } else {
-         jrInactivas.setSelected(true);
-         jbAlta.setEnabled(true);
-         jbBaja.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
         }
-    }//GEN-LAST:event_jrActivasItemStateChanged
+    }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jrInactivasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrInactivasItemStateChanged
         vaciarTabla ();
         if (jrInactivas.isSelected()) {
-        jrActivas.setSelected(false);
-        jbAlta.setEnabled(true);
-        jbBaja.setEnabled(false);
-        cargarInactivas ();
+            jrActivas.setSelected(false);
+            jbAlta.setEnabled(true);
+            jbBaja.setEnabled(false);
+            cargarInactivas ();
         } else {
-        jrActivas.setSelected(true);
-        jbAlta.setEnabled(false);
-        jbBaja.setEnabled(true);
+            jrActivas.setSelected(true);
+            jbAlta.setEnabled(false);
+            jbBaja.setEnabled(true);
         }
     }//GEN-LAST:event_jrInactivasItemStateChanged
 
+    private void jrActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrActivasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrActivasActionPerformed
+
+    private void jrActivasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrActivasItemStateChanged
+        vaciarTabla ();
+        if (jrActivas.isSelected()) {
+            jrInactivas.setSelected(false);
+            jbAlta.setEnabled(false);
+            jbBaja.setEnabled(true);
+            cargarActivas ();
+        } else {
+            jrInactivas.setSelected(true);
+            jbAlta.setEnabled(true);
+            jbBaja.setEnabled(false);
+        }
+    }//GEN-LAST:event_jrActivasItemStateChanged
+
+    private void jbAgregarMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarMesaActionPerformed
+        this.dispose();
+        MenuPrincipal.Escritorio.removeAll();
+        MenuPrincipal.Escritorio.repaint();
+        MesasAgregar ma = new MesasAgregar();
+        ma.setVisible(true);
+        ma.setLocation(120, 125);
+        MenuPrincipal.Escritorio.add(ma);
+        MenuPrincipal.Escritorio.moveToFront(ma);
+       
+
+    }//GEN-LAST:event_jbAgregarMesaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane EscritorioMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

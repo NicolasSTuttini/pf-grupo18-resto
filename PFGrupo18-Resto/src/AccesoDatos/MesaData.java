@@ -31,7 +31,7 @@ public class MesaData {
             int insertado = ps.executeUpdate();
             
             if ( insertado > 0){
-                JOptionPane.showMessageDialog (null, "Mesa agregado");
+                JOptionPane.showMessageDialog (null, "Mesa agregada exitosamente");
             } else {
                 JOptionPane.showMessageDialog (null, "Error al cargar la mesa");
             }
@@ -41,7 +41,7 @@ public class MesaData {
            
         }
     }
-    private int eliminarMesa (int id) {
+    public int eliminarMesa (int id) {
         String sql = "UPDATE mesa SET estado = false WHERE id_mesa = ? AND estado = true";
         int retorno = 0;
         try {
@@ -61,7 +61,7 @@ public class MesaData {
         return retorno;
     }
     
-    private int altaMesa (int id) {
+    public int altaMesa (int id) {
           
         String sql = "UPDATE mesa SET estado = true WHERE id_mesa = ? AND estado = false";
         int retorno = 0;    
