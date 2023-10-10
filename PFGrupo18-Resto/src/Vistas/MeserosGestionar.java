@@ -6,9 +6,11 @@
 package Vistas;
 
 import AccesoDatos.MeseroData;
+import AccesoDatos.ProductoData;
 import Entidades.Mesero;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,11 +44,11 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaMeseros = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jbMeserosBaja = new javax.swing.JButton();
+        jbMeserosAlta = new javax.swing.JButton();
+        jbMeserosModif = new javax.swing.JButton();
+        jrMActivos = new javax.swing.JRadioButton();
+        jrMInactivos = new javax.swing.JRadioButton();
 
         setClosable(true);
 
@@ -72,14 +74,24 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtTablaMeseros);
 
-        jButton3.setText("Baja");
-
-        jButton4.setText("Alta");
-
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbMeserosBaja.setText("Baja");
+        jbMeserosBaja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbMeserosBajaMouseClicked(evt);
+            }
+        });
+        jbMeserosBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbMeserosBajaActionPerformed(evt);
+            }
+        });
+
+        jbMeserosAlta.setText("Alta");
+
+        jbMeserosModif.setText("Modificar");
+        jbMeserosModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMeserosModifActionPerformed(evt);
             }
         });
 
@@ -89,11 +101,11 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4)
+                .addComponent(jbMeserosAlta)
                 .addGap(65, 65, 65)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbMeserosBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jbMeserosModif)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,15 +118,25 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbMeserosModif, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jbMeserosAlta)
+                        .addComponent(jbMeserosBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jRadioButton1.setText("Meseros activos");
+        jrMActivos.setText("Meseros activos");
+        jrMActivos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrMActivosItemStateChanged(evt);
+            }
+        });
 
-        jRadioButton2.setText("Meseros inactivos");
+        jrMInactivos.setText("Meseros inactivos");
+        jrMInactivos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jrMInactivosItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,9 +150,9 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 .addContainerGap(84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(jrMActivos)
                         .addGap(85, 85, 85)
-                        .addComponent(jRadioButton2))
+                        .addComponent(jrMInactivos))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -147,8 +169,8 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 .addComponent(jbAgregarNuevoMesero)
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jrMActivos)
+                    .addComponent(jrMInactivos))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -157,9 +179,9 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbMeserosModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMeserosModifActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbMeserosModifActionPerformed
 
     private void jbAgregarNuevoMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarNuevoMeseroActionPerformed
        this.dispose();
@@ -172,17 +194,96 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
        ma.setLocation(50, 80);
     }//GEN-LAST:event_jbAgregarNuevoMeseroActionPerformed
 
+    private void jrMActivosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrMActivosItemStateChanged
+        vaciarTabla();
+        if (jrMActivos.isSelected()) {
+            jrMInactivos.setSelected(false);
+            jbMeserosAlta.setEnabled(false);
+            jbMeserosBaja.setEnabled(true);
+            jbMeserosModif.setEnabled(true);
+            cargarActivos();
+        } else {
+            jrMInactivos.setSelected(true);
+            jbMeserosAlta.setEnabled(true);
+            jbMeserosBaja.setEnabled(false);
+            jbMeserosModif.setEnabled(false);
+        }
+    }//GEN-LAST:event_jrMActivosItemStateChanged
+
+    private void jrMInactivosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrMInactivosItemStateChanged
+        vaciarTabla();
+        if (jrMActivos.isSelected()) {
+            jrMInactivos.setSelected(false);
+            jbMeserosAlta.setEnabled(true);
+            jbMeserosBaja.setEnabled(false);
+            jbMeserosModif.setEnabled(false);
+            cargarActivos();
+        } else {
+            jrMInactivos.setSelected(true);
+            jbMeserosAlta.setEnabled(false);
+            jbMeserosBaja.setEnabled(true);
+            jbMeserosModif.setEnabled(true);
+        }
+    }//GEN-LAST:event_jrMInactivosItemStateChanged
+
+    private void jbMeserosBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMeserosBajaActionPerformed
+        /*if (jtTablaMeseros.getSelectedRowCount() > 0) {
+            MeseroData mes = new MeseroData();
+            int exito = 0;
+            for (int i = 0; i < jtTablaMeseros.getSelectedRowCount(); i++) {
+                int fila = jtTablaMeseros.getSelectedRows()[i];
+                int id = Integer.parseInt(jtTablaMeseros.getValueAt(fila, 0).toString());
+                if(mes.altaMesero(id) > 0) {
+                    exito++;
+                }
+            }
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se dió de baja el/la mesero/a.");
+            } else if (exito > 1) {
+                JOptionPane.showMessageDialog(null, "Se dieron de baja los meseros.");
+            }
+            vaciarTabla();
+            cargarActivos ();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un mesero/a.");
+        }*/
+        JOptionPane.showMessageDialog(null, "BAJA");
+    }//GEN-LAST:event_jbMeserosBajaActionPerformed
+
+    private void jbMeserosBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbMeserosBajaMouseClicked
+        if (jtTablaMeseros.getSelectedRowCount() > 0) {
+            MeseroData mes = new MeseroData();
+            int exito = 0;
+            for (int i = 0; i < jtTablaMeseros.getSelectedRowCount(); i++) {
+                int fila = jtTablaMeseros.getSelectedRows()[i];
+                int id = Integer.parseInt(jtTablaMeseros.getValueAt(fila, 0).toString());
+                if(mes.altaMesero(id) > 0) {
+                    exito++;
+                }
+            }
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se dió de baja el/la mesero/a.");
+            } else if (exito > 1) {
+                JOptionPane.showMessageDialog(null, "Se dieron de baja los meseros.");
+            }
+            vaciarTabla();
+            cargarActivos ();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un mesero/a.");
+        }
+    }//GEN-LAST:event_jbMeserosBajaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAgregarNuevoMesero;
+    private javax.swing.JButton jbMeserosAlta;
+    private javax.swing.JButton jbMeserosBaja;
+    private javax.swing.JButton jbMeserosModif;
+    private javax.swing.JRadioButton jrMActivos;
+    private javax.swing.JRadioButton jrMInactivos;
     private javax.swing.JTable jtTablaMeseros;
     // End of variables declaration//GEN-END:variables
 

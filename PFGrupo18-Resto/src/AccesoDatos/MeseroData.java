@@ -68,7 +68,30 @@ public class MeseroData {
     
     public int altaMesero (int id) {
           
-        String sql = "UPDATE mesero SET estado = true WHERE id_mesa = ? AND estado = false";
+        String sql = "UPDATE mesero SET estado = true WHERE id_mesero = ? AND estado = false";
+        int retorno = 0;    
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            int alta = ps.executeUpdate();
+            if (alta > 0) {
+                retorno = alta;
+            } else {
+                JOptionPane.showMessageDialog(null, "El/la mesero/a no existe");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+
+        return retorno;
+    }
+    
+    public int bajaMesero (int id) {
+          
+        String sql = "UPDATE mesero SET estado = false WHERE id_mesero = ? AND estado = true";
         int retorno = 0;    
         
         try {
