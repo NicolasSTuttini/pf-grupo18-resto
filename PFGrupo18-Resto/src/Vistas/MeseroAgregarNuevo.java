@@ -6,6 +6,9 @@
 
 package Vistas;
 
+import AccesoDatos.MeseroData;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author fliac
@@ -30,11 +33,11 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jtDni = new javax.swing.JTextField();
+        jtNombre = new javax.swing.JTextField();
+        jtApellido = new javax.swing.JTextField();
+        jtContra = new javax.swing.JTextField();
+        jbAgregar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -64,7 +67,12 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Contraseña: ");
 
-        jButton1.setText("Agregar");
+        jbAgregar.setText("Agregar");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Nuevo mesero/a");
 
@@ -74,7 +82,7 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbAgregar)
                 .addGap(156, 156, 156))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,10 +95,10 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4))
                         .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)))
+                            .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .addComponent(jtApellido)
+                            .addComponent(jtContra)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(jLabel5)))
@@ -104,21 +112,21 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbAgregar)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -135,18 +143,74 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
 //       mg.setLocation(50, 80);
     }//GEN-LAST:event_formInternalFrameClosed
 
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        try {
+            int dni = Integer.parseInt(jtDni.getText().toString());
+            String nombre = jtNombre.getText().toString();
+            String apellido = jtApellido.getText().toString();
+            String contra = jtContra.getText().toString();
+            
+            if (comprobarCampos ()) {
+                JOptionPane.showMessageDialog(null, "Todos los campos deben estar completos.");
+            } else if (dni < 10000000 || dni > 60000000) {
+                JOptionPane.showMessageDialog(null, "El DNI ingresado no es válido.");
+            } else if (comprobarCadena(nombre)) {
+                JOptionPane.showMessageDialog(null, "El nombre no puede contener números.");
+            } else if(nombre.length() > 30) {
+                 JOptionPane.showMessageDialog(null, "El nombre no puede contener más de 30 caracteres.");
+            } else if(nombre.length() < 3) {
+                 JOptionPane.showMessageDialog(null, "El nombre debe contener al menos 3 caracteres.");
+            } else if (comprobarCadena(apellido)){ 
+                JOptionPane.showMessageDialog(null, "El apellido no puede contener números.");
+            } else if(apellido.length() > 30) {
+                 JOptionPane.showMessageDialog(null, "El apellido no puede contener más de 30 caracteres.");
+            } else if(apellido.length() < 3) {
+                 JOptionPane.showMessageDialog(null, "El apellido debe contener al menos 3 caracteres.");
+            } else if ( contra.length() < 8) {
+                JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 8 caracteres.");
+            } else if ( contra.length() > 20) {
+                JOptionPane.showMessageDialog(null, "La contraseña no puede tener más de 20 caracteres.");
+            }else {
+                MeseroData md = new MeseroData();
+                md.agregarMesero(dni, nombre, apellido, contra);
+                
+                jtDni.setText("");
+                jtNombre.setText("");
+                jtApellido.setText("");
+                jtContra.setText("");
+            }
+            
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "El dni debe ser un valor numerico.");
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estár completos.");
+        }
+        
+        
+    }//GEN-LAST:event_jbAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton jbAgregar;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JTextField jtContra;
+    private javax.swing.JTextField jtDni;
+    private javax.swing.JTextField jtNombre;
     // End of variables declaration//GEN-END:variables
-
+private boolean comprobarCadena ( String cadena){
+         return cadena.matches(".*\\d.*");
+    }
+private boolean comprobarCampos () {
+    if (jtDni.getText() == "" || jtNombre.getText() == "" ||
+        jtApellido.getText() == "" || jtContra.getText() == "" ) {
+        return true;
+    } else {
+        return false;
+    }
+}
 }
