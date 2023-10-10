@@ -18,7 +18,15 @@ import javax.swing.table.DefaultTableModel;
  * @author fliac
  */
 public class MeserosGestionar extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable (int fila, int columna) {
+            if (columna == 0 || jrMInactivos.isSelected()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }; 
     /**
      * Creates new form MeserosGestionar
      */
@@ -27,7 +35,6 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         agregarCabecera();
         vaciarTabla();
         cargarActivos ();
-        
     }
 
     /**
@@ -87,6 +94,12 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         });
 
         jbMeserosAlta.setText("Alta");
+        jbMeserosAlta.setEnabled(false);
+        jbMeserosAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMeserosAltaActionPerformed(evt);
+            }
+        });
 
         jbMeserosModif.setText("Modificar");
         jbMeserosModif.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +137,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                         .addComponent(jbMeserosBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        jrMActivos.setSelected(true);
         jrMActivos.setText("Meseros activos");
         jrMActivos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -180,7 +194,42 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbMeserosModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMeserosModifActionPerformed
-        // TODO add your handling code here:
+        MeseroData md = new MeseroData();
+        int fila = jtTablaMeseros.getSelectedRow();
+        if (fila >= 0) {
+            try {
+                int id = Integer.parseInt(jtTablaMeseros.getValueAt(fila, 0).toString());
+                int dni = Integer.parseInt(jtTablaMeseros.getValueAt(fila, 1).toString());
+                String nombre = jtTablaMeseros.getValueAt(fila, 2).toString();
+                String apellido = jtTablaMeseros.getValueAt(fila, 3).toString();
+                if (dni < 10000000 || dni > 60000000){
+                    JOptionPane.showMessageDialog(this, "DNI invalido.");
+                } else if (comprobarCadena(nombre)) {
+                    JOptionPane.showMessageDialog(this, "El nombre no puede contener números.");
+                } else if(nombre.length() > 30) {
+                    JOptionPane.showMessageDialog(this, "El nombre no puede tener más de 30 caracteres.");
+                } else if(nombre.length() < 3) {
+                    JOptionPane.showMessageDialog(this, "El nombre debe tener al menos 3 caracteres.");
+                } else if (comprobarCadena(apellido)) {
+                    JOptionPane.showMessageDialog(this, "El apellido no puede contener números.");
+                } else if(apellido.length() > 30) {
+                    JOptionPane.showMessageDialog(this, "El apellido no puede tener más de 30 caracteres.");
+                } else if(apellido.length() < 3) {
+                    JOptionPane.showMessageDialog(this, "El apellido debe tener al menos 3 caracteres.");
+                } else {
+                    md.modificarMesero(id,dni, nombre, apellido);
+                }
+                vaciarTabla();
+                cargarActivos ();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "El dni debe ser un valor numerico.");
+                vaciarTabla();
+                cargarActivos ();
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un mesero/a.");
+        }
     }//GEN-LAST:event_jbMeserosModifActionPerformed
 
     private void jbAgregarNuevoMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarNuevoMeseroActionPerformed
@@ -212,14 +261,14 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
 
     private void jrMInactivosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrMInactivosItemStateChanged
         vaciarTabla();
-        if (jrMActivos.isSelected()) {
-            jrMInactivos.setSelected(false);
+        if (jrMInactivos.isSelected()) {
+            jrMActivos.setSelected(false);
             jbMeserosAlta.setEnabled(true);
             jbMeserosBaja.setEnabled(false);
             jbMeserosModif.setEnabled(false);
-            cargarActivos();
+            cargarInactivos();
         } else {
-            jrMInactivos.setSelected(true);
+            jrMActivos.setSelected(true);
             jbMeserosAlta.setEnabled(false);
             jbMeserosBaja.setEnabled(true);
             jbMeserosModif.setEnabled(true);
@@ -227,13 +276,13 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrMInactivosItemStateChanged
 
     private void jbMeserosBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMeserosBajaActionPerformed
-        /*if (jtTablaMeseros.getSelectedRowCount() > 0) {
+        if (jtTablaMeseros.getSelectedRowCount() > 0) {
             MeseroData mes = new MeseroData();
             int exito = 0;
             for (int i = 0; i < jtTablaMeseros.getSelectedRowCount(); i++) {
                 int fila = jtTablaMeseros.getSelectedRows()[i];
                 int id = Integer.parseInt(jtTablaMeseros.getValueAt(fila, 0).toString());
-                if(mes.altaMesero(id) > 0) {
+                if(mes.eliminarMesero(id) > 0) {
                     exito++;
                 }
             }
@@ -246,11 +295,14 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             cargarActivos ();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un mesero/a.");
-        }*/
-        JOptionPane.showMessageDialog(null, "BAJA");
+        }    
     }//GEN-LAST:event_jbMeserosBajaActionPerformed
 
     private void jbMeserosBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbMeserosBajaMouseClicked
+        
+    }//GEN-LAST:event_jbMeserosBajaMouseClicked
+
+    private void jbMeserosAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMeserosAltaActionPerformed
         if (jtTablaMeseros.getSelectedRowCount() > 0) {
             MeseroData mes = new MeseroData();
             int exito = 0;
@@ -262,16 +314,16 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 }
             }
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Se dió de baja el/la mesero/a.");
+                JOptionPane.showMessageDialog(null, "Se dió de alta el/la mesero/a.");
             } else if (exito > 1) {
-                JOptionPane.showMessageDialog(null, "Se dieron de baja los meseros.");
+                JOptionPane.showMessageDialog(null, "Se dieron de alta los meseros.");
             }
             vaciarTabla();
-            cargarActivos ();
+            cargarInactivos ();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un mesero/a.");
-        }
-    }//GEN-LAST:event_jbMeserosBajaMouseClicked
+        }    
+    }//GEN-LAST:event_jbMeserosAltaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -308,4 +360,16 @@ private void cargarActivos () {
         }
     }
 }
+private void cargarInactivos () {
+    MeseroData md = new MeseroData();
+    List<Mesero> meseros = md.listarMeseros();
+    for (Mesero aux : meseros) {
+        if (!aux.isEstado()) {
+            modelo.addRow(new Object[]{aux.getId_mesero(),aux.getDni(),aux.getNombre(),aux.getApellido()});
+        }
+    }
+}
+private boolean comprobarCadena ( String cadena){
+         return cadena.matches(".*\\d.*");
+    }
 }

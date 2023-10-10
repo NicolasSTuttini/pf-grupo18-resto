@@ -112,16 +112,15 @@ public class MeseroData {
         return retorno;
     }
     
-    public void modificarMesero(int id, int dni, String nombre, String apellido, String contrasenia) {
+    public void modificarMesero(int id, int dni, String nombre, String apellido) {
         String sql = "UPDATE mesero "
-                + "SET dni = ?, nombre = ?, apellido = ?, contrasenia = ? WHERE id_mesero = ? AND estado = true";
+                + "SET dni = ?, nombre = ?, apellido = ? WHERE id_mesero = ? AND estado = true";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, dni);
             ps.setString(2, nombre);
             ps.setString(3, apellido);
-            ps.setString(4, contrasenia);
-            ps.setInt(5, id);
+            ps.setInt(4, id);
             int modif = ps.executeUpdate();
             if (modif == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificó el/la mesero/a exitosamente.");

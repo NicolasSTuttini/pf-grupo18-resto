@@ -9,7 +9,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
- *
+// *
  * @author nstut
  */
 public class LoginFrame extends javax.swing.JFrame {
