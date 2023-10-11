@@ -144,6 +144,11 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 jrMActivosItemStateChanged(evt);
             }
         });
+        jrMActivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrMActivosActionPerformed(evt);
+            }
+        });
 
         jrMInactivos.setText("Meseros inactivos");
         jrMInactivos.addItemListener(new java.awt.event.ItemListener() {
@@ -324,6 +329,10 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un mesero/a.");
         }    
     }//GEN-LAST:event_jbMeserosAltaActionPerformed
+
+    private void jrMActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMActivosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrMActivosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
