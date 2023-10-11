@@ -42,6 +42,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmMesasGestion = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        mjCargarPedido = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jmMeseros = new javax.swing.JMenu();
         jmGestionarMesero = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -122,6 +124,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmMenuBarra.add(jMenu2);
 
         jMenu3.setText("Pedidos");
+
+        mjCargarPedido.setText("Cargar pedido");
+        mjCargarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mjCargarPedidoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mjCargarPedido);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu3.add(jMenuItem2);
+
         jmMenuBarra.add(jMenu3);
 
         jmMeseros.setText("Meseros");
@@ -240,6 +254,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
            System.exit(0);
     }//GEN-LAST:event_jmSalirMouseClicked
 
+    private void mjCargarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mjCargarPedidoActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        PedidosCargar pc = new PedidosCargar();
+        pc.setVisible(true);
+        Escritorio.add(pc);
+        Escritorio.moveToFront(pc);
+    }//GEN-LAST:event_mjCargarPedidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -281,6 +304,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmAgregarProducto;
     private javax.swing.JMenuItem jmGestionarMesero;
@@ -288,6 +312,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmMesasGestion;
     private javax.swing.JMenu jmMeseros;
     private javax.swing.JMenu jmSalir;
+    private javax.swing.JMenuItem mjCargarPedido;
     // End of variables declaration//GEN-END:variables
 
 public void validarMenuMostrar () {
