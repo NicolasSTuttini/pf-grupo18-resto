@@ -9,6 +9,7 @@ import Entidades.Mesero;
 import Entidades.Pedido;
 import Entidades.Producto;
 import Entidades.ProductosPedidos;
+import Vistas.PedidosCargar;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,4 +87,14 @@ public class ProductosPedidosData {
         return ppList;
     }
     
+   public double calcularImporte() {
+       List<ProductosPedidos> ppLista = listarProductosPedidos( new PedidosCargar().getId_pedido());//accedemos a la lista de productos del pedido en gestion que estan en la bd
+       ProductoData pd = new ProductoData(); // necesitamos traer el precio de cada producto para calcular el importe. Como prodPedido no tiene el precio, solo el id_producto, usamos ese id para buscar el producto en la base de datos y traer su precio
+       double importe = 0;
+       
+       for (ProductosPedidos aux : ppLista) {
+           importe += (aux.getCantidad()* pd.getProducto(aux.getId_pedido()).getPrecio());
+       }
+       return importe;
+   }
 }

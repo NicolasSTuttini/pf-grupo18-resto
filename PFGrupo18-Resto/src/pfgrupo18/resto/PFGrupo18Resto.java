@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class PFGrupo18Resto {
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
 
         Connection conn = Conexion.conectar();
 
@@ -27,6 +27,6 @@ public class PFGrupo18Resto {
 //    prod.eliminarProducto(7);
 //    prod.modificarProducto("zorrentinos", 1500,7);
     /*prod.altaProducto(1);*/
-    }
+    /*}*/
 
 }

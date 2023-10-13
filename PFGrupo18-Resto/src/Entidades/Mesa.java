@@ -28,8 +28,6 @@ public class Mesa {
         this.capacidad = capacidad;
     }
 
-    
-
     public int getId_mesa() {
         return id_mesa;
     }
@@ -45,6 +43,9 @@ public class Mesa {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
+    @Override
+    public String toString() {
+        return "N° "+ id_mesa + ", Capacidad: " + capacidad;
+    }
     
 }
