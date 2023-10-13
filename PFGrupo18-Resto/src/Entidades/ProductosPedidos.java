@@ -16,6 +16,7 @@ public class ProductosPedidos {
 
     public ProductosPedidos() {
     }
+    
 
     public ProductosPedidos(int id_producto, int id_pedido, int cantidad) {
         this.id_producto = id_producto;

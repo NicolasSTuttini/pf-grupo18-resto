@@ -6,7 +6,6 @@ package Vistas;
 
 import AccesoDatos.ProductoData;
 import Entidades.Producto;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

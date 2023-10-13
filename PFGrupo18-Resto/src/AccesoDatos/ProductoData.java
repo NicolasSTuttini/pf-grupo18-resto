@@ -140,4 +140,25 @@ public class ProductoData {
         }
         return productos;
     }
+    
+     public Producto getProducto (int id_prod) {
+         String sql = "SELECT * FROM producto WHERE id_producto = ?";
+         Producto prod = new Producto();
+         try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_prod);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                prod.setId_producto(rs.getInt("id_producto"));
+                prod.setNombre(rs.getString("nombre"));
+                prod.setPrecio(rs.getDouble("precio"));
+                prod.setEstado(rs.getBoolean("estado"));
+            }    
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta para devolver un producto");
+        }
+        return prod;
+     }
 }

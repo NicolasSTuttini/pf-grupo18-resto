@@ -5,9 +5,12 @@
 package Vistas;
 
 import AccesoDatos.ProductoData;
+import AccesoDatos.ProductosPedidosData;
 import Entidades.Producto;
+import Entidades.ProductosPedidos;
 import static Vistas.MenuPrincipal.Escritorio;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,9 +18,14 @@ import javax.swing.table.DefaultTableModel;
  * @author nstut
  */
 public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
+    
     DefaultTableModel modelo = new DefaultTableModel(){
         public boolean isCellEditable(int fila, int column) {
-                    return false;
+            if (column < 3){
+                return false; 
+            } else {
+                return true;
+            }
         }
     };    
     /**
@@ -104,6 +112,11 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
         );
 
         jbAgregar.setText("Agregar al pedido");
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,11 +164,44 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
         Escritorio.removeAll();
         Escritorio.repaint();
-        PedidosCargar pc = new PedidosCargar();
+        PedidosCargar pc = new PedidosCargar(PedidosCargar.getId_pedido());
         pc.setVisible(true);
         Escritorio.add(pc);
         Escritorio.moveToFront(pc);
     }//GEN-LAST:event_formInternalFrameClosed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        ProductosPedidosData ppd = new ProductosPedidosData();
+        int filas = jtTablaProductos.getSelectedRowCount();
+        
+        int id_pedido = PedidosCargar.getId_pedido();
+        int agregados = 0;
+        
+        if (filas > 0){
+            for (int i = 0; i < jtTablaProductos.getSelectedRowCount(); i++) {
+                int fila = jtTablaProductos.getSelectedRows()[i];
+   
+                int id_producto = Integer.parseInt(jtTablaProductos.getValueAt(fila, 0).toString());
+                int cantidad = Integer.parseInt(jtTablaProductos.getValueAt(fila, 3).toString());
+                agregados += ppd.agregarProductosPedidos (id_pedido,id_producto,cantidad);
+            }
+            
+            
+            if (agregados == 1) {
+                JOptionPane.showMessageDialog(null, "Pedido agregado exitosamente.");
+            } else if (agregados > 1) {
+                JOptionPane.showMessageDialog(null, "Pedidos agregados exitosamente.");
+            }
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto.");
+        }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jbAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -171,23 +217,24 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
     modelo.addColumn("ID");
     modelo.addColumn("Nombre");
     modelo.addColumn("Precio");
+    modelo.addColumn("Cantidad");
     jtTablaProductos.setModel(modelo);
 }
-private void vaciarTabla () {
-    for (int i = modelo.getRowCount()-1; i >= 0;i--){
-        modelo.removeRow(i);
+    private void vaciarTabla () {
+        for (int i = modelo.getRowCount()-1; i >= 0;i--){
+            modelo.removeRow(i);
+        }
     }
-}
-private void cargarProductos (){
-        ProductoData prod = new ProductoData();
-        List <Producto> listaActivos = prod.listarProductos();
-        
-        for (Producto aux : listaActivos){
-            if (aux.isEstado()){
-                if(aux.getNombre().startsWith(jtProd.getText()) || jtProd.getText().equals("") ) {
-                    modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
+    private void cargarProductos (){
+            ProductoData prod = new ProductoData();
+            List <Producto> listaActivos = prod.listarProductos();
+
+            for (Producto aux : listaActivos){
+                if (aux.isEstado()){
+                    if(aux.getNombre().startsWith(jtProd.getText()) || jtProd.getText().equals("") ) {
+                        modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio(), 1});
+                    }
                 }
             }
-        }
-}
+    }
 }

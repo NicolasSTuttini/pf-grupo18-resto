@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import AccesoDatos.PedidoData;
 import javax.swing.JOptionPane;
 import sun.awt.AWTAccessor;
 
@@ -257,7 +258,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void mjCargarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mjCargarPedidoActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        PedidosCargar pc = new PedidosCargar();
+        
+        PedidoData pd = new PedidoData();
+        int id_pedido = pd.crearPedido();
+        
+        /*JOptionPane.showMessageDialog(null, id_pedido);*/
+        
+        PedidosCargar pc = new PedidosCargar(id_pedido);
+        
         pc.setVisible(true);
         Escritorio.add(pc);
         Escritorio.moveToFront(pc);
