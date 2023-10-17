@@ -15,7 +15,11 @@ import javax.swing.table.DefaultTableModel;
  * @author nstut
  */
 public class MesasGestionar extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int fila, int column) {
+                return false; 
+        }
+    };
     /**
      * Creates new form MesasAgregar
      */
@@ -44,6 +48,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaMesas = new javax.swing.JTable();
+        jbCambiarNumero = new javax.swing.JButton();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(500, 500));
@@ -114,9 +119,16 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jbCambiarNumero.setText("Cambiar número");
+        jbCambiarNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCambiarNumeroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,26 +136,28 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(134, 134, 134)
-                            .addComponent(jrActivas)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jrInactivas))
-                        .addComponent(jbAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jrActivas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrInactivas))
+                            .addComponent(jbAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbCambiarNumero)))))
                 .addContainerGap(70, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,11 +172,12 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                     .addComponent(jrInactivas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAlta)
-                    .addComponent(jbBaja))
-                .addGap(31, 31, 31))
+                    .addComponent(jbBaja)
+                    .addComponent(jbCambiarNumero))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -210,11 +225,13 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             jrActivas.setSelected(false);
             jbAlta.setEnabled(true);
             jbBaja.setEnabled(false);
+            jbCambiarNumero.setEnabled(false);
             cargarInactivas ();
         } else {
             jrActivas.setSelected(true);
             jbAlta.setEnabled(false);
             jbBaja.setEnabled(true);
+            jbCambiarNumero.setEnabled(true);
         }
     }//GEN-LAST:event_jrInactivasItemStateChanged
 
@@ -228,11 +245,13 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             jrInactivas.setSelected(false);
             jbAlta.setEnabled(false);
             jbBaja.setEnabled(true);
+            jbCambiarNumero.setEnabled(true);
             cargarActivas ();
         } else {
             jrInactivas.setSelected(true);
             jbAlta.setEnabled(true);
             jbBaja.setEnabled(false);
+            jbCambiarNumero.setEnabled(false);
         }
     }//GEN-LAST:event_jrActivasItemStateChanged
 
@@ -249,6 +268,25 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jbAgregarMesaActionPerformed
 
+    private void jbCambiarNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCambiarNumeroActionPerformed
+        int nroNuevo = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el nuevo número:"));
+        
+        MesaData md =new MesaData();
+        int  filasSelec = jtTablaMesas.getSelectedRowCount();
+        if ( filasSelec == 1) {
+            int fila = jtTablaMesas.getSelectedRow();
+            int id = Integer.parseInt(jtTablaMesas.getValueAt(fila , 0).toString());
+            
+            md.cambiarNumero(id, nroNuevo);
+            vaciarTabla ();
+            cargarActivas ();
+        } else if (filasSelec > 1 ){
+            JOptionPane.showMessageDialog(null, "Solo puede modificar una mesa a la vez.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
+        }
+    }//GEN-LAST:event_jbCambiarNumeroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -257,16 +295,18 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbAgregarMesa;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
+    private javax.swing.JButton jbCambiarNumero;
     private javax.swing.JRadioButton jrActivas;
     private javax.swing.JRadioButton jrInactivas;
     private javax.swing.JTable jtTablaMesas;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera(){
+        modelo.addColumn("Código");
         modelo.addColumn("Numero");
         modelo.addColumn("Capacidad");
         jtTablaMesas.setModel(modelo);
-        }
+    }
     
     private void vaciarTabla () {
         for (int i = modelo.getRowCount()-1; i >= 0;i--){
@@ -279,7 +319,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
 
         for (Mesa aux : listaActivas){
             if (aux.isEstado()){
-                    modelo.addRow(new Object[]{aux.getId_mesa(),aux.getCapacidad()});
+                    modelo.addRow(new Object[]{aux.getId_mesa(),aux.getNumero(),aux.getCapacidad()});
             }
         }
     }
@@ -290,7 +330,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
 
             for (Mesa aux : listaActivas){
                 if (!aux.isEstado()){
-                   modelo.addRow(new Object[]{aux.getId_mesa(),aux.getCapacidad()});
+                   modelo.addRow(new Object[]{aux.getId_mesa(),aux.getNumero(),aux.getCapacidad()});
                 }
             }    
     }

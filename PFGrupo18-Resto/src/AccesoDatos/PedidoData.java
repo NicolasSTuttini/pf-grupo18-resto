@@ -8,8 +8,12 @@ import Entidades.Mesa;
 import Entidades.Mesero;
 import Entidades.Pedido;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,16 +50,18 @@ public class PedidoData {
         return id;
     }
     
-    public void agregarPedido (int id_mesa, int id_mesero, Date fecha, Time hora, double importe) {
-        String sql = "INSERT INTO pedido VALUES (DEFAULT, ?, ?, ?, ?, ?, false, false)";
+    public void agregarPedido (int id_pedido, int id_mesa, int id_mesero, LocalDate fecha, LocalTime hora, double importe) {
+        String sql = "UPDATE pedido SET id_mesa = ?, id_mesero = ?, fecha = ?, hora = ?, importe = ?, entregado = false, pagado = false "
+                    + "WHERE id_pedido = ?";
         
         try {
             PreparedStatement ps =con.prepareStatement(sql);
             ps.setInt(1,id_mesa);
             ps.setInt(2,id_mesero);
-            ps.setDate(3,fecha);
-            ps.setTime(4,hora);
+            ps.setDate(3,Date.valueOf(fecha));
+            ps.setTime(4,Time.valueOf(hora));
             ps.setDouble(5, importe);
+            ps.setInt(6, id_pedido);
             
             int insertar = ps.executeUpdate();
             if (insertar > 0 ) {
@@ -152,7 +158,23 @@ public class PedidoData {
         return pedidos;
     }
         
+    public void eliminarPedidosVacios () {
+        String sql = "DELETE FROM pedido "
+                + "WHERE id_mesa IS NULL OR id_mesero IS NULL OR fecha IS NULL OR hora IS NULL OR importe IS NULL";
+        
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con consulta sql al eliminar pedido vacio.");
+        }
+        
+        
+        
     
+    
+    }
     
     
 }

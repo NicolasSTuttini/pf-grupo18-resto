@@ -188,9 +188,9 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
             
             
             if (agregados == 1) {
-                JOptionPane.showMessageDialog(null, "Pedido agregado exitosamente.");
+                JOptionPane.showMessageDialog(null, "Producto agregado exitosamente.");
             } else if (agregados > 1) {
-                JOptionPane.showMessageDialog(null, "Pedidos agregados exitosamente.");
+                JOptionPane.showMessageDialog(null, "Productos agregados exitosamente.");
             }
             this.dispose();
         } else {

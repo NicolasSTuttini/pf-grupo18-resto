@@ -3,23 +3,34 @@ package Entidades;
 public class Mesa {
 
     private int id_mesa;
+    private int numero;
     private int capacidad;
     private boolean estado;
 
     public Mesa() {
     }
 
-    public Mesa(int capacidad, boolean estado) {
+    public Mesa(int numero, int capacidad, boolean estado) {
+        this.numero = numero;
         this.capacidad = capacidad;
         this.estado = estado;
     }
 
-    public Mesa(int id_mesa, int capacidad, boolean estado) {
+    public Mesa(int id_mesa, int numero, int capacidad, boolean estado) {
         this.id_mesa = id_mesa;
+        this.numero = numero;
         this.capacidad = capacidad;
         this.estado = estado;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    
     public int getCapacidad() {
         return capacidad;
     }
@@ -45,7 +56,7 @@ public class Mesa {
     }
     @Override
     public String toString() {
-        return "N° "+ id_mesa + ", Capacidad: " + capacidad;
+        return "N° "+ numero + ", Capacidad: " + capacidad;
     }
     
 }

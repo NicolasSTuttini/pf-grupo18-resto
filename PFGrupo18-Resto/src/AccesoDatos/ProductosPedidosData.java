@@ -4,15 +4,13 @@
  */
 package AccesoDatos;
 
-import Entidades.Mesa;
-import Entidades.Mesero;
-import Entidades.Pedido;
-import Entidades.Producto;
 import Entidades.ProductosPedidos;
 import Vistas.PedidosCargar;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,8 +91,27 @@ public class ProductosPedidosData {
        double importe = 0;
        
        for (ProductosPedidos aux : ppLista) {
-           importe += (aux.getCantidad()* pd.getProducto(aux.getId_pedido()).getPrecio());
+           importe += (aux.getCantidad() * pd.getProducto(aux.getId_producto()).getPrecio());
        }
        return importe;
+   }
+   
+   public int quitarProducto (int id_producto, int id_pedido) {
+        String sql = "DELETE FROM productospedidos WHERE id_producto = ? AND id_pedido = ?";
+        int quitar = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_producto);
+            ps.setInt(2, id_pedido);
+            
+            if(ps.executeUpdate() > 0) {
+                quitar++;
+            } 
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error en sql al intentar quitar el producto.");
+        }
+       
+        return quitar;
    }
 }

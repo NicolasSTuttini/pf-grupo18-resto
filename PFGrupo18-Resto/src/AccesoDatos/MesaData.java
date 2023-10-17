@@ -21,12 +21,13 @@ public class MesaData {
         this.con = Conexion.conectar();
     }
     
-    public void agregarMesa (int capacidad) {
-        String sql = "INSERT INTO mesa VALUES (DEFAULT,?,true)";
+    public void agregarMesa (int capacidad, int numero){
+        String sql = "INSERT INTO mesa VALUES (DEFAULT,?,?,true)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt (1,capacidad);
+            ps.setInt (1,numero);
+            ps.setInt(2, capacidad);
             
             int insertado = ps.executeUpdate();
             
@@ -86,7 +87,7 @@ public class MesaData {
     
     public List<Mesa> listarMesas() {
         List<Mesa> mesas = new ArrayList<>();
-        String sql = "SELECT * FROM mesa ";
+        String sql = "SELECT * FROM mesa ORDER BY numero ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -94,6 +95,7 @@ public class MesaData {
             while (rs.next()) {
                 mesa = new Mesa();
                 mesa.setId_mesa(rs.getInt("id_mesa"));
+                mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
                 mesa.setEstado(rs.getBoolean("estado"));
                 mesas.add(mesa);
@@ -105,7 +107,39 @@ public class MesaData {
         return mesas;
     }
     
+    public int obtenerNumero () {
+        int nro = 0;
+        String sql = "SELECT max(numero) numero FROM mesa";
+        
+       
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs =  ps.executeQuery();
+            if (rs.next()) {
+               nro = rs.getInt("numero");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas con sql al obtener el ultimo numero.");
+        }
+        return nro + 1;
+    }
     
+    public void cambiarNumero (int id, int nuevo) {
+         String sql = "UPDATE mesa SET numero = ? WHERE id_mesa = ?";
+         try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, nuevo);
+            ps.setInt(2, id);
+            ResultSet rs =  ps.executeQuery();
+            if (rs.next()) {
+               JOptionPane.showMessageDialog(null, "Número actualizado exitosamente.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problemas con sql al modificar el numero.");
+        }
+    }
     
     
 }

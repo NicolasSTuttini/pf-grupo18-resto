@@ -17,7 +17,8 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
      */
     public MesasAgregar() {
         initComponents();
-        /*setLocation(110, 125);*/
+        MesaData md = new MesaData();
+        jtNumero.setText(""+md.obtenerNumero());
     }
 
     /**
@@ -32,6 +33,8 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jtCapacidad = new javax.swing.JTextField();
         jbAgregar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jtNumero = new javax.swing.JTextField();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -61,32 +64,48 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setText("Número:");
+
+        jtNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNumeroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtCapacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(jtNumero))))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel2)
+                    .addComponent(jtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jbAgregar)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -97,17 +116,25 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
         
         try {
             int capacidad = Integer.parseInt(jtCapacidad.getText().toString());
-            if (capacidad > 20) {
+            int numero = Integer.parseInt(jtNumero.getText().toString());
+            if (capacidad > 20 || capacidad < 1) {
                 JOptionPane.showMessageDialog(null, "La capacidad de la mesa no puede ser mayor a 20.");
+            } else if (numero > 99 || numero < 1) {
+                JOptionPane.showMessageDialog(null, "El número de mesa ingresado no parece ser posible.");
             } else {
-                md.agregarMesa(capacidad);
+                md.agregarMesa(capacidad, numero);
             }
             
         } catch (NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "La capacidad debe ser un valor numerico.");
+            JOptionPane.showMessageDialog(null, "La capacidad y el número de la mesa deben ser valores numericos.");
         }
-        
-        jtCapacidad.setText("");
+        this.dispose();
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        MesasGestionar mg = new MesasGestionar();
+        mg.setVisible(true);
+        Escritorio.add(mg);
+        Escritorio.moveToFront(mg);
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
@@ -120,10 +147,16 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_formInternalFrameClosed
 
+    private void jtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNumeroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbAgregar;
     private javax.swing.JTextField jtCapacidad;
+    private javax.swing.JTextField jtNumero;
     // End of variables declaration//GEN-END:variables
 }
