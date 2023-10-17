@@ -135,6 +135,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3.add(mjCargarPedido);
 
         jmPedidosGestionar.setText("Gestionar");
+        jmPedidosGestionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPedidosGestionarActionPerformed(evt);
+            }
+        });
         jMenu3.add(jmPedidosGestionar);
 
         jmMenuBarra.add(jMenu3);
@@ -267,6 +272,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.moveToFront(pc);
         
     }//GEN-LAST:event_mjCargarPedidoActionPerformed
+
+    private void jmPedidosGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidosGestionarActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        PedidosSegunMesa psm = new PedidosSegunMesa();
+        
+        psm.setVisible(true);
+        Escritorio.add(psm);
+        Escritorio.moveToFront(psm);
+    }//GEN-LAST:event_jmPedidosGestionarActionPerformed
 
     /**
      * @param args the command line arguments

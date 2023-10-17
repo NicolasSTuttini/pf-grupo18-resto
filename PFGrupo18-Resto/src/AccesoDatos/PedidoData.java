@@ -132,18 +132,20 @@ public class PedidoData {
         }
     }
     
-    public List<Pedido> listarPedidos(Mesa mesa, Mesero mesero) {
+    public List<Pedido> listarPedidos(Mesa mesa) {
+        MeseroData md = new MeseroData();
         List<Pedido> pedidos = new ArrayList<>();
-        String sql = "SELECT * FROM pedido ";
+        String sql = "SELECT * FROM pedido WHERE id_mesa = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mesa.getId_mesa());
             ResultSet rs = ps.executeQuery();
             Pedido pedido;
             while (rs.next()) {
                 pedido = new Pedido();
                 pedido.setId_pedido(rs.getInt("id_pedido"));
                 pedido.setMesa(mesa);
-                pedido.setMesero(mesero);
+                pedido.setMesero(md.getMesero(rs.getInt("id_mesero")));
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
                 pedido.setHora(rs.getTime("hora").toLocalTime());
                 pedido.setImporte(rs.getDouble("importe"));
@@ -161,20 +163,28 @@ public class PedidoData {
     public void eliminarPedidosVacios () {
         String sql = "DELETE FROM pedido "
                 + "WHERE id_mesa IS NULL OR id_mesero IS NULL OR fecha IS NULL OR hora IS NULL OR importe IS NULL";
-        
-        PreparedStatement ps;
         try {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error con consulta sql al eliminar pedido vacio.");
         }
-        
-        
-        
-    
-    
     }
-    
+     public int getId_mesero (int id_pedido) {
+         String sql = "SELECT id_mesero FROM pedido WHERE id_pedido = ? ";
+         int id_mesero = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_pedido);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                id_mesero = rs.getInt("id_mesero");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error con consulta sql al eliminar pedido vacio.");
+        }
+        return id_mesero;
+     }
     
 }

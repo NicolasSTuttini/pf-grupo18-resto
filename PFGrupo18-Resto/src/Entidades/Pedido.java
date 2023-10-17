@@ -40,6 +40,7 @@ public class Pedido {
         this.entregado = entregado;
         this.pagado = pagado;
     }
+    
 
     public LocalDate getFecha() {
         return fecha;

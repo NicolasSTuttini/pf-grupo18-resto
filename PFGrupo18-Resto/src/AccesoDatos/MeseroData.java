@@ -155,4 +155,29 @@ public class MeseroData {
         }
         return meseros;
     }
+    
+    public Mesero getMesero (int id_mesero) {
+        PedidoData pd = new PedidoData();
+        String sql = "SELECT * FROM mesero WHERE id_mesero = ?";
+        Mesero mesero = new Mesero();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, id_mesero);
+            ResultSet rs = ps.executeQuery();
+           
+            if (rs.next()) {
+                mesero.setId_mesero(rs.getInt("id_mesero"));
+                mesero.setDni(rs.getInt("dni"));
+                mesero.setNombre(rs.getString("nombre"));
+                mesero.setApellido(rs.getString("apellido"));
+                mesero.setContrasenia(rs.getString("contrasenia"));
+                mesero.setEstado(rs.getBoolean("estado"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return mesero;
+    }
 }

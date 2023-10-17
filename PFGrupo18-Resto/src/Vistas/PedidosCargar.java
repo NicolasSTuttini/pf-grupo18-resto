@@ -97,7 +97,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jbAgregarPedido = new javax.swing.JButton();
         jbQuitarProducto = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(480, 520));
 
@@ -155,6 +155,11 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jtTablaProductosPedidos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtTablaProductosPedidosFocusGained(evt);
+            }
+        });
+        jtTablaProductosPedidos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jtTablaProductosPedidosPropertyChange(evt);
             }
         });
         jScrollPane2.setViewportView(jtTablaProductosPedidos);
@@ -259,10 +264,10 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -271,7 +276,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -299,8 +304,8 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jbAgregarPedido)
                                 .addGap(61, 61, 61)
-                                .addComponent(jButton1)))
-                        .addContainerGap())))
+                                .addComponent(jbSalir)))
+                        .addContainerGap(49, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,12 +337,12 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAgregarPedido)
-                    .addComponent(jButton1)
+                    .addComponent(jbSalir)
                     .addComponent(jbQuitarProducto))
                 .addGap(15, 15, 15))
         );
@@ -423,6 +428,11 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un producto.");
         }    
+        if (jtTablaProductosPedidos.getRowCount() > 0){
+            jbSalir.setEnabled(false);
+        } else {
+            jbSalir.setEnabled(true);
+        }
     }//GEN-LAST:event_jbQuitarProductoActionPerformed
 
     private void jtTablaProductosPedidosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtTablaProductosPedidosFocusGained
@@ -433,15 +443,22 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_jtTablaProductosPedidosFocusGained
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         PedidoData pd = new PedidoData();
         pd.eliminarPedidosVacios();
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jtTablaProductosPedidosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtTablaProductosPedidosPropertyChange
+        if (jtTablaProductosPedidos.getRowCount() > 0){
+            jbSalir.setEnabled(false);
+        } else {
+            jbSalir.setEnabled(true);
+        }
+    }//GEN-LAST:event_jtTablaProductosPedidosPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -463,6 +480,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbAgregarPedido;
     private javax.swing.JButton jbAgregarProducto;
     private javax.swing.JButton jbQuitarProducto;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Mesa> jcMesas;
     private javax.swing.JComboBox<Mesero> jcMeseros;
     private javax.swing.JTable jtTablaProductosPedidos;
