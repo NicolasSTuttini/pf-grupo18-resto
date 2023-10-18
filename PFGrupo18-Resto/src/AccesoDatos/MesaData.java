@@ -141,5 +141,26 @@ public class MesaData {
         }
     }
     
+    public Mesa getMesa (int id_mesa) {
+        String sql = "SELECT * FROM mesa WHERE id_mesa = ? ";
+        Mesa mesa = new Mesa();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_mesa);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                mesa.setId_mesa(rs.getInt("id_mesa"));
+                mesa.setCapacidad(rs.getInt("capacidad"));
+                mesa.setNumero(rs.getInt("numero"));
+                mesa.setEstado(rs.getBoolean("estado"));
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return mesa;
+    }
     
 }

@@ -276,11 +276,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jmPedidosGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidosGestionarActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
-        PedidosSegunMesa psm = new PedidosSegunMesa();
+        PedidosGestionar pg = new PedidosGestionar();
         
-        psm.setVisible(true);
-        Escritorio.add(psm);
-        Escritorio.moveToFront(psm);
+        pg.setVisible(true);
+        Escritorio.add(pg);
+        Escritorio.moveToFront(pg);
     }//GEN-LAST:event_jmPedidosGestionarActionPerformed
 
     /**

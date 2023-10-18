@@ -94,23 +94,20 @@ public class PedidoData {
         }
     }
     
-    public void entregarPedido (int id) {
+    public int entregarPedido (int id) {
         String sql = "UPDATE pedido SET entregado = true WHERE id_pedido = ? AND entregado = false";
-        
+        int entregado = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
-            int alta = ps.executeUpdate();
-            if (alta > 0) {
-                JOptionPane.showMessageDialog(null, "Pedido entregado.");
-            } else {
-                JOptionPane.showMessageDialog(null, "El pedido ya habia sido entregado.");
-            }
+            entregado = ps.executeUpdate();
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro el pedido (sql).");
         }
+        return entregado;
     }
     
     public void pagarPedido (int id) {
@@ -170,21 +167,35 @@ public class PedidoData {
             JOptionPane.showMessageDialog(null, "Error con consulta sql al eliminar pedido vacio.");
         }
     }
-     public int getId_mesero (int id_pedido) {
-         String sql = "SELECT id_mesero FROM pedido WHERE id_pedido = ? ";
-         int id_mesero = 0;
+    
+    public Pedido getPedido (int id_pedido) {
+        MeseroData meseroD = new MeseroData();
+        MesaData mesaD = new MesaData();
+        
+        String sql = "SELECT * FROM pedido WHERE id_pedido = ? ";
+        Pedido pedido = new Pedido();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id_pedido);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                id_mesero = rs.getInt("id_mesero");
-            }
             
+            if (rs.next()) {
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setMesa(mesaD.getMesa(rs.getInt("id_mesa")));
+                pedido.setMesero(meseroD.getMesero(rs.getInt("id_mesero")));
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+                pedido.setHora(rs.getTime("hora").toLocalTime());
+                pedido.setImporte(rs.getDouble("importe"));
+                pedido.setEntregado(rs.getBoolean("entregado"));
+                pedido.setPagado(rs.getBoolean("pagado"));
+            }
+            ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error con consulta sql al eliminar pedido vacio.");
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
         }
-        return id_mesero;
-     }
+        return pedido;
+        
+    }
+    
     
 }

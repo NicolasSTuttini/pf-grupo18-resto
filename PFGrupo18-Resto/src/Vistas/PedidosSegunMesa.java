@@ -7,14 +7,11 @@ package Vistas;
 import AccesoDatos.MesaData;
 import AccesoDatos.MeseroData;
 import AccesoDatos.PedidoData;
-import AccesoDatos.ProductoData;
-import AccesoDatos.ProductosPedidosData;
 import Entidades.Mesa;
-import Entidades.Mesero;
 import Entidades.Pedido;
-import Entidades.Producto;
-import Entidades.ProductosPedidos;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,6 +33,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         armarCabecera();
         vaciarTabla();
         cargarPedidos();
+        /*cargarTotalMesa();*/
         
     }
 
@@ -67,9 +65,39 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
 
         jScrollPane4.setViewportView(jTextPane3);
 
+        setClosable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
         jLabel1.setText("Pedidos");
 
         jLabel2.setText("Mesa:");
+
+        jcMesas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcMesasItemStateChanged(evt);
+            }
+        });
+        jcMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcMesasActionPerformed(evt);
+            }
+        });
 
         jtTablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -186,8 +214,49 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbEntregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntregadoActionPerformed
-        // TODO add your handling code here:
+        int filas = jtTablaPedidos.getSelectedRowCount();
+        int filaSelec;
+        String entregado;
+        int id;
+        PedidoData pd = new PedidoData();
+        if (filas > 0) {
+            for (int i = 0; i < filas; i++) {
+               filaSelec = jtTablaPedidos.getSelectedRows()[i];
+               id = Integer.parseInt(jtTablaPedidos.getValueAt(filaSelec, 0).toString());
+               entregado = jtTablaPedidos.getValueAt(filaSelec, 4).toString();
+               if (entregado.equals("NO")) {
+                    pd.entregarPedido(id);
+                    vaciarTabla();
+                    cargarPedidos();
+                    cargarTotalMesa ();
+               }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para entregar.");
+        }
     }//GEN-LAST:event_jbEntregadoActionPerformed
+
+    private void jcMesasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcMesasItemStateChanged
+        /*vaciarTabla();
+        cargarPedidos();
+        cargarTotalMesa();*/
+    }//GEN-LAST:event_jcMesasItemStateChanged
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        MenuPrincipal.Escritorio.removeAll();
+        MenuPrincipal.Escritorio.repaint();
+        PedidosGestionar pg = new PedidosGestionar();
+        
+        pg.setVisible(true);
+        MenuPrincipal.Escritorio.add(pg);
+        MenuPrincipal.Escritorio.moveToFront(pg);
+    }//GEN-LAST:event_formInternalFrameClosed
+
+    private void jcMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMesasActionPerformed
+        vaciarTabla();
+        cargarPedidos();
+        cargarTotalMesa();
+    }//GEN-LAST:event_jcMesasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,6 +281,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
 private void armarCabecera(){
     modelo.addColumn("N° de Pedido");
     modelo.addColumn("Mesero");
+    modelo.addColumn("Hora");
     modelo.addColumn("Importe");
     modelo.addColumn("Entregado");
     jtTablaPedidos.setModel(modelo);
@@ -236,11 +306,47 @@ private void armarCabecera(){
         PedidoData pd = new PedidoData();
         MeseroData md = new MeseroData();
         List<Pedido> pedidos = pd.listarPedidos((Mesa)jcMesas.getSelectedItem());
+        
+        String pagado;
+        
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        String hora; 
+        
         for (Pedido aux : pedidos) {
             if (!aux.isPagado()) {
-                modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre(),aux.getImporte(),aux.isPagado()});
+                if(aux.isEntregado()) {
+                    pagado = "SI";
+                } else {
+                    pagado= "NO";
+                }
+                hora = aux.getHora().format(horaFormat);
+                modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre(),hora,aux.getImporte(),pagado});
             }
             
         }
+    }
+    
+    private void cargarTotalMesa () {
+        double total = 0;
+        int filas = jtTablaPedidos.getRowCount();
+        JOptionPane.showMessageDialog(this, filas);
+        int id;
+        String entregado;
+        
+        PedidoData pd = new PedidoData();
+        Pedido pedido;
+        if (filas > 0) {
+            for (int i = 0; i < filas; i++) {
+               id = Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
+               entregado = jtTablaPedidos.getValueAt(i, 4).toString();
+               
+               if (entregado.equals("SI")) {
+                    pedido = pd.getPedido(id);
+                    
+                    total += pedido.getImporte();
+               }
+            }
+        } 
+        jtpTotalMesa.setText(""+total);
     }
 }

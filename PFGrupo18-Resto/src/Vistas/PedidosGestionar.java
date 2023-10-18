@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+
 /**
  *
  * @author nstut
@@ -15,6 +16,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
      */
     public PedidosGestionar() {
         initComponents();
+        this.setLocation(95, 120);
     }
 
     /**
@@ -30,7 +32,14 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jButton1.setText("Según Mesa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Según Mesero");
 
@@ -65,6 +74,17 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        MenuPrincipal.Escritorio.removeAll();
+        MenuPrincipal.Escritorio.repaint();
+        PedidosSegunMesa psm = new PedidosSegunMesa();
+        
+        psm.setVisible(true);
+        MenuPrincipal.Escritorio.add(psm);
+        MenuPrincipal.Escritorio.moveToFront(psm);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
