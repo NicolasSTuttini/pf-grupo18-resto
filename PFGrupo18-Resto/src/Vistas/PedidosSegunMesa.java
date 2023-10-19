@@ -397,28 +397,30 @@ private void armarCabecera(){
     }
     
     private void cobrarPedidos () {
-        int opcion = JOptionPane.showInternalConfirmDialog(this, "¿Desea cobrar todos los pedidos entregados en la mesa?");
+        int opcion = JOptionPane.showInternalConfirmDialog(this, "¿ Desea cobrar todos los pedidos entregados en la mesa?");
         JOptionPane.showMessageDialog(this, opcion);
-//        int filas = modelo.getRowCount();
-//        int id;
-//        String entregado;
-//        
-//        PedidoData pd = new PedidoData();
-//        
-//        try {
-//            if (filas > 0) {
-//                for (int i = 0; i < filas; i++) {
-//                   id =  Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
-//                   entregado = jtTablaPedidos.getValueAt(i, 4).toString();
-//
-//                   if (entregado.equals("SI")) {
-//                      pd.pagarPedido(id);
-//                   }
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Deben haber pedidos entregados para poder cobrarlos.");
-//            }
-//        } catch (NullPointerException ex) {
-//        } /*catch (ArrayIndexOutOfBoundsException exc) {}*/
+        if (opcion == 0){
+            int filas = modelo.getRowCount();
+            int id;
+            String entregado;
+
+            PedidoData pd = new PedidoData();
+            
+            try {
+                if (filas > 0) {
+                    for (int i = 0; i < filas; i++) {
+                       id =  Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
+                       entregado = jtTablaPedidos.getValueAt(i, 4).toString();
+
+                       if (entregado.equals("SI")) {
+                          pd.pagarPedido(id);
+                       }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Deben haber pedidos entregados para poder cobrarlos.");
+                }
+            } catch (NullPointerException ex) {
+            } /*catch (ArrayIndexOutOfBoundsException exc) {}*/
+        }
     }
 }
