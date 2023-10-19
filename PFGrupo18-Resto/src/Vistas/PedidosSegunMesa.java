@@ -397,7 +397,7 @@ private void armarCabecera(){
     }
     
     private void cobrarPedidos () {
-        int opcion = JOptionPane.showInternalConfirmDialog(this, "¿ Desea cobrar todos los pedidos entregados en la mesa?");
+        int opcion = JOptionPane.showInternalConfirmDialog(this, "¿ Desea cobrar todos los pedidos entregados en la mesa?","Confirmación",1);
         JOptionPane.showMessageDialog(this, opcion);
         if (opcion == 0){
             int filas = modelo.getRowCount();
