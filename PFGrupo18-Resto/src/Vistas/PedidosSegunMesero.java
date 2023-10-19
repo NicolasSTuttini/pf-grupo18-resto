@@ -4,10 +4,8 @@
  */
 package Vistas;
 
-import AccesoDatos.MesaData;
 import AccesoDatos.MeseroData;
 import AccesoDatos.PedidoData;
-import Entidades.Mesa;
 import Entidades.Mesero;
 import Entidades.Pedido;
 import java.text.SimpleDateFormat;
@@ -21,23 +19,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author nstut
  */
-public class PedidosSegunMesa extends javax.swing.JInternalFrame {
-
+public class PedidosSegunMesero extends javax.swing.JInternalFrame {
     DefaultTableModel modelo = new DefaultTableModel(){
         public boolean isCellEditable (int row, int colum) {
             return false;
         }
     };
-
     /**
-     * Creates new form PedidosSegunMesa
+     * Creates new form PedidosSegunMesero
      */
-    public PedidosSegunMesa() {
+    public PedidosSegunMesero() {
         initComponents();
+        cargarMeseros();
         Calendar fechaHoy = Calendar.getInstance();
         jcFecha.setDate(fechaHoy.getTime());
-        cargarMesas();
-        cargarHora();
         
         armarCabecera();
         vaciarTabla();
@@ -53,18 +48,20 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jcMesas = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jcMeseros = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaPedidos = new javax.swing.JTable();
         jrAtendidos = new javax.swing.JRadioButton();
         jrCobrados = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        jcFecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jcHora = new javax.swing.JComboBox<>();
+        jcFecha = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -85,19 +82,23 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             }
         });
 
-        jcMesas.addItemListener(new java.awt.event.ItemListener() {
+        jLabel1.setText("Pedidos");
+
+        jLabel3.setText("Mesero:");
+
+        jcMeseros.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcMesasItemStateChanged(evt);
+                jcMeserosItemStateChanged(evt);
             }
         });
-        jcMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+        jcMeseros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jcMesasMouseClicked(evt);
+                jcMeserosMouseClicked(evt);
             }
         });
-        jcMesas.addActionListener(new java.awt.event.ActionListener() {
+        jcMeseros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcMesasActionPerformed(evt);
+                jcMeserosActionPerformed(evt);
             }
         });
 
@@ -144,7 +145,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
                 .addComponent(jrAtendidos)
                 .addGap(69, 69, 69)
                 .addComponent(jrCobrados)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +159,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Pedidos");
+        jLabel4.setText("Fecha:");
 
         jcFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -166,100 +167,103 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setText("Fecha:");
-
-        jLabel3.setText("Mesa:");
-
-        jLabel2.setText("Hora:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcHora, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(88, 88, 88)
                             .addComponent(jLabel3)
-                            .addGap(21, 21, 21)
-                            .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(190, 190, 190)
-                            .addComponent(jLabel1)))
-                    .addContainerGap(91, Short.MAX_VALUE)))
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jcHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1)
-                    .addGap(12, 12, 12)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
-                    .addContainerGap(363, Short.MAX_VALUE)))
+                    .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcMesasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcMesasItemStateChanged
+    private void jcMeserosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcMeserosItemStateChanged
         vaciarTabla();
         cargarPedidos(jrCobrados.isSelected());
-    }//GEN-LAST:event_jcMesasItemStateChanged
+    }//GEN-LAST:event_jcMeserosItemStateChanged
 
-    private void jcMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcMesasMouseClicked
+    private void jcMeserosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcMeserosMouseClicked
+        /*cargarTotalMesa();*/
+    }//GEN-LAST:event_jcMeserosMouseClicked
 
-    }//GEN-LAST:event_jcMesasMouseClicked
+    private void jcMeserosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMeserosActionPerformed
+        //        vaciarTabla();
+        //        cargarPedidos();
+        //        cargarTotalMesa();
+    }//GEN-LAST:event_jcMeserosActionPerformed
 
-    private void jcMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMesasActionPerformed
+    private void jrAtendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrAtendidosActionPerformed
+        
+    }//GEN-LAST:event_jrAtendidosActionPerformed
 
-    }//GEN-LAST:event_jcMesasActionPerformed
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        MenuPrincipal.Escritorio.removeAll();
+        MenuPrincipal.Escritorio.repaint();
+        PedidosRegistro pg = new PedidosRegistro();
+        
+        pg.setVisible(true);
+        MenuPrincipal.Escritorio.add(pg);
+        MenuPrincipal.Escritorio.moveToFront(pg);
+    }//GEN-LAST:event_formInternalFrameClosed
+
+    private void jcFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcFechaPropertyChange
+        vaciarTabla();
+        cargarPedidos(jrCobrados.isSelected());
+    }//GEN-LAST:event_jcFechaPropertyChange
 
     private void jrAtendidosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrAtendidosItemStateChanged
-        vaciarTabla();
+       vaciarTabla();
         if (jrAtendidos.isSelected() == true) {
             jrCobrados.setSelected(false);
-
+            
+            
             cargarPedidos(jrCobrados.isSelected());
         } else {
             jrCobrados.setSelected(true);
         }
     }//GEN-LAST:event_jrAtendidosItemStateChanged
-
-    private void jrAtendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrAtendidosActionPerformed
-
-    }//GEN-LAST:event_jrAtendidosActionPerformed
 
     private void jrCobradosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrCobradosItemStateChanged
         vaciarTabla();
@@ -271,24 +275,11 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jrCobradosItemStateChanged
 
-    private void jcFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcFechaPropertyChange
-        vaciarTabla();
-        cargarPedidos(jrCobrados.isSelected());
-    }//GEN-LAST:event_jcFechaPropertyChange
-
-    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        this.dispose();
-        MenuPrincipal.Escritorio.removeAll();
-        MenuPrincipal.Escritorio.repaint();
-        PedidosRegistro psr = new PedidosRegistro();
-        
-        psr.setVisible(true);
-        MenuPrincipal.Escritorio.add(psr);
-        MenuPrincipal.Escritorio.moveToFront(psr);
-    }//GEN-LAST:event_formInternalFrameClosed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -296,8 +287,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jcFecha;
-    private javax.swing.JComboBox<String> jcHora;
-    private javax.swing.JComboBox<Mesa> jcMesas;
+    private javax.swing.JComboBox<Mesero> jcMeseros;
     private javax.swing.JRadioButton jrAtendidos;
     private javax.swing.JRadioButton jrCobrados;
     private javax.swing.JTable jtTablaPedidos;
@@ -305,7 +295,8 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
 
     private void armarCabecera(){
     modelo.addColumn("N° Pedido");
-    modelo.addColumn("Mesero");
+    modelo.addColumn("Mesa");
+    modelo.addColumn("Hora");
     modelo.addColumn("Importe");
     modelo.addColumn("Entregado");
     modelo.addColumn("Pagado");
@@ -318,35 +309,22 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         }
     }
 
-    private void cargarMesas () {
-        MesaData md = new MesaData();
-        List<Mesa> mesas = md.listarMesas();
-        
-        for (Mesa aux : mesas) {
-            if (aux.isEstado()) {
-                jcMesas.addItem(aux);
-            }
+    private void cargarMeseros () {
+        MeseroData md = new MeseroData();
+        List<Mesero> meseros = md.listarMeseros();
+        for (Mesero aux : meseros) {
+                jcMeseros.addItem(aux);
         }
     }
-    private void cargarHora () {
-        for (int i = 8 ; i < 14; i++) {
-                jcHora.addItem("0"+i+":00 a 0"+i+1+":00" );
-        }
-        for (int i = 20 ; i < 23; i++) {
-                jcHora.addItem("0"+i+":00 a 0"+i+1+":00" );
-        }
-        for (int i = 0 ; i < 3; i++) {
-                jcHora.addItem("0"+i+":00 a 0"+i+1+":00" );
-        }
-    }
-    
     private void cargarPedidos (boolean cobrados) {
         PedidoData pd = new PedidoData();
-        MesaData md = new MesaData();
-        List<Pedido> pedidos = pd.listarPedidos((Mesa)jcMesas.getSelectedItem());
+        MeseroData md = new MeseroData();
+        List<Pedido> pedidos = pd.listarPedidos((Mesero)jcMeseros.getSelectedItem());
         
         String pagado;
         String entregado;
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        String hora; 
         
         for (Pedido aux : pedidos) {
 //            JOptionPane.showMessageDialog(this, aux.getFecha());
@@ -372,7 +350,8 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
                     } else {
                         entregado = "NO";
                     }
-                    modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre(),aux.getImporte(),entregado,pagado});
+                    hora = aux.getHora().format(horaFormat);
+                    modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
                 }
             } else {
                 if (aux.getFecha().equals(fecha) ) {
@@ -380,7 +359,8 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
                         pagado = "SI";
                         entregado = "SI";
                         
-                        modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre(),aux.getImporte(),entregado,pagado});
+                        hora = aux.getHora().format(horaFormat);
+                        modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
                     } 
                     
                 }
@@ -388,4 +368,5 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
                 
         }
     }
+    
 }

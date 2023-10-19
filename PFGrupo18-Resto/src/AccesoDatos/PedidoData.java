@@ -119,9 +119,9 @@ public class PedidoData {
 
             int alta = ps.executeUpdate();
             if (alta > 0) {
-                JOptionPane.showMessageDialog(null, "Pedido pagagado.");
+//                JOptionPane.showMessageDialog(null, "Pedido pagagado.");
             } else {
-                JOptionPane.showMessageDialog(null, "El pedido ya habia sido pagado.");
+//                JOptionPane.showMessageDialog(null, "El pedido ya habia sido pagado.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -143,6 +143,33 @@ public class PedidoData {
                 pedido.setId_pedido(rs.getInt("id_pedido"));
                 pedido.setMesa(mesa);
                 pedido.setMesero(md.getMesero(rs.getInt("id_mesero")));
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+                pedido.setHora(rs.getTime("hora").toLocalTime());
+                pedido.setImporte(rs.getDouble("importe"));
+                pedido.setEntregado(rs.getBoolean("entregado"));
+                pedido.setPagado(rs.getBoolean("pagado"));
+                pedidos.add(pedido);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return pedidos;
+    }
+     public List<Pedido> listarPedidos(Mesero mesero) {
+        MesaData md = new MesaData();
+        List<Pedido> pedidos = new ArrayList<>();
+        String sql = "SELECT * FROM pedido WHERE id_mesero = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mesero.getId_mesero());
+            ResultSet rs = ps.executeQuery();
+            Pedido pedido;
+            while (rs.next()) {
+                pedido = new Pedido();
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setMesa(md.getMesa(rs.getInt("id_mesa")));
+                pedido.setMesero(mesero);
                 pedido.setFecha(rs.getDate("fecha").toLocalDate());
                 pedido.setHora(rs.getTime("hora").toLocalTime());
                 pedido.setImporte(rs.getDouble("importe"));

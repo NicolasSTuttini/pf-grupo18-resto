@@ -4,19 +4,38 @@
  */
 package Vistas;
 
+import AccesoDatos.MesaData;
+import AccesoDatos.MeseroData;
+import AccesoDatos.PedidoData;
+import Entidades.Mesa;
+import Entidades.Pedido;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author nstut
  */
 public class PedidosGestionar extends javax.swing.JInternalFrame {
-
+    DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable (int row, int colum) {
+            return false;
+        }
+    };
     /**
-     * Creates new form PedidosGestionar
+     * Creates new form PedidosSegunMesa
      */
     public PedidosGestionar() {
         initComponents();
-        this.setLocation(95, 120);
+        cargarMesas();
+        armarCabecera();
+        vaciarTabla();
+        cargarPedidos();
+        cargarTotalMesa();
+        pedidosNoEntregados();
+        
     }
 
     /**
@@ -28,22 +47,107 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jcMesas = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtTablaPedidos = new javax.swing.JTable();
+        jbEntregado = new javax.swing.JButton();
+        jbCobrar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtpPedidosSinEntregar = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtpTotalMesa = new javax.swing.JTextPane();
+
+        jScrollPane4.setViewportView(jTextPane3);
 
         setClosable(true);
-
-        jButton1.setText("Según Mesa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
-        jButton2.setText("Según Mesero");
+        jLabel1.setText("Pedidos");
 
-        jLabel1.setText("Ver pedidos según:");
+        jLabel2.setText("Mesa:");
+
+        jcMesas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcMesasItemStateChanged(evt);
+            }
+        });
+        jcMesas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcMesasMouseClicked(evt);
+            }
+        });
+        jcMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcMesasActionPerformed(evt);
+            }
+        });
+
+        jtTablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtTablaPedidos);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        jbEntregado.setText("Entregado");
+        jbEntregado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEntregadoActionPerformed(evt);
+            }
+        });
+
+        jbCobrar.setText("Cobrar");
+
+        jLabel5.setText("Total adeudado por la mesa:");
+
+        jLabel6.setText("Pedidos sin entregar:");
+
+        jScrollPane2.setViewportView(jtpPedidosSinEntregar);
+
+        jScrollPane5.setViewportView(jtpTotalMesa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,44 +156,262 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel1)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(164, 164, 164)
+                                .addComponent(jbEntregado)))
+                        .addGap(0, 82, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jbCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbEntregado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel5))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jbCobrar)
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        MenuPrincipal.Escritorio.removeAll();
-        MenuPrincipal.Escritorio.repaint();
-        PedidosSegunMesa psm = new PedidosSegunMesa();
-        
-        psm.setVisible(true);
-        MenuPrincipal.Escritorio.add(psm);
-        MenuPrincipal.Escritorio.moveToFront(psm);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jcMesasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcMesasItemStateChanged
+        vaciarTabla();
+        cargarPedidos();
+        cargarTotalMesa();
+        pedidosNoEntregados();
+    }//GEN-LAST:event_jcMesasItemStateChanged
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+//        MenuPrincipal.Escritorio.removeAll();
+//        MenuPrincipal.Escritorio.repaint();
+//        PedidosResgistro pr = new PedidosResgistro();
+//        
+//        pr.setVisible(true);
+//        MenuPrincipal.Escritorio.add(pr);
+//        MenuPrincipal.Escritorio.moveToFront(pr);
+    }//GEN-LAST:event_formInternalFrameClosed
+
+    private void jcMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMesasActionPerformed
+//        vaciarTabla();
+//        cargarPedidos();
+//        cargarTotalMesa(); 
+    }//GEN-LAST:event_jcMesasActionPerformed
+
+    private void jcMesasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcMesasMouseClicked
+       /*cargarTotalMesa();*/
+    }//GEN-LAST:event_jcMesasMouseClicked
+
+    private void jbEntregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntregadoActionPerformed
+        int filas = jtTablaPedidos.getSelectedRowCount();
+        int filaSelec;
+        String entregado;
+        int id;
+        PedidoData pd = new PedidoData();
+        if (filas > 0) {
+            for (int i = 0; i < filas; i++) {
+                filaSelec = jtTablaPedidos.getSelectedRows()[i];
+                id = Integer.parseInt(jtTablaPedidos.getValueAt(filaSelec, 0).toString());
+                entregado = jtTablaPedidos.getValueAt(filaSelec, 4).toString();
+                if (entregado.equals("NO")) {
+                    pd.entregarPedido(id);
+                    vaciarTabla();
+                    cargarPedidos();
+                    cargarTotalMesa();
+                    pedidosNoEntregados();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para entregar.");
+        }
+    }//GEN-LAST:event_jbEntregadoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JButton jbCobrar;
+    private javax.swing.JButton jbEntregado;
+    private javax.swing.JComboBox<Mesa> jcMesas;
+    private javax.swing.JTable jtTablaPedidos;
+    private javax.swing.JTextPane jtpPedidosSinEntregar;
+    private javax.swing.JTextPane jtpTotalMesa;
     // End of variables declaration//GEN-END:variables
+
+private void armarCabecera(){
+    modelo.addColumn("N° de Pedido");
+    modelo.addColumn("Mesero");
+    modelo.addColumn("Hora");
+    modelo.addColumn("Importe");
+    modelo.addColumn("Entregado");
+    jtTablaPedidos.setModel(modelo);
+}
+    private void vaciarTabla () {
+        for (int i = modelo.getRowCount()-1; i >= 0;i--){
+            modelo.removeRow(i);
+        }
+    }
+
+    private void cargarMesas () {
+        MesaData md = new MesaData();
+        List<Mesa> mesas = md.listarMesas();
+        for (Mesa aux : mesas) {
+            if (aux.isEstado()) {
+                jcMesas.addItem(aux);
+            }
+        }
+    }
+    private void cargarPedidos () {
+        PedidoData pd = new PedidoData();
+        MeseroData md = new MeseroData();
+        List<Pedido> pedidos = pd.listarPedidos((Mesa)jcMesas.getSelectedItem());
+        
+        String pagado;
+        
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        String hora; 
+        
+        for (Pedido aux : pedidos) {
+            if (!aux.isPagado()) {
+                if(aux.isEntregado()) {
+                    pagado = "SI";
+                } else {
+                    pagado= "NO";
+                }
+                hora = aux.getHora().format(horaFormat);
+                modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre(),hora,aux.getImporte(),pagado});
+            }
+            
+        }
+    }
+    
+    private void cargarTotalMesa () {
+        double total = 0;
+        int filas = modelo.getRowCount();
+        int id;
+        String entregado;
+        
+        PedidoData pd = new PedidoData();
+        Pedido pedido;
+        
+        try {
+            if (filas > 0) {
+                for (int i = 0; i < filas; i++) {
+                   id = Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
+//                   JOptionPane.showMessageDialog(this, id);
+                   entregado = jtTablaPedidos.getValueAt(i, 4).toString();
+
+                   if (entregado.equals("SI")) {
+                        pedido = pd.getPedido(id);
+
+                        total += pedido.getImporte();
+                   }
+                }
+            } 
+            jtpTotalMesa.setText(""+total);
+        } catch (NullPointerException ex) {
+//            JOptionPane.showMessageDialog(this, "null pointer exception");
+        }
+    }
+    
+    private void pedidosNoEntregados () {
+        int noEntregados = 0;
+        int filas = modelo.getRowCount();
+        String entregado;
+        
+        try {
+            if (filas > 0) {
+                for (int i = 0; i < filas; i++) {
+                   entregado = jtTablaPedidos.getValueAt(i, 4).toString();
+
+                   if (entregado.equals("NO")) {
+                       noEntregados++;
+                   }
+                }
+            } 
+            jtpPedidosSinEntregar.setText(""+noEntregados);
+        } catch (NullPointerException ex) {
+        } catch (ArrayIndexOutOfBoundsException exc) {}
+    }
+    
+    private void cobrarPedidos () {
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Desea cobrar todos los pedidos entregados en la mesa?","Confirmación",0);
+        if (opcion == 0){
+            int filas = modelo.getRowCount();
+            int id;
+            String entregado;
+
+            PedidoData pd = new PedidoData();
+            
+            try {
+                if (filas > 0) {
+                    for (int i = 0; i < filas; i++) {
+                       id =  Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
+                       entregado = jtTablaPedidos.getValueAt(i, 4).toString();
+
+                       if (entregado.equals("SI")) {
+                          pd.pagarPedido(id);
+                          vaciarTabla();
+                          cargarPedidos();
+                       }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Deben haber pedidos entregados para poder cobrarlos.");
+                }
+            } catch (NullPointerException ex) {
+            } /*catch (ArrayIndexOutOfBoundsException exc) {}*/
+        }
+    }
 }

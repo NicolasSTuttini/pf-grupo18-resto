@@ -45,6 +45,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         mjCargarPedido = new javax.swing.JMenuItem();
         jmPedidosGestionar = new javax.swing.JMenuItem();
+        jmPedidosRegistro = new javax.swing.JMenuItem();
         jmMeseros = new javax.swing.JMenu();
         jmGestionarMesero = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -141,6 +142,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jmPedidosGestionar);
+
+        jmPedidosRegistro.setText("Registro");
+        jmPedidosRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPedidosRegistroActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmPedidosRegistro);
 
         jmMenuBarra.add(jMenu3);
 
@@ -283,6 +292,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.moveToFront(pg);
     }//GEN-LAST:event_jmPedidosGestionarActionPerformed
 
+    private void jmPedidosRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidosRegistroActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        PedidosRegistro pg = new PedidosRegistro();
+        
+        pg.setVisible(true);
+        Escritorio.add(pg);
+        Escritorio.moveToFront(pg);
+    }//GEN-LAST:event_jmPedidosRegistroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -331,6 +350,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmMesasGestion;
     private javax.swing.JMenu jmMeseros;
     private javax.swing.JMenuItem jmPedidosGestionar;
+    private javax.swing.JMenuItem jmPedidosRegistro;
     private javax.swing.JMenu jmSalir;
     private javax.swing.JMenuItem mjCargarPedido;
     // End of variables declaration//GEN-END:variables
