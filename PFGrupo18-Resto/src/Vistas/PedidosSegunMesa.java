@@ -44,8 +44,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         cargarHora();
         
         armarCabecera();
-        vaciarTabla();
-        cargarPedidos();
+        cargarComponentes ();
         
         
     }
@@ -62,6 +61,12 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaPedidos = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtpTotalMesaDia = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtpTotalDia = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jcFecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
@@ -102,18 +107,44 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtTablaPedidos);
 
+        jLabel5.setText("Total ingresos de la mesa en el día:");
+
+        jLabel6.setText("Total de ingresos del día:");
+
+        jScrollPane2.setViewportView(jtpTotalMesaDia);
+
+        jScrollPane3.setViewportView(jtpTotalDia);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Pedidos");
@@ -206,22 +237,21 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
                     .addComponent(jcHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel1)
                     .addGap(17, 17, 17)
                     .addComponent(jLabel3)
-                    .addContainerGap(368, Short.MAX_VALUE)))
+                    .addContainerGap(389, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jcFechaPropertyChange
-        vaciarTabla();
-        cargarPedidos();
+        cargarComponentes ();
     }//GEN-LAST:event_jcFechaPropertyChange
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
@@ -243,8 +273,8 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcMesasActionPerformed
 
     private void jcMesasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcMesasItemStateChanged
-        vaciarTabla();
-        cargarPedidos();
+        cargarComponentes ();
+                
     }//GEN-LAST:event_jcMesasItemStateChanged
 
     private void jcFechaCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jcFechaCaretPositionChanged
@@ -252,8 +282,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcFechaCaretPositionChanged
 
     private void jcHoraItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcHoraItemStateChanged
-        vaciarTabla();
-        cargarPedidos();
+        cargarComponentes ();
     }//GEN-LAST:event_jcHoraItemStateChanged
 
 
@@ -262,12 +291,18 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private com.toedter.calendar.JDateChooser jcFecha;
     private javax.swing.JComboBox<String> jcHora;
     private javax.swing.JComboBox<Mesa> jcMesas;
     private javax.swing.JTable jtTablaPedidos;
+    private javax.swing.JTextPane jtpTotalDia;
+    private javax.swing.JTextPane jtpTotalMesaDia;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera(){
@@ -315,18 +350,20 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         try {
             List<Pedido> pedidos = pd.listarPedidos((Mesa)jcMesas.getSelectedItem());
 
-            String pagado;
+            String pagado;// variables para determinar el valor de casillas de pagado y entregado en cada fila 
             String entregado;
-            int indice;
+            
+            int indice; //variables para llamar a funcion que verifica la hora
+            LocalTime hora;
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");//obtenemos una fecha LocalDate desde el jcalendar que originalmente devuelve una fecha Date
+            SimpleDateFormat dateAString = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaS = dateAString.format(jcFecha.getDate());
+            LocalDate fecha = LocalDate.parse(fechaS,formatter);//esta fecha la compararemos con la de cada pedido
+            
             for (Pedido aux : pedidos) {
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                SimpleDateFormat dateAString = new SimpleDateFormat("yyyy-MM-dd");
-                String fechaS = dateAString.format(jcFecha.getDate());
-
-                LocalDate fecha = LocalDate.parse(fechaS,formatter);
-                LocalTime hora = aux.getHora();
                 
+                hora= aux.getHora();
                 indice = jcHora.getSelectedIndex();
                 
                 if (aux.getFecha().equals(fecha) && coincideHora(indice, hora)) {
@@ -401,5 +438,62 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         }
         
         return coinciden;
+    }
+    
+    private void cargarTotalMesaDia () {
+        double total = 0;
+        int filas = modelo.getRowCount();
+        int id;
+        String pagado;
+        
+        PedidoData pd = new PedidoData();
+        Pedido pedido;
+        
+        try {
+            if (filas > 0) {
+                for (int i = 0; i < filas; i++) {
+                   id = Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
+                   pagado = jtTablaPedidos.getValueAt(i, 4).toString();
+
+                   if (pagado.equals("SI")) {
+                        pedido = pd.getPedido(id);
+
+                        total += pedido.getImporte();
+                   }
+                }
+            } 
+            jtpTotalMesaDia.setText(""+total);
+        } catch (NullPointerException ex) {
+        }
+    }
+    
+    private void cargarTotalDia () {
+        double total = 0;
+        PedidoData pd = new PedidoData();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            SimpleDateFormat dateAString = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaS = dateAString.format(jcFecha.getDate());
+            LocalDate fecha = LocalDate.parse(fechaS,formatter);
+            
+            List<Pedido> pedidos = pd.listarPedidos(fecha);
+
+            for (Pedido aux : pedidos) {
+
+                if (aux.isPagado()) {
+                    total += aux.getImporte();
+                }
+            }
+            jtpTotalDia.setText(""+total);
+        } catch (NullPointerException ex) {
+            
+        }
+    }
+    
+    private void cargarComponentes () {
+        vaciarTabla();
+        cargarPedidos();
+        cargarTotalMesaDia();
+        cargarTotalDia();
     }
 }

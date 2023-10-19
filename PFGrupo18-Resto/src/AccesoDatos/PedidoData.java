@@ -181,6 +181,36 @@ public class PedidoData {
         }
         return pedidos;
     }
+     
+     public List<Pedido> listarPedidos(LocalDate fecha) {
+        MesaData mesaD = new MesaData();
+        MeseroData meseroD = new MeseroData();
+        
+        List<Pedido> pedidos = new ArrayList<>();
+        String sql = "SELECT * FROM pedido WHERE fecha = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            Pedido pedido;
+            while (rs.next()) {
+                pedido = new Pedido();
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setMesa(mesaD.getMesa(rs.getInt("id_mesa")));
+                pedido.setMesero(meseroD.getMesero(rs.getInt("id_mesero")));
+                pedido.setFecha(rs.getDate("fecha").toLocalDate());
+                pedido.setHora(rs.getTime("hora").toLocalTime());
+                pedido.setImporte(rs.getDouble("importe"));
+                pedido.setEntregado(rs.getBoolean("entregado"));
+                pedido.setPagado(rs.getBoolean("pagado"));
+                pedidos.add(pedido);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return pedidos;
+    }
         
     public void eliminarPedidosVacios () {
         String sql = "DELETE FROM pedido "
