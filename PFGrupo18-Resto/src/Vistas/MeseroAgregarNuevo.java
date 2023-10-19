@@ -18,6 +18,7 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
     /** Creates new form AgregarNuevoMesero */
     public MeseroAgregarNuevo() {
         initComponents();
+        this.setLocation(95, 75);
     }
 
     /** This method is called from within the constructor to
@@ -101,8 +102,8 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jbAgregar)
-                .addGap(158, 158, 158))
+                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,8 +127,8 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jbAgregar)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,7 +141,6 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
        mg.setVisible(true);
        MenuPrincipal.Escritorio.add(mg);
        MenuPrincipal.Escritorio.moveToFront(mg);
-//       mg.setLocation(50, 80);
     }//GEN-LAST:event_formInternalFrameClosed
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed

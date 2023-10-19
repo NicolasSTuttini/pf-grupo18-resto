@@ -38,7 +38,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio = new javax.swing.JDesktopPane();
         jmMenuBarra = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jmAgregarProducto = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmMesasGestion = new javax.swing.JMenuItem();
@@ -90,15 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jmAgregarProducto.setText("Agregar");
-        jmAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmAgregarProductoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jmAgregarProducto);
-
-        jMenuItem3.setText("Modificar");
+        jMenuItem3.setText("Gestionar");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -198,15 +189,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jmAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarProductoActionPerformed
-    Escritorio.removeAll();
-    Escritorio.repaint();
-    ProductosAgregar pa = new ProductosAgregar();
-    pa.setVisible(true);
-    Escritorio.add(pa);
-    Escritorio.moveToFront(pa);
-    }//GEN-LAST:event_jmAgregarProductoActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
@@ -344,7 +326,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jmAgregarProducto;
     private javax.swing.JMenuItem jmGestionarMesero;
     private javax.swing.JMenuBar jmMenuBarra;
     private javax.swing.JMenuItem jmMesasGestion;

@@ -23,13 +23,14 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
     DefaultTableModel modelo = new DefaultTableModel(){
         public boolean isCellEditable (int row, int colum) {
             return false;
-        }
+            }
     };
     /**
      * Creates new form PedidosSegunMesero
      */
     public PedidosSegunMesero() {
         initComponents();
+        this.setLocation(80, 35);
         cargarMeseros();
         Calendar fechaHoy = Calendar.getInstance();
         jcFecha.setDate(fechaHoy.getTime());
@@ -225,13 +226,11 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcMeserosItemStateChanged
 
     private void jcMeserosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcMeserosMouseClicked
-        /*cargarTotalMesa();*/
+
     }//GEN-LAST:event_jcMeserosMouseClicked
 
     private void jcMeserosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcMeserosActionPerformed
-        //        vaciarTabla();
-        //        cargarPedidos();
-        //        cargarTotalMesa();
+
     }//GEN-LAST:event_jcMeserosActionPerformed
 
     private void jrAtendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrAtendidosActionPerformed
@@ -327,7 +326,6 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         String hora; 
         
         for (Pedido aux : pedidos) {
-//            JOptionPane.showMessageDialog(this, aux.getFecha());
             
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     //Usamos esta clase para crear un string con el formato de fecha que queremos a partir de un dato tipo Date
@@ -336,13 +334,11 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
             String fechaS = dateAString.format(jcFecha.getDate());
                     
             LocalDate fecha = LocalDate.parse(fechaS,formatter);
-//            JOptionPane.showMessageDialog(this, fecha);
-                    
-            if (!cobrados) {
-                if (aux.getFecha().equals(fecha) ) {
-                    if (aux.isPagado()) {
+            if (aux.getFecha().equals(fecha) ) {
+                if (!cobrados) {
+                    if (aux.isPagado()) { 
                         pagado = "SI";
-                    } else {
+                    } else { 
                         pagado = "NO";
                     }
                     if(aux.isEntregado()) {
@@ -352,9 +348,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
                     }
                     hora = aux.getHora().format(horaFormat);
                     modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
-                }
-            } else {
-                if (aux.getFecha().equals(fecha) ) {
+                } else {
                     if (aux.isEntregado() && aux.isPagado()) {
                         pagado = "SI";
                         entregado = "SI";
@@ -362,9 +356,9 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
                         hora = aux.getHora().format(horaFormat);
                         modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
                     } 
-                    
                 }
-            }       
+            }    
+                   
                 
         }
     }

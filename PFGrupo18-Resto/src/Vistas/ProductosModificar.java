@@ -29,6 +29,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
      */
     public ProductosModificar() {
         initComponents();
+        this.setLocation(70, 20);
         armarCabecera();
         vaciarTabla();
         cargarActivos();
@@ -55,10 +56,11 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaProductos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jbAgregarProducto = new javax.swing.JButton();
 
         setClosable(true);
 
-        jLabel1.setText("Actualizar carta");
+        jLabel1.setText("Actualizar productos del catálogo ");
 
         jrActivos.setSelected(true);
         jrActivos.setText("activos");
@@ -172,6 +174,13 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
 
         jLabel3.setText("\"Debe presionar enter antes de intentar actaulizar el valor\"");
 
+        jbAgregarProducto.setText("Agregar nuevo producto");
+        jbAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,7 +202,11 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                                 .addGap(72, 72, 72)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jbAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
@@ -201,10 +214,6 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jrInactivos)
                         .addGap(80, 80, 80))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(164, 164, 164))
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabel3)
@@ -214,7 +223,9 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
+                .addComponent(jbAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -381,6 +392,16 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_jbActualizarActionPerformed
 
+    private void jbAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarProductoActionPerformed
+        this.dispose();
+        MenuPrincipal.Escritorio.removeAll();
+        MenuPrincipal.Escritorio.repaint();
+        ProductosAgregar pa = new ProductosAgregar();
+        pa.setVisible(true);
+        MenuPrincipal.Escritorio.add(pa);
+        MenuPrincipal.Escritorio.moveToFront(pa);
+    }//GEN-LAST:event_jbAgregarProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -389,6 +410,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
+    private javax.swing.JButton jbAgregarProducto;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
     private javax.swing.JRadioButton jrActivos;
@@ -414,7 +436,7 @@ private void cargarActivos (){
         
         for (Producto aux : listaActivos){
             if (aux.isEstado()){
-                if(aux.getNombre().startsWith(jtNombre.getText()) || jtNombre.getText().equals("") ) {
+                if(aux.getNombre().toUpperCase().startsWith(jtNombre.getText().toUpperCase()) || jtNombre.getText().equals("") ) {
                     modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
                 }
             }
@@ -427,42 +449,19 @@ private void cargarInactivos (){
         
         for (Producto aux : listaActivos){
             if (!aux.isEstado()){
-                if(aux.getNombre().startsWith(jtNombre.getText()) || jtNombre.getText().equals("") ) {
+                if(aux.getNombre().toUpperCase().startsWith(jtNombre.getText().toUpperCase()) || jtNombre.getText().equals("") ) {
                 modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
                 }
             }
         }    
 }
-/*private void mostrarSeleccion () {
-    if (jrActivos.isSelected()) {
-        jrInactivos.setSelected(false);
-        jbAlta.setEnabled(false);
-        jbBaja.setEnabled(true);
-        cargarActivos ();
-    } else {
-        jrActivos.setSelected(false);
-        jbAlta.setEnabled(true);
-        jbBaja.setEnabled(false);
-        cargarInactivos ();
-    }
-
-}
 // Agregar KeyListener al JTextField para detectar la tecla "Enter"
-        jtContrasenia.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    realizarAccionIngresar();
-                }
-            }
-        });*/
-/*private int devolverId () {
-    int fila = jtTablaProductos.getSelectedRow();
-        if (fila >= 0) {
-            int id = Integer.parseInt(jtTablaProductos.getValueAt(fila, 0).toString());
-            return id;
-        } else {
-            return 0;
-        }    
-    
-}*/
+//        jtContrasenia.addKeyListener(new KeyAdapter() {
+//            public void keyPressed(KeyEvent e) {
+//                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+//                    realizarAccionIngresar();
+//                }
+//            }
+//        });
+
 }
