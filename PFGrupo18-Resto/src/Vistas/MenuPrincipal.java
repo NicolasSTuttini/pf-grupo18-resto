@@ -56,7 +56,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -262,7 +262,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmGestionarMeseroActionPerformed
 
     private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
-           System.exit(0);
+           /*System.exit(0);*/
+           this.dispose();
     }//GEN-LAST:event_jmSalirMouseClicked
 
     private void mjCargarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mjCargarPedidoActionPerformed
@@ -301,12 +302,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmPedidosRegistroActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-
+        LoginFrame login = new LoginFrame();
+        login.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         PedidoData pd = new PedidoData();
         pd.eliminarPedidosVacios();
+        
+        
     }//GEN-LAST:event_formWindowClosing
 
     /**
