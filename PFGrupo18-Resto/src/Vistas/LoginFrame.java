@@ -5,8 +5,12 @@
 package Vistas;
 
 import AccesoDatos.Conexion;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.*;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
 // *
@@ -14,11 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class LoginFrame extends javax.swing.JFrame {
      private boolean admin,mesero ;
-     
+     fondoPanel fondo = new fondoPanel();
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
+        this.setContentPane(fondo);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -220,4 +225,15 @@ public class LoginFrame extends javax.swing.JFrame {
 /*private ResultSet () {
  
 }*/
+    class fondoPanel extends JPanel {
+       private Image imagen;
+       
+       @Override
+    public void paint(Graphics g) {
+        imagen = new ImageIcon (getClass().getResource("/imagenes/fondoLogin1.jpg")).getImage();
+        g.drawImage(imagen,0,0, getWidth(), getHeight(), this);
+        setOpaque(false);
+        super.paint(g);
+    }
+}
 }

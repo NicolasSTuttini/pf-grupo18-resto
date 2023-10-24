@@ -5,12 +5,12 @@
 package Vistas;
 
 import AccesoDatos.PedidoData;
+import Entidades.EscritorioPersonalizado;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import sun.awt.AWTAccessor;
 
 /**
  *
@@ -18,12 +18,15 @@ import sun.awt.AWTAccessor;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     private boolean admin  ,mesero;
-    fondoPanel fondo = new fondoPanel();
+    public static EscritorioPersonalizado Escritorio;
+    
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal(boolean admin, boolean mesero) {
-        this.setContentPane(fondo);
+        
+        Escritorio = new EscritorioPersonalizado ();
+        this.setContentPane(Escritorio);
         this.admin = admin;
         this.mesero = mesero;
         initComponents();
@@ -41,7 +44,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Escritorio = new javax.swing.JDesktopPane();
         jmMenuBarra = new javax.swing.JMenuBar();
         jmProductos = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -65,36 +67,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-
-        Escritorio.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentRemoved(java.awt.event.ContainerEvent evt) {
-                EscritorioComponentRemoved(evt);
-            }
-        });
-        Escritorio.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                EscritorioComponentHidden(evt);
-            }
-            public void componentMoved(java.awt.event.ComponentEvent evt) {
-                EscritorioComponentMoved(evt);
-            }
-        });
-        Escritorio.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                EscritorioPropertyChange(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
-        Escritorio.setLayout(EscritorioLayout);
-        EscritorioLayout.setHorizontalGroup(
-            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
-        );
-        EscritorioLayout.setVerticalGroup(
-            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
-        );
 
         jmProductos.setText("Productos");
         jmProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -194,13 +166,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 70, Short.MAX_VALUE))
+            .addGap(0, 725, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGap(0, 537, Short.MAX_VALUE)
         );
 
         pack();
@@ -209,22 +179,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jmProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmProductosActionPerformed
-
-    private void EscritorioComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_EscritorioComponentRemoved
-       
-    }//GEN-LAST:event_EscritorioComponentRemoved
-
-    private void EscritorioComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentHidden
-
-    }//GEN-LAST:event_EscritorioComponentHidden
-
-    private void EscritorioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_EscritorioPropertyChange
-   
-    }//GEN-LAST:event_EscritorioPropertyChange
-
-    private void EscritorioComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_EscritorioComponentMoved
-
-    }//GEN-LAST:event_EscritorioComponentMoved
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     Escritorio.removeAll();
@@ -349,7 +303,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmGestionarMesero;
@@ -379,15 +332,5 @@ public void validarMenuMostrar () {
     }
 }
 
-class fondoPanel extends JPanel {
-       private Image imagen;
-       
-       @Override
-    public void paint(Graphics g) {
-        imagen = new ImageIcon (getClass().getResource("/imagenes/fondo.png")).getImage();
-        g.drawImage(imagen,0,0, getWidth(), getHeight(), this);
-        setOpaque(false);
-        super.paint(g);
-    }
-}    
+
 }

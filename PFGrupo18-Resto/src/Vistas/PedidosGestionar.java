@@ -410,15 +410,15 @@ private void armarCabecera(){
                           pd.pagarPedido(id);
                           vaciarTabla();
                           cargarPedidos();
-                          jtpPedidosSinEntregar.setText("");
-                          jtpTotalMesa.setText("0");
+                          pedidosNoEntregados();
+                          cargarTotalMesa();
                        }
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Deben haber pedidos entregados para poder cobrarlos.");
                 }
             } catch (NullPointerException ex) {
-            } /*catch (ArrayIndexOutOfBoundsException exc) {}*/
+            } catch (ArrayIndexOutOfBoundsException exc) {}
         }
     }
 }
