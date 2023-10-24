@@ -5,7 +5,11 @@
 package Vistas;
 
 import AccesoDatos.PedidoData;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import sun.awt.AWTAccessor;
 
 /**
@@ -14,10 +18,12 @@ import sun.awt.AWTAccessor;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
     private boolean admin  ,mesero;
+    fondoPanel fondo = new fondoPanel();
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal(boolean admin, boolean mesero) {
+        this.setContentPane(fondo);
         this.admin = admin;
         this.mesero = mesero;
         initComponents();
@@ -37,11 +43,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         Escritorio = new javax.swing.JDesktopPane();
         jmMenuBarra = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmProductos = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmMesas = new javax.swing.JMenu();
         jmMesasGestion = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jmPedidos = new javax.swing.JMenu();
         mjCargarPedido = new javax.swing.JMenuItem();
         jmPedidosGestionar = new javax.swing.JMenuItem();
         jmPedidosRegistro = new javax.swing.JMenuItem();
@@ -83,17 +89,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 537, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Productos");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        jmProductos.setText("Productos");
+        jmProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                jmProductosActionPerformed(evt);
             }
         });
 
@@ -103,14 +109,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jmProductos.add(jMenuItem3);
 
-        jmMenuBarra.add(jMenu1);
+        jmMenuBarra.add(jmProductos);
 
-        jMenu2.setText("Mesas");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+        jmMesas.setText("Mesas");
+        jmMesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+                jmMesasActionPerformed(evt);
             }
         });
 
@@ -120,11 +126,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmMesasGestionActionPerformed(evt);
             }
         });
-        jMenu2.add(jmMesasGestion);
+        jmMesas.add(jmMesasGestion);
 
-        jmMenuBarra.add(jMenu2);
+        jmMenuBarra.add(jmMesas);
 
-        jMenu3.setText("Pedidos");
+        jmPedidos.setText("Pedidos");
 
         mjCargarPedido.setText("Cargar pedido");
         mjCargarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -132,15 +138,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 mjCargarPedidoActionPerformed(evt);
             }
         });
-        jMenu3.add(mjCargarPedido);
+        jmPedidos.add(mjCargarPedido);
 
-        jmPedidosGestionar.setText("Gestionar");
+        jmPedidosGestionar.setText("Entregar y cobrar");
         jmPedidosGestionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmPedidosGestionarActionPerformed(evt);
             }
         });
-        jMenu3.add(jmPedidosGestionar);
+        jmPedidos.add(jmPedidosGestionar);
 
         jmPedidosRegistro.setText("Registro");
         jmPedidosRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -148,9 +154,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jmPedidosRegistroActionPerformed(evt);
             }
         });
-        jMenu3.add(jmPedidosRegistro);
+        jmPedidos.add(jmPedidosRegistro);
 
-        jmMenuBarra.add(jMenu3);
+        jmMenuBarra.add(jmPedidos);
 
         jmMeseros.setText("Meseros");
 
@@ -188,7 +194,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,9 +206,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void jmProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_jmProductosActionPerformed
 
     private void EscritorioComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_EscritorioComponentRemoved
        
@@ -231,9 +239,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
      
     }//GEN-LAST:event_jmSalirActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void jmMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMesasActionPerformed
        
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jmMesasActionPerformed
 
     private void jmMesasGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMesasGestionActionPerformed
         Escritorio.removeAll();
@@ -338,17 +346,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jmGestionarMesero;
     private javax.swing.JMenuBar jmMenuBarra;
+    private javax.swing.JMenu jmMesas;
     private javax.swing.JMenuItem jmMesasGestion;
     private javax.swing.JMenu jmMeseros;
+    private javax.swing.JMenu jmPedidos;
     private javax.swing.JMenuItem jmPedidosGestionar;
     private javax.swing.JMenuItem jmPedidosRegistro;
+    private javax.swing.JMenu jmProductos;
     private javax.swing.JMenu jmSalir;
     private javax.swing.JMenuItem mjCargarPedido;
     // End of variables declaration//GEN-END:variables
@@ -359,8 +367,23 @@ public void validarMenuMostrar () {
     } else if (mesero) {
          jmMenuBarra.setVisible(true);
          jmMeseros.setVisible(false);
+         jmProductos.setVisible(false);
+         jmMesas.setVisible(false);
+         jmPedidosRegistro.setVisible(false);
     } else {
          JOptionPane.showMessageDialog(null, "Error al mostrar el menu");
     }
 }
+
+class fondoPanel extends JPanel {
+       private Image imagen;
+       
+       @Override
+    public void paint(Graphics g) {
+        imagen = new ImageIcon (getClass().getResource("/imagenes/fondo.png")).getImage();
+        g.drawImage(imagen,0,0, getWidth(), getHeight(), this);
+        setOpaque(false);
+        super.paint(g);
+    }
+}    
 }

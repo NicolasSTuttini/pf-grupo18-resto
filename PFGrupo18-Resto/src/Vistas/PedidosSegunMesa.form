@@ -35,10 +35,10 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jcFecha" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jcHora" min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="jcMesas" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="jcMesas" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Component id="jcFecha" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>

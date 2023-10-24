@@ -141,13 +141,22 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         });
 
         jbCobrar.setText("Cobrar");
+        jbCobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCobrarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Total adeudado por la mesa:");
 
         jLabel6.setText("Pedidos sin entregar:");
 
+        jtpPedidosSinEntregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtpPedidosSinEntregar.setFocusable(false);
         jScrollPane2.setViewportView(jtpPedidosSinEntregar);
 
+        jtpTotalMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtpTotalMesa.setFocusable(false);
         jScrollPane5.setViewportView(jtpTotalMesa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,12 +183,11 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                                 .addGap(88, 88, 88)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 82, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jbEntregado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(142, 142, 142)
+                                .addComponent(jbEntregado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 82, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,6 +271,11 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para entregar.");
         }
     }//GEN-LAST:event_jbEntregadoActionPerformed
+
+    private void jbCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCobrarActionPerformed
+        cobrarPedidos();
+        
+    }//GEN-LAST:event_jbCobrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -397,6 +410,8 @@ private void armarCabecera(){
                           pd.pagarPedido(id);
                           vaciarTabla();
                           cargarPedidos();
+                          jtpPedidosSinEntregar.setText("");
+                          jtpTotalMesa.setText("0");
                        }
                     }
                 } else {
