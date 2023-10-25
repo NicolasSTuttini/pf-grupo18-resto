@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import static Vistas.MenuPrincipal.Escritorio;
+
 
 /**
  *
@@ -16,7 +18,7 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
      */
     public PedidosRegistro() {
         initComponents();
-        this.setLocation(95, 120);
+        this.setLocation(152, 75);
     }
 
     /**
@@ -28,59 +30,87 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbSegunMesa = new javax.swing.JButton();
+        jbSegunMesero = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jbVolver = new javax.swing.JButton();
 
         setClosable(true);
-
-        jButton1.setText("Según Mesa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosed(evt);
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
-        jButton2.setText("Según Mesero");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbSegunMesa.setText("Según Mesa");
+        jbSegunMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbSegunMesaActionPerformed(evt);
+            }
+        });
+
+        jbSegunMesero.setText("Según Mesero");
+        jbSegunMesero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSegunMeseroActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Ver pedidos según:");
+
+        jbVolver.setText("Volver");
+        jbVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel1)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbSegunMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbSegunMesero, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jbVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(jbSegunMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jbSegunMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbSegunMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSegunMesaActionPerformed
         this.dispose();
         MenuPrincipal.Escritorio.removeAll();
         MenuPrincipal.Escritorio.repaint();
@@ -89,9 +119,9 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
         psm.setVisible(true);
         MenuPrincipal.Escritorio.add(psm);
         MenuPrincipal.Escritorio.moveToFront(psm);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbSegunMesaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbSegunMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSegunMeseroActionPerformed
         this.dispose();
         MenuPrincipal.Escritorio.removeAll();
         MenuPrincipal.Escritorio.repaint();
@@ -100,12 +130,30 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
         psm.setVisible(true);
         MenuPrincipal.Escritorio.add(psm);
         MenuPrincipal.Escritorio.moveToFront(psm);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbSegunMeseroActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+   
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void jbVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbVolverActionPerformed
+
+    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        PedidosOpciones po = new PedidosOpciones();
+        po.setVisible(true);
+        Escritorio.add(po);
+        Escritorio.moveToFront(po);
+    }//GEN-LAST:event_formInternalFrameClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jbSegunMesa;
+    private javax.swing.JButton jbSegunMesero;
+    private javax.swing.JButton jbVolver;
     // End of variables declaration//GEN-END:variables
 }

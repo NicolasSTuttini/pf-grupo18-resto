@@ -30,7 +30,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
      */
     public PedidosSegunMesero() {
         initComponents();
-        this.setLocation(80, 35);
+        this.setLocation(80, 15);
         cargarMeseros();
         Calendar fechaHoy = Calendar.getInstance();
         jcFecha.setDate(fechaHoy.getTime());
@@ -140,13 +140,13 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jrAtendidos)
                 .addGap(69, 69, 69)
                 .addComponent(jrCobrados)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,9 +212,9 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))))
+                        .addGap(23, 23, 23))))
         );
 
         pack();
@@ -324,43 +324,43 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         String entregado;
         DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
         String hora; 
-        
-        for (Pedido aux : pedidos) {
-            
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    //Usamos esta clase para crear un string con el formato de fecha que queremos a partir de un dato tipo Date
-            SimpleDateFormat dateAString = new SimpleDateFormat("yyyy-MM-dd");
-                    //Con el metodo .format() transformamos el dato Date a un string con el formato especificado arriba
-            String fechaS = dateAString.format(jcFecha.getDate());
-                    
-            LocalDate fecha = LocalDate.parse(fechaS,formatter);
-            if (aux.getFecha().equals(fecha) ) {
-                if (!cobrados) {
-                    if (aux.isPagado()) { 
-                        pagado = "SI";
-                    } else { 
-                        pagado = "NO";
-                    }
-                    if(aux.isEntregado()) {
-                        entregado = "SI";
-                    } else {
-                        entregado = "NO";
-                    }
-                    hora = aux.getHora().format(horaFormat);
-                    modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
-                } else {
-                    if (aux.isEntregado() && aux.isPagado()) {
-                        pagado = "SI";
-                        entregado = "SI";
-                        
+        try {
+            for (Pedido aux : pedidos) {
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        //Usamos esta clase para crear un string con el formato de fecha que queremos a partir de un dato tipo Date
+                SimpleDateFormat dateAString = new SimpleDateFormat("yyyy-MM-dd");
+                        //Con el metodo .format() transformamos el dato Date a un string con el formato especificado arriba
+                String fechaS = dateAString.format(jcFecha.getDate());
+
+                LocalDate fecha = LocalDate.parse(fechaS,formatter);
+                if (aux.getFecha().equals(fecha) ) {
+                    if (!cobrados) {
+                        if (aux.isPagado()) { 
+                            pagado = "SI";
+                        } else { 
+                            pagado = "NO";
+                        }
+                        if(aux.isEntregado()) {
+                            entregado = "SI";
+                        } else {
+                            entregado = "NO";
+                        }
                         hora = aux.getHora().format(horaFormat);
                         modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
-                    } 
-                }
-            }    
-                   
+                    } else {
+                        if (aux.isEntregado() && aux.isPagado()) {
+                            pagado = "SI";
+                            entregado = "SI";
+
+                            hora = aux.getHora().format(horaFormat);
+                            modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
+                        } 
+                    }
+                }    
+            }           
                 
-        }
+        } catch(NullPointerException ex){}
     }
     
 }

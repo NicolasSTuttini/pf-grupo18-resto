@@ -17,6 +17,7 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
      */
     public MesasAgregar() {
         initComponents();
+        this.setLocation(30, 40);
         MesaData md = new MesaData();
         jtNumero.setText(""+md.obtenerNumero());
     }

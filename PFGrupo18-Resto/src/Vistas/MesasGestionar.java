@@ -25,7 +25,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
      */
     public MesasGestionar() {
         initComponents();
-        this.setLocation(40, 20);
+        this.setLocation(30, 20);
         armarCabecera();
         vaciarTabla();
         cargarActivas();
@@ -54,6 +54,23 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(60, 60, 65));
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(500, 500));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel1.setText("Mesas");
 
@@ -288,6 +305,10 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una mesa.");
         }
     }//GEN-LAST:event_jbCambiarNumeroActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        MenuPrincipal.Escritorio.add(MenuPrincipal.jpBotonesPanel);
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

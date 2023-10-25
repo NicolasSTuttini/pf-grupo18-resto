@@ -6,11 +6,8 @@ package Vistas;
 
 import AccesoDatos.PedidoData;
 import Entidades.EscritorioPersonalizado;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -26,6 +23,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal(boolean admin, boolean mesero) {
         
         Escritorio = new EscritorioPersonalizado ();
+        /*int panel = 0;
+        for( int i = 0; i < Escritorio.getComponentCount(); i++) {
+            if (Escritorio.getComponents()[i] == jpBotonesPanel){
+                panel ++;
+            }
+        }
+        if (panel > 0) {
+            Escritorio.add(jpBotonesPanel);
+        }
+        */
         this.setContentPane(Escritorio);
         this.admin = admin;
         this.mesero = mesero;
@@ -44,19 +51,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jmMenuBarra = new javax.swing.JMenuBar();
-        jmProductos = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jmMesas = new javax.swing.JMenu();
-        jmMesasGestion = new javax.swing.JMenuItem();
-        jmPedidos = new javax.swing.JMenu();
-        mjCargarPedido = new javax.swing.JMenuItem();
-        jmPedidosGestionar = new javax.swing.JMenuItem();
-        jmPedidosRegistro = new javax.swing.JMenuItem();
-        jmMeseros = new javax.swing.JMenu();
-        jmGestionarMesero = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jmSalir = new javax.swing.JMenu();
+        jpBotonesPanel = new javax.swing.JLayeredPane();
+        jbProductos = new javax.swing.JButton();
+        jbMesas = new javax.swing.JButton();
+        jbPedidos = new javax.swing.JButton();
+        jbMeseros = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -68,192 +68,101 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jmProductos.setText("Productos");
-        jmProductos.addActionListener(new java.awt.event.ActionListener() {
+        jbProductos.setText("Productos");
+        jbProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmProductosActionPerformed(evt);
+                jbProductosActionPerformed(evt);
             }
         });
 
-        jMenuItem3.setText("Gestionar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jbMesas.setText("Mesas");
+        jbMesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jbMesasActionPerformed(evt);
             }
         });
-        jmProductos.add(jMenuItem3);
 
-        jmMenuBarra.add(jmProductos);
-
-        jmMesas.setText("Mesas");
-        jmMesas.addActionListener(new java.awt.event.ActionListener() {
+        jbPedidos.setText("Pedidos");
+        jbPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmMesasActionPerformed(evt);
+                jbPedidosActionPerformed(evt);
             }
         });
 
-        jmMesasGestion.setText("Gestionar");
-        jmMesasGestion.addActionListener(new java.awt.event.ActionListener() {
+        jbMeseros.setText("Meseros");
+        jbMeseros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmMesasGestionActionPerformed(evt);
+                jbMeserosActionPerformed(evt);
             }
         });
-        jmMesas.add(jmMesasGestion);
 
-        jmMenuBarra.add(jmMesas);
-
-        jmPedidos.setText("Pedidos");
-
-        mjCargarPedido.setText("Cargar pedido");
-        mjCargarPedido.addActionListener(new java.awt.event.ActionListener() {
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mjCargarPedidoActionPerformed(evt);
+                jbSalirActionPerformed(evt);
             }
         });
-        jmPedidos.add(mjCargarPedido);
 
-        jmPedidosGestionar.setText("Entregar y cobrar");
-        jmPedidosGestionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmPedidosGestionarActionPerformed(evt);
-            }
-        });
-        jmPedidos.add(jmPedidosGestionar);
+        jpBotonesPanel.setLayer(jbProductos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jpBotonesPanel.setLayer(jbMesas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jpBotonesPanel.setLayer(jbPedidos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jpBotonesPanel.setLayer(jbMeseros, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jpBotonesPanel.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jmPedidosRegistro.setText("Registro");
-        jmPedidosRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmPedidosRegistroActionPerformed(evt);
-            }
-        });
-        jmPedidos.add(jmPedidosRegistro);
-
-        jmMenuBarra.add(jmPedidos);
-
-        jmMeseros.setText("Meseros");
-
-        jmGestionarMesero.setText("Gestionar");
-        jmGestionarMesero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmGestionarMeseroActionPerformed(evt);
-            }
-        });
-        jmMeseros.add(jmGestionarMesero);
-
-        jmMenuBarra.add(jmMeseros);
-
-        jMenu5.setText("         ");
-        jMenu5.setEnabled(false);
-        jMenu5.setPreferredSize(new java.awt.Dimension(315, 21));
-        jmMenuBarra.add(jMenu5);
-
-        jmSalir.setText("Salir");
-        jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jmSalirMouseClicked(evt);
-            }
-        });
-        jmSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmSalirActionPerformed(evt);
-            }
-        });
-        jmMenuBarra.add(jmSalir);
-
-        setJMenuBar(jmMenuBarra);
+        javax.swing.GroupLayout jpBotonesPanelLayout = new javax.swing.GroupLayout(jpBotonesPanel);
+        jpBotonesPanel.setLayout(jpBotonesPanelLayout);
+        jpBotonesPanelLayout.setHorizontalGroup(
+            jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                        .addComponent(jbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(jbPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                        .addComponent(jbMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpBotonesPanelLayout.setVerticalGroup(
+            jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jpBotonesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jpBotonesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jmProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmProductosActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    Escritorio.removeAll();
-    Escritorio.repaint();
-    ProductosModificar pmodif = new ProductosModificar();
-    pmodif.setVisible(true);
-    Escritorio.add(pmodif);
-    Escritorio.moveToFront(pmodif);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
-     
-    }//GEN-LAST:event_jmSalirActionPerformed
-
-    private void jmMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMesasActionPerformed
-       
-    }//GEN-LAST:event_jmMesasActionPerformed
-
-    private void jmMesasGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMesasGestionActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
-        MesasGestionar mg = new MesasGestionar();
-        mg.setVisible(true);
-        Escritorio.add(mg);
-        Escritorio.moveToFront(mg);
-    }//GEN-LAST:event_jmMesasGestionActionPerformed
-
-    private void jmGestionarMeseroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionarMeseroActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
-        MeserosGestionar mg = new MeserosGestionar();
-        mg.setVisible(true);
-        Escritorio.add(mg);
-        Escritorio.moveToFront(mg);
-    }//GEN-LAST:event_jmGestionarMeseroActionPerformed
-
-    private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
-           /*System.exit(0);*/
-           this.dispose();
-    }//GEN-LAST:event_jmSalirMouseClicked
-
-    private void mjCargarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mjCargarPedidoActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
-        
-        PedidoData pd = new PedidoData();
-        int id_pedido = pd.crearPedido();
-        
-        PedidosCargar pc = new PedidosCargar(id_pedido);
-        
-        pc.setVisible(true);
-        Escritorio.add(pc);
-        Escritorio.moveToFront(pc);
-        
-    }//GEN-LAST:event_mjCargarPedidoActionPerformed
-
-    private void jmPedidosGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidosGestionarActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
-        PedidosGestionar pg = new PedidosGestionar();
-        
-        pg.setVisible(true);
-        Escritorio.add(pg);
-        Escritorio.moveToFront(pg);
-    }//GEN-LAST:event_jmPedidosGestionarActionPerformed
-
-    private void jmPedidosRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPedidosRegistroActionPerformed
-        Escritorio.removeAll();
-        Escritorio.repaint();
-        PedidosRegistro pg = new PedidosRegistro();
-        
-        pg.setVisible(true);
-        Escritorio.add(pg);
-        Escritorio.moveToFront(pg);
-    }//GEN-LAST:event_jmPedidosRegistroActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         LoginFrame login = new LoginFrame();
@@ -263,9 +172,47 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         PedidoData pd = new PedidoData();
         pd.eliminarPedidosVacios();
-        
-        
     }//GEN-LAST:event_formWindowClosing
+
+    private void jbProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductosActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        ProductosModificar pmodif = new ProductosModificar();
+        pmodif.setVisible(true);
+        Escritorio.add(pmodif);
+        Escritorio.moveToFront(pmodif);
+    }//GEN-LAST:event_jbProductosActionPerformed
+
+    private void jbPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPedidosActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        PedidosOpciones po = new PedidosOpciones();
+        po.setVisible(true);
+        Escritorio.add(po);
+        Escritorio.moveToFront(po);
+    }//GEN-LAST:event_jbPedidosActionPerformed
+
+    private void jbMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMesasActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        MesasGestionar mg = new MesasGestionar();
+        mg.setVisible(true);
+        Escritorio.add(mg);
+        Escritorio.moveToFront(mg);
+    }//GEN-LAST:event_jbMesasActionPerformed
+
+    private void jbMeserosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMeserosActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        MeserosGestionar mg = new MeserosGestionar();
+        mg.setVisible(true);
+        Escritorio.add(mg);
+        Escritorio.moveToFront(mg);
+    }//GEN-LAST:event_jbMeserosActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,34 +250,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jmGestionarMesero;
-    private javax.swing.JMenuBar jmMenuBarra;
-    private javax.swing.JMenu jmMesas;
-    private javax.swing.JMenuItem jmMesasGestion;
-    private javax.swing.JMenu jmMeseros;
-    private javax.swing.JMenu jmPedidos;
-    private javax.swing.JMenuItem jmPedidosGestionar;
-    private javax.swing.JMenuItem jmPedidosRegistro;
-    private javax.swing.JMenu jmProductos;
-    private javax.swing.JMenu jmSalir;
-    private javax.swing.JMenuItem mjCargarPedido;
+    private javax.swing.JButton jbMesas;
+    private javax.swing.JButton jbMeseros;
+    private javax.swing.JButton jbPedidos;
+    private javax.swing.JButton jbProductos;
+    private javax.swing.JButton jbSalir;
+    public static javax.swing.JLayeredPane jpBotonesPanel;
     // End of variables declaration//GEN-END:variables
 
 public void validarMenuMostrar () {
-    if (admin){
-         jmMenuBarra.setVisible(true);
-    } else if (mesero) {
-         jmMenuBarra.setVisible(true);
-         jmMeseros.setVisible(false);
-         jmProductos.setVisible(false);
-         jmMesas.setVisible(false);
-         jmPedidosRegistro.setVisible(false);
-    } else {
+    if (mesero) {
+         jbMeseros.setVisible(false);
+         jbMesas.setVisible(false);
+    } /*else {
          JOptionPane.showMessageDialog(null, "Error al mostrar el menu");
-    }
+    }*/
 }
-
 
 }

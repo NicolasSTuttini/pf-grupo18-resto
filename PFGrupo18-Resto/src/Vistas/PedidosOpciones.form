@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
-  <Properties>
-    <Property name="closable" type="boolean" value="true"/>
-  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
   <Events>
     <EventHandler event="internalFrameClosed" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameClosed"/>
-    <EventHandler event="internalFrameClosing" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameClosing"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -27,57 +23,59 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jbSegunMesa" max="32767" attributes="0"/>
-                  <Component id="jbSegunMesero" pref="220" max="32767" attributes="0"/>
-                  <Component id="jbVolver" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jbVolver" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="jbRegistro" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jbEntregarCobrar" pref="200" max="32767" attributes="0"/>
+                      <Component id="jbCargarPedido" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="jbCargarPedido" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jbSegunMesa" min="-2" pref="70" max="-2" attributes="0"/>
+              <Component id="jbEntregarCobrar" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jbSegunMesero" min="-2" pref="70" max="-2" attributes="0"/>
-              <EmptySpace pref="81" max="32767" attributes="0"/>
-              <Component id="jbVolver" min="-2" pref="60" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Component id="jbRegistro" min="-2" pref="70" max="-2" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <Component id="jbVolver" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jbSegunMesa">
+    <Component class="javax.swing.JButton" name="jbCargarPedido">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Seg&#xfa;n Mesa"/>
+        <Property name="text" type="java.lang.String" value="Cargar Pedido"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSegunMesaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCargarPedidoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbSegunMesero">
+    <Component class="javax.swing.JButton" name="jbEntregarCobrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Seg&#xfa;n Mesero"/>
+        <Property name="text" type="java.lang.String" value="Entregar y Cobrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSegunMeseroActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEntregarCobrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JButton" name="jbRegistro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ver pedidos seg&#xfa;n:"/>
+        <Property name="text" type="java.lang.String" value="Registro"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRegistroActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbVolver">
       <Properties>

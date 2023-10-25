@@ -18,7 +18,7 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
      */
     public ProductosAgregar() {
         initComponents();
-        this.setLocation(110, 110);
+        this.setLocation(85, 135);
     }
 
     /**
