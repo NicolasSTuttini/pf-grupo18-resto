@@ -39,7 +39,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
               <Component id="jpBotonesPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,6 +53,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="jbSalir" min="-2" pref="280" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -68,11 +73,6 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="jbSalir" min="-2" pref="280" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -83,11 +83,11 @@
                       <Component id="jbPedidos" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbMesas" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="jbMeseros" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jbMesas" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jbMeseros" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                  <EmptySpace pref="73" max="32767" attributes="0"/>
                   <Component id="jbSalir" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -98,6 +98,9 @@
         <Component class="javax.swing.JButton" name="jbProductos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Productos"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbProductosActionPerformed"/>
@@ -106,6 +109,10 @@
         <Component class="javax.swing.JButton" name="jbMesas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mesas"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
+            <Property name="verticalAlignment" type="int" value="3"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbMesasActionPerformed"/>
@@ -114,6 +121,9 @@
         <Component class="javax.swing.JButton" name="jbPedidos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pedidos"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbPedidosActionPerformed"/>
@@ -121,7 +131,14 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbMeseros">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagenes/camareros3.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Meseros"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbMeserosActionPerformed"/>
@@ -130,6 +147,9 @@
         <Component class="javax.swing.JButton" name="jbSalir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirActionPerformed"/>

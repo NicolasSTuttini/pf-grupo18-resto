@@ -6,8 +6,6 @@ package Vistas;
 
 import AccesoDatos.PedidoData;
 import Entidades.EscritorioPersonalizado;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,16 +21,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal(boolean admin, boolean mesero) {
         
         Escritorio = new EscritorioPersonalizado ();
-        /*int panel = 0;
-        for( int i = 0; i < Escritorio.getComponentCount(); i++) {
-            if (Escritorio.getComponents()[i] == jpBotonesPanel){
-                panel ++;
-            }
-        }
-        if (panel > 0) {
-            Escritorio.add(jpBotonesPanel);
-        }
-        */
         this.setContentPane(Escritorio);
         this.admin = admin;
         this.mesero = mesero;
@@ -69,6 +57,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jbProductos.setText("Productos");
+        jbProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbProductosActionPerformed(evt);
@@ -76,6 +65,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jbMesas.setText("Mesas");
+        jbMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbMesas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jbMesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMesasActionPerformed(evt);
@@ -83,13 +74,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jbPedidos.setText("Pedidos");
+        jbPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPedidosActionPerformed(evt);
             }
         });
 
+        jbMeseros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/camareros3.png"))); // NOI18N
         jbMeseros.setText("Meseros");
+        jbMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbMeseros.setOpaque(false);
         jbMeseros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMeserosActionPerformed(evt);
@@ -97,6 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jbSalir.setText("Salir");
+        jbSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
@@ -114,6 +110,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jpBotonesPanelLayout.setHorizontalGroup(
             jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
                 .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpBotonesPanelLayout.createSequentialGroup()
                         .addComponent(jbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,10 +124,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpBotonesPanelLayout.setVerticalGroup(
             jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,10 +132,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(jbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
-                .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -158,7 +154,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jpBotonesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

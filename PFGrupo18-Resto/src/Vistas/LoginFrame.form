@@ -10,6 +10,7 @@
   </SyntheticProperties>
   <Events>
     <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyPressed"/>
   </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -30,20 +31,20 @@
               <EmptySpace pref="60" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="jbIngresar" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jtDni" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtContrasenia" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                          <Component id="jtDni" pref="150" max="32767" attributes="0"/>
+                          <Component id="jtContra" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jbIngresar" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -55,12 +56,12 @@
               <EmptySpace pref="151" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtDni" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtDni" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtContra" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Component id="jbIngresar" min="-2" pref="40" max="-2" attributes="0"/>
@@ -82,6 +83,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtDni">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtDniKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -93,11 +97,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jtContrasenia">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtContraseniaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbIngresar">
       <Properties>
@@ -117,6 +116,12 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbIngresarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="jtContra">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtContraActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtContraKeyPressed"/>
       </Events>
     </Component>
   </SubComponents>

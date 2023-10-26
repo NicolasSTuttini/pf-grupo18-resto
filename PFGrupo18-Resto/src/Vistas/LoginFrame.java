@@ -5,8 +5,10 @@
 package Vistas;
 
 import AccesoDatos.Conexion;
+import AccesoDatos.LoginData;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -40,8 +42,8 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jtDni = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtContrasenia = new javax.swing.JTextField();
         jbIngresar = new javax.swing.JButton();
+        jtContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -49,20 +51,25 @@ public class LoginFrame extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Constantia", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("DNI:");
 
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtDniKeyPressed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Constantia", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña:");
-
-        jtContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtContraseniaActionPerformed(evt);
-            }
-        });
 
         jbIngresar.setBackground(new java.awt.Color(100, 255, 100));
         jbIngresar.setFont(new java.awt.Font("Constantia", 1, 18)); // NOI18N
@@ -75,6 +82,17 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
+        jtContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtContraActionPerformed(evt);
+            }
+        });
+        jtContra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtContraKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,17 +101,17 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtDni)
-                            .addComponent(jtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(76, 76, 76))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144))))
+                            .addComponent(jtDni, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jtContra))
+                        .addGap(76, 76, 76))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,11 +119,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addContainerGap(151, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addComponent(jbIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
@@ -115,67 +133,110 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIngresarActionPerformed
+        LoginData ld = new LoginData();
         try {
             int dni = Integer.parseInt(jtDni.getText());
-            String pass = jtContrasenia.getText();
-            boolean usuarioError = true,contraError = true;
+            String pass = new String (jtContra.getPassword());
+            
+            int dniConfirmar;
+            
             if (dni > 99999999) {
                 JOptionPane.showMessageDialog(null,"Ingrese correctamente el DNI.");
             } else {
-                Connection con = Conexion.conectar();
-
-                String sql = "SELECT * FROM administracion";
-                PreparedStatement ps =  con.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    if (rs.getInt("dni") == dni) {
-                        if (rs.getString("contrasenia").equals(pass)) {
-                            this.admin = true;
-                            contraError = false;
-                        }
-                        usuarioError = false;
-                    }
-                }
-                ps.close();
-
-                String sql2 = "SELECT dni,contrasenia FROM mesero";
-                PreparedStatement ps2 =  con.prepareStatement(sql2);
-                ResultSet rs2 = ps2.executeQuery();
-                while (rs2.next()) {
-                    if (rs2.getInt("dni") == dni) {
-                        if (rs2.getString("contrasenia").equals(pass) ) {
-                            this.mesero = true;
-                            contraError = false;
-                        }
-                        usuarioError = false;
-                    }
-                }
-                ps2.close();
-                if (usuarioError){
+                dniConfirmar = ld.verificarDni(dni);
+                if (dniConfirmar == 0){
                     JOptionPane.showMessageDialog(null,"Usuario no encontrado.");
-                } else if (contraError) {
-                    JOptionPane.showMessageDialog(null,"Contraseña invalida.");
-                } else {
-                    this.dispose();
+                } else if (dniConfirmar == 1) {
+                    this.admin = ld.verificarContraAdmin(pass);
+                    if (this.admin) {
+                        this.dispose();
+                    } else { 
+                        JOptionPane.showMessageDialog(null,"Contraseña invalida.");
+                    }
+                }else if (dniConfirmar == 2){
+                   this.mesero = ld.verificarContraMesero(pass);
+                    if (this.mesero) {
+                        this.dispose();
+                    } else { 
+                        JOptionPane.showMessageDialog(null,"Contraseña invalida.");
+                    }
                 }
             }
-
         } catch (NumberFormatException ex){
             JOptionPane.showMessageDialog(null,"Ingresar solo números en el campo 'DNI'.");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error al ejecutar la consulta SQL.");
-        }
-
+        } 
     }//GEN-LAST:event_jbIngresarActionPerformed
-
+    
+    private void jbIngresarActionPerformed(KeyEvent evt) {                                           
+        LoginData ld = new LoginData();
+        try {
+            int dni = Integer.parseInt(jtDni.getText());
+            String pass = new String (jtContra.getPassword());
+            
+            int dniConfirmar;
+            
+            if (dni > 99999999) {
+                JOptionPane.showMessageDialog(null,"Ingrese correctamente el DNI.");
+            } else {
+                dniConfirmar = ld.verificarDni(dni);
+                if (dniConfirmar == 0){
+                    JOptionPane.showMessageDialog(null,"Usuario no encontrado.");
+                } else if (dniConfirmar == 1) {
+                    this.admin = ld.verificarContraAdmin(pass);
+                    if (this.admin) {
+                        this.dispose();
+                    } else { 
+                        JOptionPane.showMessageDialog(null,"Contraseña invalida.");
+                    }
+                }else if (dniConfirmar == 2){
+                   this.mesero = ld.verificarContraMesero(pass);
+                    if (this.mesero) {
+                        this.dispose();
+                    } else { 
+                        JOptionPane.showMessageDialog(null,"Contraseña invalida.");
+                    }
+                }
+            }
+        } catch (NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Ingresar solo números en el campo 'DNI'.");
+        } 
+    }
+    
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
        MenuPrincipal menu = new MenuPrincipal(admin,mesero);
        menu.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
-    private void jtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtContraseniaActionPerformed
+    private void jtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtContraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtContraseniaActionPerformed
+    }//GEN-LAST:event_jtContraActionPerformed
+
+    private void jtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             jbIngresarActionPerformed(evt);
+        }    
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+            if(JOptionPane.showConfirmDialog(this, "¿Está seguro que desea salir?","Salir",0) == 0) {
+                System.exit(0);
+            }
+          
+        }
+    }//GEN-LAST:event_jtDniKeyPressed
+
+    private void jtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtContraKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             jbIngresarActionPerformed(evt);
+        } 
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE){
+          if(JOptionPane.showConfirmDialog(this, "¿Está seguro que desea salir?","Salir",0) == 0) {
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_jtContraKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+       
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -216,7 +277,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jbIngresar;
-    private javax.swing.JTextField jtContrasenia;
+    private javax.swing.JPasswordField jtContra;
     private javax.swing.JTextField jtDni;
     // End of variables declaration//GEN-END:variables
 
@@ -226,7 +287,7 @@ public class LoginFrame extends javax.swing.JFrame {
     class fondoPanel extends JPanel {
        private Image imagen;
        
-       @Override
+    @Override
     public void paint(Graphics g) {
         imagen = new ImageIcon (getClass().getResource("/imagenes/fondoLogin3.png")).getImage();
         g.drawImage(imagen,0,0, getWidth(), getHeight(), this);
