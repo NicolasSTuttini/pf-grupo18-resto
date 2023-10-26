@@ -56,6 +56,7 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
         });
 
         jbSegunMesa.setText("Según Mesa");
+        jbSegunMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSegunMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSegunMesaActionPerformed(evt);
@@ -63,6 +64,7 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
         });
 
         jbSegunMesero.setText("Según Mesero");
+        jbSegunMesero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSegunMesero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSegunMeseroActionPerformed(evt);
@@ -72,6 +74,7 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
         jLabel1.setText("Ver pedidos según:");
 
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);

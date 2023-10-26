@@ -52,8 +52,9 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jbCambiarNumero = new javax.swing.JButton();
         jbVolver = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(60, 60, 65));
+        setBackground(new java.awt.Color(25, 25, 25));
         setClosable(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -76,6 +77,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jLabel1.setText("Mesas");
 
         jbAgregarMesa.setText("Agregar Mesa");
+        jbAgregarMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarMesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarMesaActionPerformed(evt);

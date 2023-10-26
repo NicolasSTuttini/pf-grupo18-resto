@@ -75,18 +75,28 @@ public class PedidoData {
     }
     
     public void eliminarPedido (int id) {
+        String sql1 = "DELETE FROM productospedidos WHERE id_pedido = ?" ;   
         String sql = "DELETE FROM pedido WHERE id_pedido = ?";
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql1);
             ps.setInt(1, id);
-
-            int eliminar = ps.executeUpdate();
-            if (eliminar > 0) {
-                JOptionPane.showMessageDialog(null, "Pedido eliminado exitosamente.");
-            } else {
-                JOptionPane.showMessageDialog(null, "El pedido no existe.");
+            
+            if(ps.executeUpdate() > 0) {
+                ps.close();
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, id);
+                if (ps.executeUpdate() > 0) {
+                    JOptionPane.showMessageDialog(null, "Pedido eliminado exitosamente.");
+                }else {
+                    JOptionPane.showMessageDialog(null, "El pedido no existe en base de pedidos.");
+                }
+                ps.close();
+            
+            }else {
+                JOptionPane.showMessageDialog(null, "El pedido no existe en prodpedidos.");
             }
-            ps.close();
+            
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en consulta sql");
         }
@@ -213,11 +223,47 @@ public class PedidoData {
     }
         
     public void eliminarPedidosVacios () {
-        String sql = "DELETE FROM pedido "
+        List<Integer> ids = new ArrayList<>();
+        String sql1 = "SELECT id_pedido FROM pedido "
                 + "WHERE id_mesa IS NULL OR id_mesero IS NULL OR fecha IS NULL OR hora IS NULL OR importe IS NULL";
+        
+        
+        String sql2 = "DELETE FROM productospedidos WHERE id_pedido = ?" ; 
+        String sql3 = "DELETE FROM pedido WHERE id_pedido = ?";
+        int eliminado = 0;
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.executeUpdate();
+            PreparedStatement ps = con.prepareStatement(sql1);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getInt("id_pedido"));
+            }
+            ps.close();
+            rs.close();
+                   
+            if(!ids.isEmpty()) {
+                for (int aux: ids) {
+                    ps = con.prepareStatement(sql2);
+                    ps.setInt(1, aux);
+                    if (ps.executeUpdate() > 0) {
+                        ps.close();
+                        ps = con.prepareStatement(sql3);
+                        ps.setInt(1, aux);
+                        
+                        if (ps.executeUpdate() > 0) {
+                            eliminado++;
+                        }
+                    }
+                }
+                if (eliminado > 0) {
+//                    JOptionPane.showMessageDialog(null, "Pedido eliminado exitosamente");
+                } else {
+//                    JOptionPane.showMessageDialog(null, "El pedido no exite en pedidos");
+                }
+                ps.close();
+            } else {
+//                JOptionPane.showMessageDialog(null, "El pedido no existe en prodpedidos.");
+            }
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error con consulta sql al eliminar pedido vacio.");
         }

@@ -59,6 +59,7 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
         jLabel1.setText("Capacidad de la mesa:");
 
         jbAgregar.setText("Agregar");
+        jbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);

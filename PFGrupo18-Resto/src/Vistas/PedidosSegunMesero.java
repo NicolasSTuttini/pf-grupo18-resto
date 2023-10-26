@@ -66,6 +66,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jbVolver = new javax.swing.JButton();
 
         setClosable(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

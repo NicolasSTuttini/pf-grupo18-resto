@@ -69,6 +69,7 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
         jLabel4.setText("Contraseña: ");
 
         jbAgregar.setText("Agregar");
+        jbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);

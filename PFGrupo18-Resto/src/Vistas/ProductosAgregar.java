@@ -63,6 +63,7 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
         jLabel3.setText("Precio: ");
 
         jbAgregar.setText("Agregar");
+        jbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);
@@ -104,7 +105,7 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jbAgregar)
+                .addComponent(jbAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addGap(0, 23, Short.MAX_VALUE))
         );
 

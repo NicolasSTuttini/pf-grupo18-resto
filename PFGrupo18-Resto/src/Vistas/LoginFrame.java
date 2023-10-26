@@ -4,12 +4,11 @@
  */
 package Vistas;
 
-import AccesoDatos.Conexion;
+
 import AccesoDatos.LoginData;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.sql.*;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,8 +18,8 @@ import javax.swing.JPanel;
  * @author nstut
  */
 public class LoginFrame extends javax.swing.JFrame {
-     private boolean admin,mesero ;
-     fondoPanel fondo = new fondoPanel();
+    private boolean admin,mesero ;
+    fondoPanel fondo = new fondoPanel();
     /**
      * Creates new form LoginFrame
      */
@@ -57,7 +56,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Constantia", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("DNI:");
 
@@ -67,12 +66,12 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Constantia", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña:");
 
         jbIngresar.setBackground(new java.awt.Color(100, 255, 100));
-        jbIngresar.setFont(new java.awt.Font("Constantia", 1, 18)); // NOI18N
+        jbIngresar.setFont(new java.awt.Font("Candara", 1, 20)); // NOI18N
         jbIngresar.setForeground(new java.awt.Color(0, 0, 0));
         jbIngresar.setText("Ingresar");
         jbIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -98,7 +97,7 @@ public class LoginFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)

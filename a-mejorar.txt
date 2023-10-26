@@ -1,8 +1,5 @@
 1- celdas editables en inactivos en tabla de modificar productos
 2- presionar botón agregar por defecto al presionar enter
-3- jinternalframe para agregar mesas, hacer que se abra correctamente
 4- si producto ya se encuentra en la base de datos, se de el mensaje de error correspondiente
-5- mostrar como oculta la contraseña en el login
-6- combo box mesas añadir opcion inicial de "seleccionar"
 7- configurar opciones de menu para mesero
 8- combo box de todas las vistas añadir opcion inicial de "seleccionar" y que se muestren todos los valores sin filtrar antes de seleccionar algo

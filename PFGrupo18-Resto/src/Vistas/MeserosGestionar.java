@@ -80,6 +80,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         jLabel1.setText("Meseros");
 
         jbAgregarNuevoMesero.setText("Agregar nuevo mesero/a");
+        jbAgregarNuevoMesero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarNuevoMesero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarNuevoMeseroActionPerformed(evt);
@@ -100,6 +101,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtTablaMeseros);
 
         jbMeserosBaja.setText("Baja");
+        jbMeserosBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbMeserosBaja.setMaximumSize(new java.awt.Dimension(55, 40));
         jbMeserosBaja.setPreferredSize(new java.awt.Dimension(55, 40));
         jbMeserosBaja.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,6 +116,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         });
 
         jbMeserosAlta.setText("Alta");
+        jbMeserosAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbMeserosAlta.setEnabled(false);
         jbMeserosAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +125,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         });
 
         jbMeserosModif.setText("Modificar");
+        jbMeserosModif.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbMeserosModif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbMeserosModifActionPerformed(evt);
@@ -158,6 +162,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
 
         jrMActivos.setSelected(true);
         jrMActivos.setText("Meseros activos");
+        jrMActivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrMActivos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jrMActivosItemStateChanged(evt);
@@ -170,6 +175,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         });
 
         jrMInactivos.setText("Meseros inactivos");
+        jrMInactivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrMInactivos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jrMInactivosItemStateChanged(evt);
@@ -177,6 +183,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         });
 
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);
@@ -187,10 +194,6 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,6 +211,10 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbAgregarNuevoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

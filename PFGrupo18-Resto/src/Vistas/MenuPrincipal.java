@@ -12,8 +12,9 @@ import Entidades.EscritorioPersonalizado;
  * @author nstut
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-    private boolean admin  ,mesero;
+    public static boolean admin  ,mesero;
     public static EscritorioPersonalizado Escritorio;
+
     
     /**
      * Creates new form MenuPrincipal
@@ -27,7 +28,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         validarMenuMostrar();
-        
     }
 
     /**
@@ -56,16 +56,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbProductos.setBackground(new java.awt.Color(0, 0, 0));
+        jbProductos.setForeground(new java.awt.Color(25, 25, 25));
+        jbProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productos.png"))); // NOI18N
         jbProductos.setText("Productos");
+        jbProductos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
         jbProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbProductos.setFocusPainted(false);
         jbProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbProductosActionPerformed(evt);
             }
         });
 
+        jbMesas.setBackground(new java.awt.Color(0, 0, 0));
+        jbMesas.setForeground(new java.awt.Color(25, 25, 25));
+        jbMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesas.png"))); // NOI18N
         jbMesas.setText("Mesas");
+        jbMesas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
         jbMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbMesas.setFocusPainted(false);
         jbMesas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jbMesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,17 +83,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbPedidos.setBackground(new java.awt.Color(0, 0, 0));
+        jbPedidos.setForeground(new java.awt.Color(25, 25, 25));
+        jbPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.png"))); // NOI18N
         jbPedidos.setText("Pedidos");
+        jbPedidos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
         jbPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbPedidos.setFocusPainted(false);
         jbPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPedidosActionPerformed(evt);
             }
         });
 
-        jbMeseros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/camareros3.png"))); // NOI18N
+        jbMeseros.setBackground(new java.awt.Color(0, 0, 0));
+        jbMeseros.setForeground(new java.awt.Color(25, 25, 25));
+        jbMeseros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/meseros.png"))); // NOI18N
         jbMeseros.setText("Meseros");
+        jbMeseros.setToolTipText("");
+        jbMeseros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
         jbMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbMeseros.setFocusPainted(false);
         jbMeseros.setOpaque(false);
         jbMeseros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +111,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jbSalir.setText("Salir");
+        jbSalir.setBackground(new java.awt.Color(0, 0, 0));
+        jbSalir.setFont(new java.awt.Font("Candara", 1, 22)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(240, 240, 240));
+        jbSalir.setText("SALIR");
+        jbSalir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
         jbSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbSalir.setFocusPainted(false);
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
@@ -145,16 +170,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(88, 88, 88)
                 .addComponent(jpBotonesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(80, 80, 80)
                 .addComponent(jpBotonesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();

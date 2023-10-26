@@ -54,13 +54,15 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
         });
 
         jbCargarPedido.setText("Cargar Pedido");
+        jbCargarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbCargarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCargarPedidoActionPerformed(evt);
             }
         });
 
-        jbEntregarCobrar.setText("Entregar y Cobrar");
+        jbEntregarCobrar.setText("Gestionar Pedidos");
+        jbEntregarCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbEntregarCobrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEntregarCobrarActionPerformed(evt);
@@ -68,6 +70,7 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
         });
 
         jbRegistro.setText("Registro");
+        jbRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbRegistroActionPerformed(evt);
@@ -75,6 +78,7 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
         });
 
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);

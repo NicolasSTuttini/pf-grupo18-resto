@@ -294,6 +294,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jtabMostrarProductos.addTab("Datos", jttabDatos);
 
         jbAgregarPedido.setText("Agregar pedido");
+        jbAgregarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarPedidoActionPerformed(evt);
@@ -301,6 +302,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         });
 
         jbQuitarProducto.setText("Quitar producto");
+        jbQuitarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbQuitarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbQuitarProductoActionPerformed(evt);
@@ -308,12 +310,14 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         });
 
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);
             }
         });
 
+        jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcMesas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcMesasItemStateChanged(evt);
@@ -327,6 +331,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Mesas:");
 
+        jcMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcMeseros.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcMeserosItemStateChanged(evt);
@@ -343,6 +348,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jLabel1.setText("Pedidos");
 
         jbAgregarProducto.setText("Agregar Producto/s");
+        jbAgregarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarProductoActionPerformed(evt);

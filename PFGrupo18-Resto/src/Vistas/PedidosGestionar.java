@@ -66,6 +66,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jtpTotalMesa = new javax.swing.JTextPane();
         jbVolver = new javax.swing.JButton();
+        jbEliminarPedido = new javax.swing.JButton();
 
         jScrollPane4.setViewportView(jTextPane3);
 
@@ -93,6 +94,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Mesa:");
 
+        jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcMesas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcMesasItemStateChanged(evt);
@@ -137,6 +139,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         );
 
         jbEntregado.setText("Entregar");
+        jbEntregado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbEntregado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEntregadoActionPerformed(evt);
@@ -144,6 +147,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         });
 
         jbCobrar.setText("Cobrar");
+        jbCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbCobrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCobrarActionPerformed(evt);
@@ -163,9 +167,18 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         jScrollPane5.setViewportView(jtpTotalMesa);
 
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);
+            }
+        });
+
+        jbEliminarPedido.setText("Eliminar");
+        jbEliminarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbEliminarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarPedidoActionPerformed(evt);
             }
         });
 
@@ -179,25 +192,11 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addComponent(jbEntregado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 82, Short.MAX_VALUE)))
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(184, 184, 184)
@@ -206,9 +205,26 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(jbCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jbVolver)
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6))
+                    .addComponent(jbEntregado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbEliminarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +238,9 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbEntregado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbEntregado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbEliminarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -304,6 +322,31 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jbVolverActionPerformed
 
+    private void jbEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarPedidoActionPerformed
+        int filas = jtTablaPedidos.getSelectedRowCount();
+        int filaSelec;
+        int id;
+        PedidoData pd = new PedidoData();
+        
+        if (filas > 0) {
+            if ( JOptionPane.showConfirmDialog(this, "El pedido se eliminara permanentemente. ¿Desea continuar?","Confirmar",0)== 0) {
+                for (int i = 0; i < filas; i++) {
+                filaSelec = jtTablaPedidos.getSelectedRows()[i];
+                id = Integer.parseInt(jtTablaPedidos.getValueAt(filaSelec, 0).toString());
+                
+                    pd.eliminarPedido(id);
+                    vaciarTabla();
+                    cargarPedidos();
+                    cargarTotalMesa();
+                    pedidosNoEntregados();
+                }
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para eliminar.");
+        }
+    }//GEN-LAST:event_jbEliminarPedidoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -317,6 +360,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextPane jTextPane3;
     private javax.swing.JButton jbCobrar;
+    private javax.swing.JButton jbEliminarPedido;
     private javax.swing.JButton jbEntregado;
     private javax.swing.JButton jbVolver;
     private javax.swing.JComboBox<Mesa> jcMesas;
