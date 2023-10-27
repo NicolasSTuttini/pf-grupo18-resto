@@ -174,7 +174,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaProductos.setGridColor(new java.awt.Color(255, 255, 255));
+        jtTablaProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtTablaProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

@@ -112,6 +112,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaMeseros.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtTablaMeseros);
 
         jbMeserosBaja.setBackground(new java.awt.Color(255, 0, 0));

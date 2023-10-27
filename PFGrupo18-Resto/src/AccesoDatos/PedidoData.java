@@ -300,11 +300,12 @@ public class PedidoData {
         
     }
     
-    public int pedidosSinEntregar () {
-        String sql = "SELECT entregado FROM pedido";
+    public int pedidosSinEntregar (int id_mesa) {
+        String sql = "SELECT entregado FROM pedido WHERE id_mesa = ?";
         int sinEntregar = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_mesa);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (rs.getInt("entregado") == 0) {

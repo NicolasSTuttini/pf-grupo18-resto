@@ -12,6 +12,7 @@ import Entidades.PanelPersonalizado;
 import Entidades.Pedido;
 import static Vistas.MenuPrincipal.Escritorio;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -133,6 +134,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaPedidos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtTablaPedidos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -331,13 +333,13 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                 entregado = jtTablaPedidos.getValueAt(filaSelec, 4).toString();
                 if (entregado.equals("NO")) {
                     pd.entregarPedido(id);
-                    vaciarTabla();
-                    cargarPedidos();
-                    cargarTotalMesa();
-                    pedidosNoEntregados();
-                    comprobarAtendida();
                 }
             }
+            vaciarTabla();
+            cargarPedidos();
+            cargarTotalMesa();
+            pedidosNoEntregados();
+            comprobarAtendida();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para entregar.");
         }
@@ -513,43 +515,46 @@ private void armarCabecera(){
     }
     
     private void cobrarPedidos () {
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Desea cobrar todos los pedidos entregados en la mesa?","Confirmación",0);
-        if (opcion == 0){
-            int filas = modelo.getRowCount();
-            int id;
+        int filas = modelo.getRowCount();
+        if (filas == 0){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una mesa.");
+        }else{
+            int entregada = 0;
             String entregado;
-
-            PedidoData pd = new PedidoData();
-            MesaData md = new MesaData();
-            Mesa mesa = (Mesa) jcMesas.getSelectedItem();
-            int pagada = 0;
-            try {
-                if (filas > 0) {
-                    for (int i = 0; i < filas; i++) {
-                       id =  Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
-                       entregado = jtTablaPedidos.getValueAt(i, 4).toString();
-
-                       if (entregado.equals("SI")) {
-                          pd.pagarPedido(id);
-                       }
-                    }
-                    md.setOcupadaMesa(0, mesa.getId_mesa());
-                    jcMesas.removeItem(mesa);
-                   /* vaciarMesas();
-                    cargarMesas();*/
-                    
-                    vaciarTabla();
-                    cargarPedidos();
-                    pedidosNoEntregados();
-                    cargarTotalMesa();
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "Deben haber pedidos entregados para poder cobrarlos.");
+            for (int i = 0; i < filas; i++) {
+                entregado = jtTablaPedidos.getValueAt(i, 4).toString();
+                if (entregado.equals("NO")) {
+                      entregada++;
                 }
-            } catch (NullPointerException ex) {
-            } catch (ArrayIndexOutOfBoundsException exc) {
-                JOptionPane.showMessageDialog(this, "Error al pagar pedido");
             }
+            if (entregada >0) {
+                JOptionPane.showMessageDialog(this, "Aún hay pedidos sin pagar.");
+            } else {
+                int opcion = JOptionPane.showConfirmDialog(this, "¿Desea cobrar todos los pedidos entregados en la mesa?","Confirmación",0);    
+                if (opcion == 0) {
+                    try {
+                        int id_pedido;
+                        PedidoData pd = new PedidoData();
+                        MesaData md = new MesaData();
+                        Mesa mesa = (Mesa) jcMesas.getSelectedItem();
+
+                        for (int i = 0; i < filas; i++) {
+                            id_pedido = Integer.parseInt(jtTablaPedidos.getValueAt(i, 0).toString());
+                            pd.pagarPedido(id_pedido);
+                        }
+                        md.setOcupadaMesa(0, mesa.getId_mesa());
+                        jcMesas.removeItem(mesa);
+                    } catch (NullPointerException ex) {
+                    } catch (ArrayIndexOutOfBoundsException exc) {
+                        JOptionPane.showMessageDialog(this, "Error al pagar pedido");
+                    }
+                }
+            }
+            vaciarTabla();
+            cargarPedidos();
+            pedidosNoEntregados();
+            cargarTotalMesa(); 
+            
         }
     }
     
@@ -557,8 +562,7 @@ private void armarCabecera(){
         MesaData md = new MesaData();
         PedidoData pd = new PedidoData();
         Mesa mesa = (Mesa)jcMesas.getSelectedItem();
-        /*JOptionPane.showMessageDialog(this,""+pd.pedidosSinEntregar() );*/
-        if (pd.pedidosSinEntregar() == 0 && mesa != null) {
+        if (pd.pedidosSinEntregar(mesa.getId_mesa()) == 0 && mesa != null) {
             md.setOcupadaMesa(2, mesa.getId_mesa());
         }
         

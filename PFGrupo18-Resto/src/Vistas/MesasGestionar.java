@@ -131,6 +131,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jbBaja.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbBaja.setForeground(new java.awt.Color(255, 255, 255));
         jbBaja.setText("Baja");
+        jbBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBajaActionPerformed(evt);
@@ -152,6 +153,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaMesas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtTablaMesas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -171,6 +173,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jbCambiarNumero.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbCambiarNumero.setForeground(new java.awt.Color(255, 255, 255));
         jbCambiarNumero.setText("Cambiar número");
+        jbCambiarNumero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbCambiarNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCambiarNumeroActionPerformed(evt);
@@ -181,6 +184,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);

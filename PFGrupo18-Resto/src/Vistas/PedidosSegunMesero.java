@@ -129,6 +129,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaPedidos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtTablaPedidos);
 
         jrAtendidos.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
