@@ -54,7 +54,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         armarCabecera();
         vaciarTabla();
         cargarProductosPedidos();
-        this.setLocation(72, 0);
+        this.setLocation(72, 5);
 //        jbQuitarProducto.setVisible(false);
     }
 
