@@ -41,12 +41,7 @@ public class ProductoData {
             }
             
         } catch (SQLException ex) {
-            /*if (ex.getClass() == SQLIntegrityConstraintViolationException ) {
-                JOptionPane.showMessageDialog (null, "El producto ya existe.");
-            } else {*/
-                 JOptionPane.showMessageDialog (null, "Error al ejecutar la consulta sql");
-            /*}*/
-           
+                 JOptionPane.showMessageDialog (null, "El producto ya se encuentra registrado.");
         }
         
     }

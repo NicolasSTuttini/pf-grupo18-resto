@@ -10,6 +10,7 @@ import Entidades.PanelPersonalizado;
 import Entidades.Producto;
 import Entidades.ProductosPedidos;
 import static Vistas.MenuPrincipal.Escritorio;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +40,8 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
         armarCabecera();
         vaciarTabla();
         cargarProductos();
+        jtTablaProductos.setSelectionBackground(Color.LIGHT_GRAY);
+        jtTablaProductos.setRowSelectionAllowed(true);
     }
 
     /**
@@ -104,6 +107,8 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaProductos.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jtTablaProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtTablaProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

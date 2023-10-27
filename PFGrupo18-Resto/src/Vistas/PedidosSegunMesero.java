@@ -33,7 +33,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
     public PedidosSegunMesero() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocation(55, 85);
+        this.setLocation(80, 65);
         cargarMeseros();
         Calendar fechaHoy = Calendar.getInstance();
         jcFecha.setDate(fechaHoy.getTime());

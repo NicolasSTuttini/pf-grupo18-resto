@@ -55,7 +55,6 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         vaciarTabla();
         cargarProductosPedidos();
         this.setLocation(72, 5);
-//        jbQuitarProducto.setVisible(false);
     }
 
     public static int getId_pedido() {
@@ -169,6 +168,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jLabel1.setForeground(java.awt.Color.white);
         jLabel1.setText("Pedidos");
 
+        jbAgregarProducto.setBackground(new java.awt.Color(0, 153, 51));
         jbAgregarProducto.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbAgregarProducto.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregarProducto.setText("Agregar Producto/s");
@@ -277,6 +277,8 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaProductosPedidos.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        jtTablaProductosPedidos.getTableHeader().setReorderingAllowed(false);
         jtTablaProductosPedidos.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtTablaProductosPedidosFocusGained(evt);
@@ -427,6 +429,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
 
         jPanel2.setOpaque(false);
 
+        jbQuitarProducto.setBackground(new java.awt.Color(255, 0, 0));
         jbQuitarProducto.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbQuitarProducto.setForeground(new java.awt.Color(255, 255, 255));
         jbQuitarProducto.setText("Quitar producto");
@@ -437,6 +440,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbAgregarPedido.setBackground(new java.awt.Color(0, 153, 255));
         jbAgregarPedido.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbAgregarPedido.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregarPedido.setText("Agregar pedido");
@@ -447,6 +451,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
         jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
@@ -542,30 +547,35 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         MesaData md = new MesaData();
         double importe = Double.parseDouble(jtpImporte.getText());
         if (importe < 1) { 
-            JOptionPane.showMessageDialog(null, "Debe cargar al menos 1 producto en el pedido");
+            JOptionPane.showMessageDialog(null, "Debe cargar al menos 1 producto en el pedido.");
         } else {
             Mesa mesa = (Mesa)jcMesas.getSelectedItem();
             Mesero mesero = (Mesero) jcMeseros.getSelectedItem();
-            if (mesa.getNumero() == 0) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar una mesa");
+            if (mesa.getNumero() == 0 ) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una mesa.");
             } else {
-                /*DateTimeFormatter fechaF = DateTimeFormatter.ofPattern("d/M/yyyy");
-                DateTimeFormatter horaF = DateTimeFormatter.ofPattern("HH:mm");*/
-                LocalDate fecha = LocalDate.now();
-                LocalTime hora = LocalTime.now();
+                if (mesero.getNombre().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar un/a mesero/a.");
+                } else {
+                    /*DateTimeFormatter fechaF = DateTimeFormatter.ofPattern("d/M/yyyy");
+                    DateTimeFormatter horaF = DateTimeFormatter.ofPattern("HH:mm");*/
+                    LocalDate fecha = LocalDate.now();
+                    LocalTime hora = LocalTime.now();
 
-                int agregado = pd.agregarPedido (this.id_pedido, mesa.getId_mesa(), mesero.getId_mesero(),  fecha,  hora,  importe);
-                md.setOcupadaMesa(agregado, mesa.getId_mesa());
-                this.dispose();
-                Escritorio.removeAll();
-                Escritorio.repaint();
+                    int agregado = pd.agregarPedido (this.id_pedido, mesa.getId_mesa(), mesero.getId_mesero(),  fecha,  hora,  importe);
+                    md.setOcupadaMesa(agregado, mesa.getId_mesa());
+                    this.dispose();
+                    Escritorio.removeAll();
+                    Escritorio.repaint();
 
-                int id_pedido = pd.crearPedido();
+                    int id_pedido = pd.crearPedido();
 
-                PedidosCargar pc = new PedidosCargar(id_pedido);
-                pc.setVisible(true);
-                Escritorio.add(pc);
-                Escritorio.moveToFront(pc);
+                    PedidosCargar pc = new PedidosCargar(id_pedido);
+                    pc.setVisible(true);
+                    Escritorio.add(pc);
+                    Escritorio.moveToFront(pc);
+                }
+                
             }
         }
         
@@ -615,11 +625,11 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbVolverActionPerformed
 
     private void jtTablaProductosPedidosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtTablaProductosPedidosPropertyChange
-        if (jtTablaProductosPedidos.getRowCount() > 0){
+       /* if (jtTablaProductosPedidos.getRowCount() > 0){
             jbVolver.setEnabled(false);
         } else {
             jbVolver.setEnabled(true);
-        }
+        }*/
     }//GEN-LAST:event_jtTablaProductosPedidosPropertyChange
 
     private void jtabMostrarProductosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtabMostrarProductosFocusGained
@@ -759,7 +769,13 @@ private void armarCabecera(){
     private void cargarMeseros () {
         MeseroData md = new MeseroData();
         List<Mesero> meseros = md.listarMeseros();
-        
+        Mesero meseroDefecto = new Mesero(0,"","","",false){
+            @Override
+            public String toString() {
+                return "                        --Meseros--";
+            }
+        };
+        jcMeseros.addItem(meseroDefecto);
         for (Mesero aux : meseros) {
             if (aux.isEstado()) {
                 jcMeseros.addItem(aux);

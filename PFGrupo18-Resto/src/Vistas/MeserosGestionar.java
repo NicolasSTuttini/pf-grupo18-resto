@@ -98,9 +98,9 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
 
         jPanel1.setOpaque(false);
 
-        jtTablaMeseros.setBackground(new java.awt.Color(255, 255, 255));
+        jtTablaMeseros.setBackground(new java.awt.Color(40, 40, 40));
         jtTablaMeseros.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
-        jtTablaMeseros.setForeground(new java.awt.Color(0, 0, 0));
+        jtTablaMeseros.setForeground(new java.awt.Color(255, 255, 255));
         jtTablaMeseros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -114,6 +114,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtTablaMeseros);
 
+        jbMeserosBaja.setBackground(new java.awt.Color(255, 0, 0));
         jbMeserosBaja.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbMeserosBaja.setForeground(new java.awt.Color(255, 255, 255));
         jbMeserosBaja.setText("Baja");
@@ -143,6 +144,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbMeserosModif.setBackground(new java.awt.Color(0, 153, 255));
         jbMeserosModif.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbMeserosModif.setForeground(new java.awt.Color(255, 255, 255));
         jbMeserosModif.setText("Modificar");
