@@ -62,14 +62,37 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DNI: ");
 
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre: ");
 
+        jLabel3.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido: ");
 
+        jLabel4.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contraseña: ");
 
+        jtDni.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtDni.setForeground(new java.awt.Color(255, 255, 255));
+
+        jtNombre.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtNombre.setForeground(new java.awt.Color(255, 255, 255));
+
+        jtApellido.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtApellido.setForeground(new java.awt.Color(255, 255, 255));
+
+        jtContra.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtContra.setForeground(new java.awt.Color(255, 255, 255));
+
+        jbAgregar.setBackground(new java.awt.Color(0, 153, 51));
+        jbAgregar.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregar.setText("Agregar");
         jbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +101,8 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nuevo mesero/a");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,16 +119,17 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                .addComponent(jtApellido)
-                                .addComponent(jtContra))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                            .addComponent(jtApellido)
+                            .addComponent(jtContra)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel5)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,7 +155,7 @@ public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
                     .addComponent(jtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

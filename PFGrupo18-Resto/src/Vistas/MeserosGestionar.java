@@ -27,6 +27,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         }
     }; 
     PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoInternal2.jpg");
+    
     /*
      * Creates new form MeserosGestionar
      */
@@ -80,8 +81,13 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Meseros");
 
+        jbAgregarNuevoMesero.setBackground(new java.awt.Color(0, 153, 51));
+        jbAgregarNuevoMesero.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregarNuevoMesero.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregarNuevoMesero.setText("Agregar nuevo mesero/a");
         jbAgregarNuevoMesero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarNuevoMesero.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +96,11 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setOpaque(false);
+
+        jtTablaMeseros.setBackground(new java.awt.Color(255, 255, 255));
+        jtTablaMeseros.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtTablaMeseros.setForeground(new java.awt.Color(0, 0, 0));
         jtTablaMeseros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -103,6 +114,8 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtTablaMeseros);
 
+        jbMeserosBaja.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbMeserosBaja.setForeground(new java.awt.Color(255, 255, 255));
         jbMeserosBaja.setText("Baja");
         jbMeserosBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbMeserosBaja.setMaximumSize(new java.awt.Dimension(55, 40));
@@ -118,6 +131,9 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbMeserosAlta.setBackground(new java.awt.Color(0, 153, 51));
+        jbMeserosAlta.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbMeserosAlta.setForeground(new java.awt.Color(255, 255, 255));
         jbMeserosAlta.setText("Alta");
         jbMeserosAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbMeserosAlta.setEnabled(false);
@@ -127,6 +143,8 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbMeserosModif.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbMeserosModif.setForeground(new java.awt.Color(255, 255, 255));
         jbMeserosModif.setText("Modificar");
         jbMeserosModif.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbMeserosModif.addActionListener(new java.awt.event.ActionListener() {
@@ -141,31 +159,30 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jbMeserosAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jbMeserosBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addComponent(jbMeserosModif)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbMeserosModif, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbMeserosBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jbMeserosAlta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jbMeserosModif, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbMeserosBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbMeserosAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        jrMActivos.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jrMActivos.setForeground(new java.awt.Color(255, 255, 255));
         jrMActivos.setSelected(true);
         jrMActivos.setText("Meseros activos");
         jrMActivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jrMActivos.setOpaque(false);
         jrMActivos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jrMActivosItemStateChanged(evt);
@@ -177,14 +194,20 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jrMInactivos.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jrMInactivos.setForeground(new java.awt.Color(255, 255, 255));
         jrMInactivos.setText("Meseros inactivos");
         jrMInactivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jrMInactivos.setOpaque(false);
         jrMInactivos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jrMInactivosItemStateChanged(evt);
             }
         });
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {

@@ -98,6 +98,9 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setOpaque(false);
+
+        jtTablaPedidos.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jtTablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -111,17 +114,30 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtTablaPedidos);
 
+        jLabel5.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Total ingresos de la mesa en el día:");
 
+        jLabel6.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Total de ingresos del día:");
 
+        jtpTotalMesaDia.setBackground(new java.awt.Color(40, 40, 40));
+        jtpTotalMesaDia.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpTotalMesaDia.setForeground(new java.awt.Color(255, 255, 255));
         jtpTotalMesaDia.setMinimumSize(new java.awt.Dimension(6, 30));
         jtpTotalMesaDia.setPreferredSize(new java.awt.Dimension(6, 30));
         jScrollPane2.setViewportView(jtpTotalMesaDia);
 
+        jtpTotalDia.setBackground(new java.awt.Color(40, 40, 40));
+        jtpTotalDia.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpTotalDia.setForeground(new java.awt.Color(255, 255, 255));
         jtpTotalDia.setPreferredSize(new java.awt.Dimension(6, 30));
         jScrollPane3.setViewportView(jtpTotalDia);
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +189,9 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Pedidos");
 
+        jcFecha.setBackground(new java.awt.Color(40, 40, 40));
+        jcFecha.setForeground(new java.awt.Color(255, 255, 255));
+        jcFecha.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jcFecha.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                 jcFechaCaretPositionChanged(evt);
@@ -186,12 +205,21 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha:");
 
+        jLabel3.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Mesa:");
 
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Hora:");
 
+        jcHora.setBackground(new java.awt.Color(40, 40, 40));
+        jcHora.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jcHora.setForeground(new java.awt.Color(255, 255, 255));
         jcHora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcHora.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -199,6 +227,9 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             }
         });
 
+        jcMesas.setBackground(new java.awt.Color(40, 40, 40));
+        jcMesas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jcMesas.setForeground(new java.awt.Color(255, 255, 255));
         jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcMesas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

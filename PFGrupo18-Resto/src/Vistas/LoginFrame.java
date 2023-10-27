@@ -7,8 +7,13 @@ package Vistas;
 
 import AccesoDatos.LoginData;
 import Entidades.PanelPersonalizado;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
 // *
@@ -21,6 +26,11 @@ public class LoginFrame extends javax.swing.JFrame {
      * Creates new form LoginFrame
      */
     public LoginFrame() {
+        try {
+            UIManager.setLookAndFeel(new HiFiLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setContentPane(fondo);
         initComponents();
         setLocationRelativeTo(null);
@@ -57,6 +67,8 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("DNI:");
 
+        jtDni.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtDni.setForeground(new java.awt.Color(255, 255, 255));
         jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtDniKeyPressed(evt);
@@ -67,10 +79,12 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña:");
 
-        jbIngresar.setBackground(new java.awt.Color(100, 255, 100));
+        jbIngresar.setBackground(new java.awt.Color(0, 153, 51));
         jbIngresar.setFont(new java.awt.Font("Candara", 1, 20)); // NOI18N
-        jbIngresar.setForeground(new java.awt.Color(0, 0, 0));
+        jbIngresar.setForeground(new java.awt.Color(255, 255, 255));
         jbIngresar.setText("Ingresar");
+        jbIngresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(60, 60, 60), 8, true));
+        jbIngresar.setBorderPainted(false);
         jbIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +92,8 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
+        jtContra.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtContra.setForeground(new java.awt.Color(255, 255, 255));
         jtContra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtContraActionPerformed(evt);
@@ -112,7 +128,7 @@ public class LoginFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
+                .addContainerGap(149, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))

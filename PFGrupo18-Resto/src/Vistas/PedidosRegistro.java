@@ -57,6 +57,9 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSegunMesa.setBackground(new java.awt.Color(40, 40, 40));
+        jbSegunMesa.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbSegunMesa.setForeground(new java.awt.Color(255, 255, 255));
         jbSegunMesa.setText("Según Mesa");
         jbSegunMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSegunMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +68,9 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSegunMesero.setBackground(new java.awt.Color(40, 40, 40));
+        jbSegunMesero.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbSegunMesero.setForeground(new java.awt.Color(255, 255, 255));
         jbSegunMesero.setText("Según Mesero");
         jbSegunMesero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbSegunMesero.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +79,13 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ver pedidos según:");
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +118,7 @@ public class PedidosRegistro extends javax.swing.JInternalFrame {
                 .addComponent(jbSegunMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbSegunMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
         );

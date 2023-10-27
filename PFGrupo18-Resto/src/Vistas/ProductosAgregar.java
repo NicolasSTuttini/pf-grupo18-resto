@@ -40,6 +40,7 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
         jbAgregar = new javax.swing.JButton();
 
         setClosable(true);
+        setForeground(java.awt.Color.white);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -58,12 +59,29 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
         jLabel1.setText("Agregar productos a catalogo");
 
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.white);
         jLabel2.setText("Nombre: ");
 
+        jLabel3.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.white);
         jLabel3.setText("Precio: ");
 
+        jtNombre.setBackground(new java.awt.Color(40, 40, 40));
+        jtNombre.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtNombre.setForeground(java.awt.Color.white);
+
+        jtPrecio.setBackground(new java.awt.Color(40, 40, 40));
+        jtPrecio.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtPrecio.setForeground(java.awt.Color.white);
+
+        jbAgregar.setBackground(new java.awt.Color(0, 153, 51));
+        jbAgregar.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregar.setForeground(java.awt.Color.white);
         jbAgregar.setText("Agregar");
         jbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,22 +95,23 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108))
+                        .addGap(138, 138, 138)
+                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(81, 81, 81))
-                    .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jtPrecio)
+                                .addGap(127, 127, 127)))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +127,7 @@ public class ProductosAgregar extends javax.swing.JInternalFrame {
                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jbAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         pack();

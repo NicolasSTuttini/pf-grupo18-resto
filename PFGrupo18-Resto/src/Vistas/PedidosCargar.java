@@ -45,11 +45,12 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         cargarProductosPedidos();
     }
     public PedidosCargar(int id_pedido) {
+        this.setContentPane(fondo);
         this.id_pedido = id_pedido;
         initComponents();
         cargarMesas();
         cargarMeseros();
-        
+                
         armarCabecera();
         vaciarTabla();
         cargarProductosPedidos();
@@ -71,6 +72,13 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jcMesas = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jcMeseros = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jbAgregarProducto = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jtabMostrarProductos = new javax.swing.JTabbedPane();
@@ -95,14 +103,8 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jbAgregarPedido = new javax.swing.JButton();
         jbQuitarProducto = new javax.swing.JButton();
         jbVolver = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jcMesas = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jcMeseros = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jbAgregarProducto = new javax.swing.JButton();
 
+        setForeground(java.awt.Color.white);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -122,6 +124,107 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setOpaque(false);
+
+        jcMesas.setBackground(new java.awt.Color(40, 40, 40));
+        jcMesas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jcMesas.setForeground(new java.awt.Color(255, 255, 255));
+        jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcMesas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcMesasItemStateChanged(evt);
+            }
+        });
+        jcMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcMesasActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.white);
+        jLabel2.setText("Mesas:");
+
+        jcMeseros.setBackground(new java.awt.Color(40, 40, 40));
+        jcMeseros.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jcMeseros.setForeground(new java.awt.Color(255, 255, 255));
+        jcMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcMeseros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcMeserosItemStateChanged(evt);
+            }
+        });
+        jcMeseros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcMeserosActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel10.setForeground(java.awt.Color.white);
+        jLabel10.setText("Mesero:");
+
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.white);
+        jLabel1.setText("Pedidos");
+
+        jbAgregarProducto.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        jbAgregarProducto.setText("Agregar Producto/s");
+        jbAgregarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarProductoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jbAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(139, 139, 139))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addComponent(jbAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel4.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.white);
         jLabel4.setText("Detalle del pedido:");
 
         jtabMostrarProductos.setToolTipText("");
@@ -204,34 +307,59 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("N° de pedido:");
 
+        jtpNumeroPedido.setBackground(new java.awt.Color(40, 40, 40));
+        jtpNumeroPedido.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpNumeroPedido.setForeground(new java.awt.Color(255, 255, 255));
         jtpNumeroPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpNumeroPedido.setFocusable(false);
         jScrollPane4.setViewportView(jtpNumeroPedido);
 
+        jLabel11.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.white);
         jLabel11.setText("Mesa :");
 
+        jtpMesa.setBackground(new java.awt.Color(40, 40, 40));
+        jtpMesa.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpMesa.setForeground(new java.awt.Color(255, 255, 255));
         jtpMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpMesa.setFocusable(false);
         jScrollPane7.setViewportView(jtpMesa);
 
+        jLabel6.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.white);
         jLabel6.setText("Mesero:");
 
+        jtpMesero.setBackground(new java.awt.Color(40, 40, 40));
+        jtpMesero.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpMesero.setForeground(new java.awt.Color(255, 255, 255));
         jtpMesero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpMesero.setFocusable(false);
         jScrollPane5.setViewportView(jtpMesero);
 
+        jLabel8.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel8.setForeground(java.awt.Color.white);
         jLabel8.setText("Fecha y hora:");
 
+        jtpFecha.setBackground(new java.awt.Color(40, 40, 40));
+        jtpFecha.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpFecha.setForeground(new java.awt.Color(255, 255, 255));
         jtpFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpFecha.setFocusable(false);
         jScrollPane6.setViewportView(jtpFecha);
 
+        jtpImporte.setBackground(new java.awt.Color(40, 40, 40));
+        jtpImporte.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpImporte.setForeground(new java.awt.Color(255, 255, 255));
         jtpImporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpImporte.setFocusable(false);
         jScrollPane3.setViewportView(jtpImporte);
 
+        jLabel5.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel5.setForeground(java.awt.Color.white);
         jLabel5.setText("Importe total:");
 
         javax.swing.GroupLayout jttabDatosLayout = new javax.swing.GroupLayout(jttabDatos);
@@ -251,19 +379,20 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jttabDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)))
+                        .addGap(6, 6, 6)
                         .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jttabDatosLayout.createSequentialGroup()
-                        .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jttabDatosLayout.setVerticalGroup(
             jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,11 +420,13 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                 .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jtabMostrarProductos.addTab("Datos", jttabDatos);
 
+        jbAgregarPedido.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregarPedido.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregarPedido.setText("Agregar pedido");
         jbAgregarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -304,6 +435,8 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbQuitarProducto.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbQuitarProducto.setForeground(new java.awt.Color(255, 255, 255));
         jbQuitarProducto.setText("Quitar producto");
         jbQuitarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbQuitarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -312,6 +445,8 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -319,89 +454,6 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                 jbVolverActionPerformed(evt);
             }
         });
-
-        jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jcMesas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcMesasItemStateChanged(evt);
-            }
-        });
-        jcMesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcMesasActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Mesas:");
-
-        jcMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jcMeseros.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcMeserosItemStateChanged(evt);
-            }
-        });
-        jcMeseros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcMeserosActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("Mesero:");
-
-        jLabel1.setText("Pedidos");
-
-        jbAgregarProducto.setText("Agregar Producto/s");
-        jbAgregarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAgregarProductoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(139, 139, 139))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addComponent(jbAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -412,17 +464,19 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtabMostrarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbQuitarProducto)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbAgregarPedido)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbVolver))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                    .addComponent(jtabMostrarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addGap(135, 135, 135)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -435,7 +489,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtabMostrarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

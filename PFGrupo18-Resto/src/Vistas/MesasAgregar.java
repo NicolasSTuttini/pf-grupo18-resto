@@ -58,8 +58,17 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Capacidad de la mesa:");
 
+        jtCapacidad.setBackground(new java.awt.Color(40, 40, 40));
+        jtCapacidad.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtCapacidad.setForeground(new java.awt.Color(255, 255, 255));
+
+        jbAgregar.setBackground(new java.awt.Color(0, 153, 51));
+        jbAgregar.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregar.setText("Agregar");
         jbAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,8 +77,13 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Número:");
 
+        jtNumero.setBackground(new java.awt.Color(40, 40, 40));
+        jtNumero.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtNumero.setForeground(new java.awt.Color(255, 255, 255));
         jtNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNumeroActionPerformed(evt);
@@ -94,7 +108,7 @@ public class MesasAgregar extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

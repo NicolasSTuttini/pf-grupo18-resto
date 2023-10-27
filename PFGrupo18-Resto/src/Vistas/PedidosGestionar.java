@@ -93,10 +93,16 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pedidos");
 
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mesa:");
 
+        jcMesas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jcMesas.setForeground(new java.awt.Color(255, 255, 255));
         jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcMesas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -113,6 +119,8 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                 jcMesasActionPerformed(evt);
             }
         });
+
+        jPanel1.setOpaque(false);
 
         jtTablaPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,7 +149,11 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
+        jbEntregado.setBackground(new java.awt.Color(0, 153, 51));
+        jbEntregado.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbEntregado.setForeground(new java.awt.Color(255, 255, 255));
         jbEntregado.setText("Entregar");
+        jbEntregado.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jbEntregado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbEntregado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +161,9 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbCobrar.setBackground(new java.awt.Color(0, 153, 51));
+        jbCobrar.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbCobrar.setForeground(new java.awt.Color(255, 255, 255));
         jbCobrar.setText("Cobrar");
         jbCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbCobrar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,14 +176,23 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Pedidos sin entregar:");
 
+        jtpPedidosSinEntregar.setBackground(new java.awt.Color(40, 40, 40));
+        jtpPedidosSinEntregar.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpPedidosSinEntregar.setForeground(new java.awt.Color(255, 255, 255));
         jtpPedidosSinEntregar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpPedidosSinEntregar.setFocusable(false);
         jScrollPane2.setViewportView(jtpPedidosSinEntregar);
 
+        jtpTotalMesa.setBackground(new java.awt.Color(40, 40, 40));
+        jtpTotalMesa.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtpTotalMesa.setForeground(new java.awt.Color(255, 255, 255));
         jtpTotalMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtpTotalMesa.setFocusable(false);
         jScrollPane5.setViewportView(jtpTotalMesa);
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +201,9 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbEliminarPedido.setBackground(new java.awt.Color(255, 0, 0));
+        jbEliminarPedido.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbEliminarPedido.setForeground(new java.awt.Color(255, 255, 255));
         jbEliminarPedido.setText("Eliminar");
         jbEliminarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbEliminarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +235,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(jbCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jbVolver)
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()

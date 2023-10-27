@@ -21,7 +21,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                 return false; 
         }
     };
-    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoInternal2.jpg");
     /**
      * Creates new form MesasAgregar
      */
@@ -56,7 +56,6 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jbVolver = new javax.swing.JButton();
 
         setClosable(true);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -76,8 +75,13 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mesas");
 
+        jbAgregarMesa.setBackground(new java.awt.Color(0, 153, 51));
+        jbAgregarMesa.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAgregarMesa.setForeground(new java.awt.Color(255, 255, 255));
         jbAgregarMesa.setText("Agregar Mesa");
         jbAgregarMesa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAgregarMesa.addActionListener(new java.awt.event.ActionListener() {
@@ -86,8 +90,11 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jrActivas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jrActivas.setForeground(new java.awt.Color(255, 255, 255));
         jrActivas.setSelected(true);
         jrActivas.setText("Mesas activas");
+        jrActivas.setOpaque(false);
         jrActivas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jrActivasItemStateChanged(evt);
@@ -99,13 +106,19 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jrInactivas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jrInactivas.setForeground(new java.awt.Color(255, 255, 255));
         jrInactivas.setText("Mesas inactivas");
+        jrInactivas.setOpaque(false);
         jrInactivas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jrInactivasItemStateChanged(evt);
             }
         });
 
+        jbAlta.setBackground(new java.awt.Color(0, 153, 51));
+        jbAlta.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbAlta.setForeground(new java.awt.Color(255, 255, 255));
         jbAlta.setText("Alta");
         jbAlta.setEnabled(false);
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +127,9 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbBaja.setBackground(new java.awt.Color(255, 0, 0));
+        jbBaja.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbBaja.setForeground(new java.awt.Color(255, 255, 255));
         jbBaja.setText("Baja");
         jbBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +137,10 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setOpaque(false);
+
+        jtTablaMesas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jtTablaMesas.setForeground(new java.awt.Color(255, 255, 255));
         jtTablaMesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -147,6 +167,9 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jbCambiarNumero.setBackground(new java.awt.Color(0, 153, 255));
+        jbCambiarNumero.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbCambiarNumero.setForeground(new java.awt.Color(255, 255, 255));
         jbCambiarNumero.setText("Cambiar número");
         jbCambiarNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +177,9 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,12 +191,6 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(109, 109, 109))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -185,14 +205,22 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                         .addGap(165, 165, 165)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jrActivas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jrInactivas))
-                            .addComponent(jbAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(33, 33, 33)
+                        .addComponent(jrActivas)
+                        .addGap(36, 36, 36)
+                        .addComponent(jrInactivas)))
                 .addContainerGap(9, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(109, 109, 109))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbAgregarMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

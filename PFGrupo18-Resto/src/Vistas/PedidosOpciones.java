@@ -55,6 +55,9 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jbCargarPedido.setBackground(new java.awt.Color(40, 40, 40));
+        jbCargarPedido.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbCargarPedido.setForeground(new java.awt.Color(255, 255, 255));
         jbCargarPedido.setText("Cargar Pedido");
         jbCargarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbCargarPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +66,9 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jbEntregarCobrar.setBackground(new java.awt.Color(40, 40, 40));
+        jbEntregarCobrar.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbEntregarCobrar.setForeground(new java.awt.Color(255, 255, 255));
         jbEntregarCobrar.setText("Gestionar Pedidos");
         jbEntregarCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbEntregarCobrar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +77,9 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jbRegistro.setBackground(new java.awt.Color(40, 40, 40));
+        jbRegistro.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbRegistro.setForeground(new java.awt.Color(255, 255, 255));
         jbRegistro.setText("Registro");
         jbRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +88,9 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
             }
         });
 
+        jbVolver.setBackground(new java.awt.Color(40, 40, 40));
+        jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
         jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
