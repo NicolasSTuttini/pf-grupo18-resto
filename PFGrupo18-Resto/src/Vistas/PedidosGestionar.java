@@ -428,7 +428,7 @@ private void armarCabecera(){
         Mesa mesaDefecto = new Mesa(0,0,false,0){
             @Override
             public String toString() {
-                return "                     --Mesas--";
+                return "                   --Mesas--";
             }
         };
         jcMesas.addItem(mesaDefecto);
