@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author nstut
  */
 public class ProductosAgregar extends javax.swing.JInternalFrame {
-    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoInternal2.jpg");
     /**
      * Creates new form ProductosAgregar
      */

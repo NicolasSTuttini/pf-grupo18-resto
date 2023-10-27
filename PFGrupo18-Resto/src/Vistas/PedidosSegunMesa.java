@@ -31,7 +31,7 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoInternal2.jpg");
 
     /**
      * Creates new form PedidosSegunMesa

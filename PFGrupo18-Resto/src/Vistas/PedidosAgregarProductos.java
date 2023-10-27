@@ -29,7 +29,7 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
             }
         }
     };    
-    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoInternal2.jpg");
     /**
      * Creates new form PedidosAgregarProductos
      */

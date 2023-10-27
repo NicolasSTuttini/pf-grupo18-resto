@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author fliac
  */
 public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
-    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoInternal2.jpg");
     /** Creates new form AgregarNuevoMesero */
     public MeseroAgregarNuevo() {
         this.setContentPane(fondo);
