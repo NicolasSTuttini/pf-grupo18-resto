@@ -6,6 +6,7 @@ package Vistas;
 
 import AccesoDatos.ProductoData;
 import AccesoDatos.ProductosPedidosData;
+import Entidades.PanelPersonalizado;
 import Entidades.Producto;
 import Entidades.ProductosPedidos;
 import static Vistas.MenuPrincipal.Escritorio;
@@ -28,10 +29,12 @@ public class PedidosAgregarProductos extends javax.swing.JInternalFrame {
             }
         }
     };    
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form PedidosAgregarProductos
      */
     public PedidosAgregarProductos() {
+        this.setContentPane(fondo);
         initComponents();
         armarCabecera();
         vaciarTabla();

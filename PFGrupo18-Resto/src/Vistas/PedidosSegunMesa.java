@@ -9,6 +9,7 @@ import AccesoDatos.MeseroData;
 import AccesoDatos.PedidoData;
 import Entidades.Mesa;
 import Entidades.Mesero;
+import Entidades.PanelPersonalizado;
 import Entidades.Pedido;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -30,11 +31,13 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
             return false;
         }
     };
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
 
     /**
      * Creates new form PedidosSegunMesa
      */
     public PedidosSegunMesa() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(50, 5);
         cargarMesas();
@@ -347,7 +350,13 @@ public class PedidosSegunMesa extends javax.swing.JInternalFrame {
     private void cargarMesas () {
         MesaData md = new MesaData();
         List<Mesa> mesas = md.listarMesas();
-        
+        Mesa mesaDefecto = new Mesa(0,0,false,0){
+            @Override
+            public String toString() {
+                return "                     --Mesas--";
+            }
+        };
+        jcMesas.addItem(mesaDefecto);
         for (Mesa aux : mesas) {
             if (aux.isEstado()) {
                 jcMesas.addItem(aux);

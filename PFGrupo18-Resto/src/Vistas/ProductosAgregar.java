@@ -5,6 +5,7 @@
 package Vistas;
 
 import AccesoDatos.ProductoData;
+import Entidades.PanelPersonalizado;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,11 +13,12 @@ import javax.swing.JOptionPane;
  * @author nstut
  */
 public class ProductosAgregar extends javax.swing.JInternalFrame {
-
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form ProductosAgregar
      */
     public ProductosAgregar() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(85, 135);
     }

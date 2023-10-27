@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import Entidades.PanelPersonalizado;
 import static Vistas.MenuPrincipal.Escritorio;
 
 
@@ -12,11 +13,12 @@ import static Vistas.MenuPrincipal.Escritorio;
  * @author nstut
  */
 public class PedidosRegistro extends javax.swing.JInternalFrame {
-
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form PedidosGestionar
      */
     public PedidosRegistro() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(152, 75);
     }

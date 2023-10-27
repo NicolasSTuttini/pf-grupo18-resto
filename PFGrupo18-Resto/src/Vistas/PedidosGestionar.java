@@ -8,6 +8,7 @@ import AccesoDatos.MesaData;
 import AccesoDatos.MeseroData;
 import AccesoDatos.PedidoData;
 import Entidades.Mesa;
+import Entidades.PanelPersonalizado;
 import Entidades.Pedido;
 import static Vistas.MenuPrincipal.Escritorio;
 import java.time.format.DateTimeFormatter;
@@ -25,10 +26,12 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
             return false;
         }
     };
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form PedidosSegunMesa
      */
     public PedidosGestionar() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(55, 15);
         cargarMesas();
@@ -265,6 +268,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         cargarPedidos();
         cargarTotalMesa();
         pedidosNoEntregados();
+        comprobarAtendida();
     }//GEN-LAST:event_jcMesasItemStateChanged
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
@@ -291,6 +295,8 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         String entregado;
         int id;
         PedidoData pd = new PedidoData();
+        Mesa mesa = (Mesa)jcMesas.getSelectedItem();
+        
         if (filas > 0) {
             for (int i = 0; i < filas; i++) {
                 filaSelec = jtTablaPedidos.getSelectedRows()[i];
@@ -302,6 +308,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                     cargarPedidos();
                     cargarTotalMesa();
                     pedidosNoEntregados();
+                    comprobarAtendida();
                 }
             }
         } else {
@@ -339,6 +346,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                     cargarPedidos();
                     cargarTotalMesa();
                     pedidosNoEntregados();
+                    comprobarAtendida();
                 }
             }
             
@@ -382,12 +390,23 @@ private void armarCabecera(){
             modelo.removeRow(i);
         }
     }
-
+    private void vaciarMesas() {
+        for (int i = jcMesas.getItemCount()-1; i >= 0;i--){
+            jcMesas.removeItem(i);
+        }
+    }
     private void cargarMesas () {
         MesaData md = new MesaData();
         List<Mesa> mesas = md.listarMesas();
+        Mesa mesaDefecto = new Mesa(0,0,false,0){
+            @Override
+            public String toString() {
+                return "                     --Mesas--";
+            }
+        };
+        jcMesas.addItem(mesaDefecto);
         for (Mesa aux : mesas) {
-            if (aux.isEstado()) {
+            if (aux.isEstado() && aux.getOcupada() != 0) {
                 jcMesas.addItem(aux);
             }
         }
@@ -395,25 +414,28 @@ private void armarCabecera(){
     private void cargarPedidos () {
         PedidoData pd = new PedidoData();
         MeseroData md = new MeseroData();
-        List<Pedido> pedidos = pd.listarPedidos((Mesa)jcMesas.getSelectedItem());
+        Mesa mesa = (Mesa)jcMesas.getSelectedItem();
+        if ( mesa != null) {
+            List<Pedido> pedidos = pd.listarPedidos(mesa);
+             String pagado;
         
-        String pagado;
-        
-        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
-        String hora; 
-        
-        for (Pedido aux : pedidos) {
-            if (!aux.isPagado()) {
-                if(aux.isEntregado()) {
-                    pagado = "SI";
-                } else {
-                    pagado= "NO";
+            DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+            String hora; 
+
+            for (Pedido aux : pedidos) {
+                if (!aux.isPagado()) {
+                    if(aux.isEntregado()) {
+                        pagado = "SI";
+                    } else {
+                        pagado= "NO";
+                    }
+                    hora = aux.getHora().format(horaFormat);
+                    modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre()+" "+aux.getMesero().getApellido(),hora,aux.getImporte(),pagado});
                 }
-                hora = aux.getHora().format(horaFormat);
-                modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre()+" "+aux.getMesero().getApellido(),hora,aux.getImporte(),pagado});
+
             }
-            
         }
+       
     }
     
     private void cargarTotalMesa () {
@@ -471,7 +493,9 @@ private void armarCabecera(){
             String entregado;
 
             PedidoData pd = new PedidoData();
-            
+            MesaData md = new MesaData();
+            Mesa mesa = (Mesa) jcMesas.getSelectedItem();
+            int pagada = 0;
             try {
                 if (filas > 0) {
                     for (int i = 0; i < filas; i++) {
@@ -480,17 +504,36 @@ private void armarCabecera(){
 
                        if (entregado.equals("SI")) {
                           pd.pagarPedido(id);
-                          vaciarTabla();
-                          cargarPedidos();
-                          pedidosNoEntregados();
-                          cargarTotalMesa();
                        }
                     }
+                    md.setOcupadaMesa(0, mesa.getId_mesa());
+                    jcMesas.removeItem(mesa);
+                   /* vaciarMesas();
+                    cargarMesas();*/
+                    
+                    vaciarTabla();
+                    cargarPedidos();
+                    pedidosNoEntregados();
+                    cargarTotalMesa();
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, "Deben haber pedidos entregados para poder cobrarlos.");
                 }
             } catch (NullPointerException ex) {
-            } catch (ArrayIndexOutOfBoundsException exc) {}
+            } catch (ArrayIndexOutOfBoundsException exc) {
+                JOptionPane.showMessageDialog(this, "Error al pagar pedido");
+            }
         }
+    }
+    
+    private void comprobarAtendida() {
+        MesaData md = new MesaData();
+        PedidoData pd = new PedidoData();
+        Mesa mesa = (Mesa)jcMesas.getSelectedItem();
+        /*JOptionPane.showMessageDialog(this,""+pd.pedidosSinEntregar() );*/
+        if (pd.pedidosSinEntregar() == 0 && mesa != null) {
+            md.setOcupadaMesa(2, mesa.getId_mesa());
+        }
+        
     }
 }

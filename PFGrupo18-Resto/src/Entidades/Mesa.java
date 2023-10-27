@@ -6,22 +6,35 @@ public class Mesa {
     private int numero;
     private int capacidad;
     private boolean estado;
+    private int ocupada; 
 
     public Mesa() {
     }
 
-    public Mesa(int numero, int capacidad, boolean estado) {
+    public Mesa(int numero, int capacidad, boolean estado, int ocupada) {
         this.numero = numero;
         this.capacidad = capacidad;
         this.estado = estado;
+        this.ocupada = ocupada;
     }
 
-    public Mesa(int id_mesa, int numero, int capacidad, boolean estado) {
+    public Mesa(int id_mesa, int numero, int capacidad, boolean estado, int ocupada) {
         this.id_mesa = id_mesa;
         this.numero = numero;
         this.capacidad = capacidad;
         this.estado = estado;
+        this.ocupada = ocupada;
     }
+
+    public int getOcupada() {
+        return ocupada;
+    }
+
+    public void setOcupada(int ocupada) {
+        this.ocupada = ocupada;
+    }
+
+    
 
     public int getNumero() {
         return numero;

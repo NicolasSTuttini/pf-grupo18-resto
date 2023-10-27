@@ -6,12 +6,9 @@ package Vistas;
 
 
 import AccesoDatos.LoginData;
-import java.awt.Graphics;
-import java.awt.Image;
+import Entidades.PanelPersonalizado;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
 // *
@@ -19,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class LoginFrame extends javax.swing.JFrame {
     private boolean admin,mesero ;
-    fondoPanel fondo = new fondoPanel();
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form LoginFrame
      */
@@ -283,7 +280,7 @@ public class LoginFrame extends javax.swing.JFrame {
 /*private ResultSet () {
  
 }*/
-    class fondoPanel extends JPanel {
+   /* class fondoPanel extends JPanel {
        private Image imagen;
        
     @Override
@@ -293,5 +290,5 @@ public class LoginFrame extends javax.swing.JFrame {
         setOpaque(false);
         super.paint(g);
     }
-}
+    }*/
 }

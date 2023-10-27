@@ -188,6 +188,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         LoginFrame login = new LoginFrame();
         login.setVisible(true);
+        PedidoData pd = new PedidoData();
+        pd.eliminarPedidosVacios();
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

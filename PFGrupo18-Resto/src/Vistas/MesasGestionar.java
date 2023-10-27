@@ -6,6 +6,7 @@ package Vistas;
 
 import AccesoDatos.MesaData;
 import Entidades.Mesa;
+import Entidades.PanelPersonalizado;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,10 +21,12 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                 return false; 
         }
     };
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form MesasAgregar
      */
     public MesasGestionar() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(80, 50);
         armarCabecera();
@@ -52,7 +55,6 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         jbCambiarNumero = new javax.swing.JButton();
         jbVolver = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(25, 25, 25));
         setClosable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -352,6 +354,7 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
         modelo.addColumn("Código");
         modelo.addColumn("Numero");
         modelo.addColumn("Capacidad");
+        modelo.addColumn("Estado");
         jtTablaMesas.setModel(modelo);
     }
     
@@ -363,10 +366,19 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
     private void cargarActivas (){
         MesaData mesa = new MesaData();
         List <Mesa> listaActivas = mesa.listarMesas();
-
+        String estado;
         for (Mesa aux : listaActivas){
+            switch (aux.getOcupada()) {
+                    case 0: estado = "Libre";
+                        break;
+                    case 1: estado = "Ocupada";
+                        break;
+                    case 2: estado = "Atendida";
+                        break;
+                    default: estado = "";    
+                }
             if (aux.isEstado()){
-                    modelo.addRow(new Object[]{aux.getId_mesa(),aux.getNumero(),aux.getCapacidad()});
+                    modelo.addRow(new Object[]{aux.getId_mesa(),aux.getNumero(),aux.getCapacidad(),estado});
             }
         }
     }
@@ -374,10 +386,19 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
     private void cargarInactivas (){
             MesaData mesa = new MesaData();
             List <Mesa> listaActivas = mesa.listarMesas();
-
+            String estado;
             for (Mesa aux : listaActivas){
+                switch (aux.getOcupada()) {
+                    case 0: estado = "Libre";
+                        break;
+                    case 1: estado = "Ocupada";
+                        break;
+                    case 2: estado = "Atendida";
+                        break;
+                    default: estado = "";    
+                }
                 if (!aux.isEstado()){
-                   modelo.addRow(new Object[]{aux.getId_mesa(),aux.getNumero(),aux.getCapacidad()});
+                   modelo.addRow(new Object[]{aux.getId_mesa(),aux.getNumero(),aux.getCapacidad(), estado});
                 }
             }    
     }

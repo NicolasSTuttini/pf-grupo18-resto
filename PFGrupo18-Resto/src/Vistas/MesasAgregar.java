@@ -8,16 +8,18 @@ package Vistas;
  * @author nstut
  */
 import AccesoDatos.MesaData;
+import Entidades.PanelPersonalizado;
 import static Vistas.MenuPrincipal.Escritorio;
 import javax.swing.JOptionPane;
 public class MesasAgregar extends javax.swing.JInternalFrame {
-
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form MesasAgregar
      */
     public MesasAgregar() {
         initComponents();
         this.setLocation(135, 160);
+        this.setContentPane(fondo);
         MesaData md = new MesaData();
         jtNumero.setText(""+md.obtenerNumero());
     }

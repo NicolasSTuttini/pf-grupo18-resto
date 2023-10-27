@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,10 +50,10 @@ public class PedidoData {
         return id;
     }
     
-    public void agregarPedido (int id_pedido, int id_mesa, int id_mesero, LocalDate fecha, LocalTime hora, double importe) {
+    public int agregarPedido (int id_pedido, int id_mesa, int id_mesero, LocalDate fecha, LocalTime hora, double importe) {
         String sql = "UPDATE pedido SET id_mesa = ?, id_mesero = ?, fecha = ?, hora = ?, importe = ?, entregado = false, pagado = false "
                     + "WHERE id_pedido = ?";
-        
+         int insertar = 0;
         try {
             PreparedStatement ps =con.prepareStatement(sql);
             ps.setInt(1,id_mesa);
@@ -61,7 +63,7 @@ public class PedidoData {
             ps.setDouble(5, importe);
             ps.setInt(6, id_pedido);
             
-            int insertar = ps.executeUpdate();
+            insertar = ps.executeUpdate();
             if (insertar > 0 ) {
                 JOptionPane.showMessageDialog(null, "Pedido agregado exitosamente.");
             } else {
@@ -71,7 +73,7 @@ public class PedidoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en consulta sql");
         }
-        
+        return insertar;
     }
     
     public void eliminarPedido (int id) {
@@ -244,14 +246,14 @@ public class PedidoData {
                 for (int aux: ids) {
                     ps = con.prepareStatement(sql2);
                     ps.setInt(1, aux);
+                    ps.executeUpdate();
+                    
+                    ps.close();
+                    ps = con.prepareStatement(sql3);
+                    ps.setInt(1, aux);
+
                     if (ps.executeUpdate() > 0) {
-                        ps.close();
-                        ps = con.prepareStatement(sql3);
-                        ps.setInt(1, aux);
-                        
-                        if (ps.executeUpdate() > 0) {
-                            eliminado++;
-                        }
+                        eliminado++;
                     }
                 }
                 if (eliminado > 0) {
@@ -296,6 +298,24 @@ public class PedidoData {
         }
         return pedido;
         
+    }
+    
+    public int pedidosSinEntregar () {
+        String sql = "SELECT entregado FROM pedido";
+        int sinEntregar = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (rs.getInt("entregado") == 0) {
+                    sinEntregar++;
+                }
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return sinEntregar;
     }
     
     

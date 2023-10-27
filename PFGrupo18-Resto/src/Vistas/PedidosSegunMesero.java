@@ -7,6 +7,7 @@ package Vistas;
 import AccesoDatos.MeseroData;
 import AccesoDatos.PedidoData;
 import Entidades.Mesero;
+import Entidades.PanelPersonalizado;
 import Entidades.Pedido;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -25,10 +26,12 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
             return false;
             }
     };
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /**
      * Creates new form PedidosSegunMesero
      */
     public PedidosSegunMesero() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(55, 85);
         cargarMeseros();
@@ -329,9 +332,17 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
 
     private void cargarMeseros () {
         MeseroData md = new MeseroData();
+        Mesero mesaDefecto = new Mesero(0,"","","",false){
+            @Override
+            public String toString() {
+                return "                        --Meseros--";
+            }
+        };
+        jcMeseros.addItem(mesaDefecto);
+        
         List<Mesero> meseros = md.listarMeseros();
         for (Mesero aux : meseros) {
-                jcMeseros.addItem(aux);
+            jcMeseros.addItem(aux);
         }
     }
     private void cargarPedidos (boolean cobrados) {

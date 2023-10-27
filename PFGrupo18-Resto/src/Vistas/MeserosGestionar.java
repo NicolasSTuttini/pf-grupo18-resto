@@ -7,6 +7,7 @@ package Vistas;
 
 import AccesoDatos.MeseroData;
 import Entidades.Mesero;
+import Entidades.PanelPersonalizado;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,10 +26,12 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         }
     }; 
-    /**
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
+    /*
      * Creates new form MeserosGestionar
      */
     public MeserosGestionar() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(90, 75);
         agregarCabecera();

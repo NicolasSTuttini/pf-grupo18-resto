@@ -11,6 +11,7 @@ import AccesoDatos.ProductoData;
 import AccesoDatos.ProductosPedidosData;
 import Entidades.Mesa;
 import Entidades.Mesero;
+import Entidades.PanelPersonalizado;
 import Entidades.Producto;
 import Entidades.ProductosPedidos;
 import static Vistas.MenuPrincipal.Escritorio;
@@ -34,8 +35,10 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             return false;
         }
     };
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     
     public PedidosCargar() {
+        this.setContentPane(fondo);
         initComponents();
         armarCabecera();
         vaciarTabla();
@@ -475,6 +478,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
 
     private void jbAgregarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarPedidoActionPerformed
         PedidoData pd = new PedidoData();
+        MesaData md = new MesaData();
         double importe = Double.parseDouble(jtpImporte.getText());
         if (importe < 1) { 
             JOptionPane.showMessageDialog(null, "Debe cargar al menos 1 producto en el pedido");
@@ -486,8 +490,8 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
             LocalDate fecha = LocalDate.now();
             LocalTime hora = LocalTime.now();
             
-            pd.agregarPedido (this.id_pedido, mesa.getId_mesa(), mesero.getId_mesero(),  fecha,  hora,  importe);
-            
+            int agregado = pd.agregarPedido (this.id_pedido, mesa.getId_mesa(), mesero.getId_mesero(),  fecha,  hora,  importe);
+            md.setOcupadaMesa(agregado, mesa.getId_mesa());
             this.dispose();
             Escritorio.removeAll();
             Escritorio.repaint();
@@ -609,6 +613,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         po.setVisible(true);
         Escritorio.add(po);
         Escritorio.moveToFront(po);
+        
     }//GEN-LAST:event_formInternalFrameClosed
 
 
@@ -671,6 +676,13 @@ private void armarCabecera(){
     private void cargarMesas () {
         MesaData md = new MesaData();
         List<Mesa> mesas = md.listarMesas();
+        Mesa mesaDefecto = new Mesa(0,0,false,0){
+            @Override
+            public String toString() {
+                return "--Mesas--";
+            }
+        };
+        jcMesas.addItem(mesaDefecto);
         
         for (Mesa aux : mesas) {
             if (aux.isEstado()) {

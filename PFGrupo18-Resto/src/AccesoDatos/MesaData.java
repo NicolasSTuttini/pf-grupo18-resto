@@ -8,6 +8,8 @@ import Entidades.Mesa;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +24,7 @@ public class MesaData {
     }
     
     public void agregarMesa (int capacidad, int numero){
-        String sql = "INSERT INTO mesa VALUES (DEFAULT,?,?,true)";
+        String sql = "INSERT INTO mesa VALUES (DEFAULT,?,?,true,0)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -98,6 +100,7 @@ public class MesaData {
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setCapacidad(rs.getInt("capacidad"));
                 mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setOcupada(rs.getInt("ocupada"));
                 mesas.add(mesa);
             }
             ps.close();
@@ -154,6 +157,7 @@ public class MesaData {
                 mesa.setCapacidad(rs.getInt("capacidad"));
                 mesa.setNumero(rs.getInt("numero"));
                 mesa.setEstado(rs.getBoolean("estado"));
+                mesa.setOcupada(rs.getInt("ocupada"));
                 
             }
             ps.close();
@@ -161,6 +165,22 @@ public class MesaData {
             JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
         }
         return mesa;
+    }
+    
+    public void setOcupadaMesa(int ocupada, int id) {
+        String sql = "UPDATE mesa SET ocupada = ? WHERE id_mesa = ?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ocupada);
+            ps.setInt(2, id);
+            
+            int ocupar = ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al setear ocupacion en sql");
+        }
+        
     }
     
 }

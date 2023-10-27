@@ -7,6 +7,7 @@
 package Vistas;
 
 import AccesoDatos.MeseroData;
+import Entidades.PanelPersonalizado;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,9 +15,10 @@ import javax.swing.JOptionPane;
  * @author fliac
  */
 public class MeseroAgregarNuevo extends javax.swing.JInternalFrame {
-
+    PanelPersonalizado fondo = new PanelPersonalizado("/imagenes/fondoLogin3.png");
     /** Creates new form AgregarNuevoMesero */
     public MeseroAgregarNuevo() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocation(120, 115);
     }
