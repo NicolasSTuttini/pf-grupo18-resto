@@ -20,7 +20,6 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
     public PedidosOpciones() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocation(130, 45);
         mostrarContenido();
     }
 
@@ -184,6 +183,11 @@ public class PedidosOpciones extends javax.swing.JInternalFrame {
 private void mostrarContenido() {
     if (MenuPrincipal.mesero) {
         jbRegistro.setVisible(false);
+        this.setSize(getWidth(), getHeight()-100);
+        
+        this.setLocation(130, 80);
+    } else {
+        this.setLocation(130, 45);
     }
 }
 

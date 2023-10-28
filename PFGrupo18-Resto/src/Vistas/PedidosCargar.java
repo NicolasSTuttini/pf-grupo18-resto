@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -54,7 +55,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         armarCabecera();
         vaciarTabla();
         cargarProductosPedidos();
-        this.setLocation(72, 5);
+        this.setLocation(25, 10);
     }
 
     public static int getId_pedido() {
@@ -184,11 +185,11 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbAgregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(214, 214, 214))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -198,12 +199,9 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)))
+                        .addGap(60, 60, 60))
+                    .addComponent(jbAgregarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(167, 167, 167))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,11 +372,10 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                                 .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel11))
-                                .addGap(46, 46, 46))
+                                .addGap(52, 52, 52))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jttabDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)))
-                        .addGap(6, 6, 6)
                         .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,7 +388,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                         .addGroup(jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         jttabDatosLayout.setVerticalGroup(
             jttabDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,7 +487,7 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtabMostrarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jtabMostrarProductos)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -524,7 +521,6 @@ public class PedidosCargar extends javax.swing.JInternalFrame {
         pap.setVisible(true);
         Escritorio.add(pap);
         Escritorio.moveToFront(pap);
-        pap.setLocation(100,60);
     }//GEN-LAST:event_jbAgregarProductoActionPerformed
 
     private void jcMesasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcMesasItemStateChanged
@@ -733,6 +729,12 @@ private void armarCabecera(){
     modelo.addColumn("Precio");
     modelo.addColumn("Cantidad");
     jtTablaProductosPedidos.setModel(modelo);
+    
+    TableColumnModel modeloCol = jtTablaProductosPedidos.getColumnModel();
+    modeloCol.getColumn(0).setPreferredWidth(10);
+    modeloCol.getColumn(1).setPreferredWidth(220);
+    modeloCol.getColumn(2).setPreferredWidth(40);
+    modeloCol.getColumn(3).setPreferredWidth(20);
 }
     private void vaciarTabla () {
         for (int i = modelo.getRowCount()-1; i >= 0;i--){
@@ -746,7 +748,7 @@ private void armarCabecera(){
             Producto prod;
             for (ProductosPedidos aux :listaPp){
                 prod = pd.getProducto(aux.getId_producto());
-                modelo.addRow(new Object[]{prod.getId_producto(),prod.getNombre(),prod.getPrecio(), aux.getCantidad()});
+                modelo.addRow(new Object[]{prod.getId_producto(),prod.getNombre(),prod.getPrecio(), "$"+aux.getCantidad()});
             }
             
     }

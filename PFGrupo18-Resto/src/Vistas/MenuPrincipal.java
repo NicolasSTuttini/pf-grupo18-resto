@@ -6,6 +6,17 @@ package Vistas;
 
 import AccesoDatos.PedidoData;
 import Entidades.EscritorioPersonalizado;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonModel;
+import javax.swing.DefaultButtonModel;
 
 /**
  *
@@ -40,11 +51,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jpBotonesPanel = new javax.swing.JLayeredPane();
-        jbProductos = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+        jbMeseros = new javax.swing.JButton();
         jbMesas = new javax.swing.JButton();
         jbPedidos = new javax.swing.JButton();
-        jbMeseros = new javax.swing.JButton();
-        jbSalir = new javax.swing.JButton();
+        jbProductos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -54,61 +65,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
-            }
-        });
-
-        jbProductos.setBackground(new java.awt.Color(0, 0, 0));
-        jbProductos.setForeground(new java.awt.Color(25, 25, 25));
-        jbProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productos.png"))); // NOI18N
-        jbProductos.setText("Productos");
-        jbProductos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
-        jbProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbProductos.setFocusPainted(false);
-        jbProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbProductosActionPerformed(evt);
-            }
-        });
-
-        jbMesas.setBackground(new java.awt.Color(0, 0, 0));
-        jbMesas.setForeground(new java.awt.Color(25, 25, 25));
-        jbMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesas.png"))); // NOI18N
-        jbMesas.setText("Mesas");
-        jbMesas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
-        jbMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbMesas.setFocusPainted(false);
-        jbMesas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jbMesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbMesasActionPerformed(evt);
-            }
-        });
-
-        jbPedidos.setBackground(new java.awt.Color(0, 0, 0));
-        jbPedidos.setForeground(new java.awt.Color(25, 25, 25));
-        jbPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.png"))); // NOI18N
-        jbPedidos.setText("Pedidos");
-        jbPedidos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
-        jbPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbPedidos.setFocusPainted(false);
-        jbPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPedidosActionPerformed(evt);
-            }
-        });
-
-        jbMeseros.setBackground(new java.awt.Color(0, 0, 0));
-        jbMeseros.setForeground(new java.awt.Color(25, 25, 25));
-        jbMeseros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/meseros.png"))); // NOI18N
-        jbMeseros.setText("Meseros");
-        jbMeseros.setToolTipText("");
-        jbMeseros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
-        jbMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbMeseros.setFocusPainted(false);
-        jbMeseros.setOpaque(false);
-        jbMeseros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbMeserosActionPerformed(evt);
             }
         });
 
@@ -125,20 +81,65 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jpBotonesPanel.setLayer(jbProductos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jbMeseros.setBackground(new java.awt.Color(0, 0, 0));
+        jbMeseros.setForeground(new java.awt.Color(25, 25, 25));
+        jbMeseros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/meseros.png"))); // NOI18N
+        jbMeseros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
+        jbMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbMeseros.setFocusPainted(false);
+        jbMeseros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMeserosActionPerformed(evt);
+            }
+        });
+
+        jbMesas.setBackground(new java.awt.Color(0, 0, 0));
+        jbMesas.setForeground(new java.awt.Color(25, 25, 25));
+        jbMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesas.png"))); // NOI18N
+        jbMesas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
+        jbMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbMesas.setFocusPainted(false);
+        jbMesas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jbMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMesasActionPerformed(evt);
+            }
+        });
+
+        jbPedidos.setBackground(new java.awt.Color(0, 0, 0));
+        jbPedidos.setForeground(new java.awt.Color(25, 25, 25));
+        jbPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidos.png"))); // NOI18N
+        jbPedidos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
+        jbPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbPedidos.setFocusPainted(false);
+        jbPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPedidosActionPerformed(evt);
+            }
+        });
+
+        jbProductos.setBackground(new java.awt.Color(0, 0, 0));
+        jbProductos.setForeground(new java.awt.Color(25, 25, 25));
+        jbProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productos.png"))); // NOI18N
+        jbProductos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(30, 30, 30), 4, true));
+        jbProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbProductos.setFocusPainted(false);
+        jbProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbProductosActionPerformed(evt);
+            }
+        });
+
+        jpBotonesPanel.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jpBotonesPanel.setLayer(jbMeseros, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jpBotonesPanel.setLayer(jbMesas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jpBotonesPanel.setLayer(jbPedidos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jpBotonesPanel.setLayer(jbMeseros, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jpBotonesPanel.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jpBotonesPanel.setLayer(jbProductos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jpBotonesPanelLayout = new javax.swing.GroupLayout(jpBotonesPanel);
         jpBotonesPanel.setLayout(jpBotonesPanelLayout);
         jpBotonesPanelLayout.setHorizontalGroup(
             jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpBotonesPanelLayout.createSequentialGroup()
                 .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpBotonesPanelLayout.createSequentialGroup()
@@ -150,10 +151,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpBotonesPanelLayout.setVerticalGroup(
             jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBotonesPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,9 +167,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jpBotonesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,9 +184,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(50, 50, 50)
                 .addComponent(jpBotonesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,11 +290,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
 public void validarMenuMostrar () {
     if (mesero) {
-         jbMeseros.setVisible(false);
-         jbMesas.setVisible(false);
-    } /*else {
-         JOptionPane.showMessageDialog(null, "Error al mostrar el menu");
-    }*/
+        jpBotonesPanel.setLayout(new BoxLayout(jpBotonesPanel,BoxLayout.Y_AXIS));
+        jbMeseros.setVisible(false);
+        
+        jbMesas.setMinimumSize(new Dimension(350, 100));
+        jbPedidos.setMinimumSize(new Dimension(350,100));
+        jbProductos.setMinimumSize(new Dimension(350,100));
+        jbSalir.setMinimumSize(new Dimension(350,60));
+        
+        jbMesas.setPreferredSize(new Dimension(350, 100));
+        jbPedidos.setPreferredSize(new Dimension(350,100));
+        jbProductos.setPreferredSize(new Dimension(350,100));
+        jbSalir.setPreferredSize(new Dimension(350,60));
+        
+        jbMesas.setMaximumSize(new Dimension(350, 100));
+        jbPedidos.setMaximumSize(new Dimension(350,100));
+        jbProductos.setMaximumSize(new Dimension(350,100));
+        jbSalir.setMaximumSize(new Dimension(350,60));
+        
+        jpBotonesPanel.add(Box.createRigidArea(new Dimension(40,0)),0);
+        jpBotonesPanel.add(Box.createRigidArea(new Dimension(0,20)),2);
+        jpBotonesPanel.add(Box.createRigidArea(new Dimension(0,20)),4);
+        jpBotonesPanel.add(Box.createRigidArea(new Dimension(0,40)),6);
+        
+       jpBotonesPanel.setLocation(80, 40);
+
+        
+    }    
 }
 
 }

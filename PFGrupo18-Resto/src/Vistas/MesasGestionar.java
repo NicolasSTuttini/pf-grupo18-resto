@@ -28,10 +28,10 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
     public MesasGestionar() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocation(80, 50);
         armarCabecera();
         vaciarTabla();
         cargarActivas();
+        mostrarContenido();
     }
 
     /**
@@ -434,4 +434,18 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
                 }
             }    
     }
+    private void mostrarContenido() {
+    if (MenuPrincipal.mesero) {
+        jbAgregarMesa.setVisible(false);
+        jbAlta.setVisible(false);
+        jbBaja.setVisible(false);
+        jbCambiarNumero.setVisible(false);
+        jrActivas.setVisible(false);
+        jrInactivas.setVisible(false);
+        this.setSize(getWidth(), getHeight()-100);
+        this.setLocation(80, 80);
+    } else {
+        this.setLocation(80, 50);
+    }
+}
 }

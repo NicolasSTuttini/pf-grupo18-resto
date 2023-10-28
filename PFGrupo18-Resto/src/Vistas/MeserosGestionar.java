@@ -11,6 +11,7 @@ import Entidades.PanelPersonalizado;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -34,7 +35,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
     public MeserosGestionar() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocation(90, 75);
+        this.setLocation(90, 67);
         agregarCabecera();
         vaciarTabla();
         cargarActivos ();
@@ -434,6 +435,12 @@ private void agregarCabecera() {
     modelo.addColumn("Nombre");
     modelo.addColumn("Apellido");
     jtTablaMeseros.setModel(modelo);
+    
+    TableColumnModel modeloCol = jtTablaMeseros.getColumnModel();
+    modeloCol.getColumn(0).setPreferredWidth(10);
+    modeloCol.getColumn(1).setPreferredWidth(55);
+    modeloCol.getColumn(2).setPreferredWidth(80);
+    modeloCol.getColumn(3).setPreferredWidth(80);
 }
 private void vaciarTabla() {
     for (int i = jtTablaMeseros.getRowCount()-1; i >= 0; i--) {

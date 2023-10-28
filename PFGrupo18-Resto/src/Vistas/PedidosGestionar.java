@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -34,7 +35,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
     public PedidosGestionar() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocation(55, 15);
+        this.setLocation(46, 15);
         cargarMesas();
         armarCabecera();
         vaciarTabla();
@@ -102,6 +103,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mesa:");
 
+        jcMesas.setBackground(new java.awt.Color(40, 40, 40));
         jcMesas.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jcMesas.setForeground(new java.awt.Color(255, 255, 255));
         jcMesas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -141,7 +143,7 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,25 +221,13 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addComponent(jbCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbVolver)
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
@@ -257,13 +247,24 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbEliminarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(208, 208, 208))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -282,11 +283,11 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jLabel5))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -407,12 +408,19 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 private void armarCabecera(){
-    modelo.addColumn("N° de Pedido");
+    modelo.addColumn("N° Pedido");
     modelo.addColumn("Mesero");
     modelo.addColumn("Hora");
     modelo.addColumn("Importe");
     modelo.addColumn("Entregado");
     jtTablaPedidos.setModel(modelo);
+    
+    TableColumnModel modeloCol = jtTablaPedidos.getColumnModel();
+    modeloCol.getColumn(0).setPreferredWidth(30);
+    modeloCol.getColumn(1).setPreferredWidth(110);
+    modeloCol.getColumn(2).setPreferredWidth(20);
+    modeloCol.getColumn(3).setPreferredWidth(40);
+    modeloCol.getColumn(4).setPreferredWidth(35);
 }
     private void vaciarTabla () {
         for (int i = modelo.getRowCount()-1; i >= 0;i--){
@@ -459,7 +467,7 @@ private void armarCabecera(){
                         pagado= "NO";
                     }
                     hora = aux.getHora().format(horaFormat);
-                    modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre()+" "+aux.getMesero().getApellido(),hora,aux.getImporte(),pagado});
+                    modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesero().getNombre()+" "+aux.getMesero().getApellido(),hora,"$"+aux.getImporte(),pagado});
                 }
 
             }
@@ -489,7 +497,7 @@ private void armarCabecera(){
                    }
                 }
             } 
-            jtpTotalMesa.setText(""+total);
+            jtpTotalMesa.setText("$"+total);
         } catch (NullPointerException ex) {
         }
     }
@@ -528,7 +536,7 @@ private void armarCabecera(){
                 }
             }
             if (entregada >0) {
-                JOptionPane.showMessageDialog(this, "Aún hay pedidos sin pagar.");
+                JOptionPane.showMessageDialog(this, "Aún hay pedidos sin entregar.");
             } else {
                 int opcion = JOptionPane.showConfirmDialog(this, "¿Desea cobrar todos los pedidos entregados en la mesa?","Confirmación",0);    
                 if (opcion == 0) {

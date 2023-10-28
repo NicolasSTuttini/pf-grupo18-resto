@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -33,7 +34,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
     public PedidosSegunMesero() {
         this.setContentPane(fondo);
         initComponents();
-        this.setLocation(80, 65);
+        this.setLocation(68, 60);
         cargarMeseros();
         Calendar fechaHoy = Calendar.getInstance();
         jcFecha.setDate(fechaHoy.getTime());
@@ -69,7 +70,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jbVolver = new javax.swing.JButton();
 
         setClosable(true);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -99,6 +100,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jcMeseros.setBackground(new java.awt.Color(40, 40, 40));
         jcMeseros.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jcMeseros.setForeground(new java.awt.Color(255, 255, 255));
+        jcMeseros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcMeseros.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcMeserosItemStateChanged(evt);
@@ -115,6 +117,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setOpaque(false);
 
         jtTablaPedidos.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
@@ -136,6 +139,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jrAtendidos.setForeground(new java.awt.Color(255, 255, 255));
         jrAtendidos.setSelected(true);
         jrAtendidos.setText("Atendidos");
+        jrAtendidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrAtendidos.setOpaque(false);
         jrAtendidos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -151,6 +155,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jrCobrados.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jrCobrados.setForeground(new java.awt.Color(255, 255, 255));
         jrCobrados.setText("Cobrados");
+        jrCobrados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrCobrados.setOpaque(false);
         jrCobrados.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -165,7 +170,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jrAtendidos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jrCobrados)
                 .addGap(61, 61, 61))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -189,6 +194,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jcFecha.setBackground(new java.awt.Color(40, 40, 40));
         jcFecha.setForeground(new java.awt.Color(255, 255, 255));
         jcFecha.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jcFecha.setOpaque(false);
         jcFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jcFechaPropertyChange(evt);
@@ -199,6 +205,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
         jbVolver.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
         jbVolver.setForeground(new java.awt.Color(255, 255, 255));
         jbVolver.setText("Volver");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVolverActionPerformed(evt);
@@ -214,25 +221,25 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(173, 173, 173)
                 .addComponent(jLabel1)
-                .addGap(155, 155, 155))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(126, 126, 126)
+                        .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(jcMeseros, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,8 +351,15 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
     modelo.addColumn("Importe");
     modelo.addColumn("Entregado");
     modelo.addColumn("Pagado");
-    
     jtTablaPedidos.setModel(modelo);
+    
+    TableColumnModel modeloCol = jtTablaPedidos.getColumnModel();
+    modeloCol.getColumn(0).setPreferredWidth(30);
+    modeloCol.getColumn(1).setPreferredWidth(17);
+    modeloCol.getColumn(2).setPreferredWidth(22);
+    modeloCol.getColumn(3).setPreferredWidth(50);
+    modeloCol.getColumn(4).setPreferredWidth(40);
+    modeloCol.getColumn(5).setPreferredWidth(35);
 }
     private void vaciarTabla () {
         for (int i = modelo.getRowCount()-1; i >= 0;i--){
@@ -400,7 +414,7 @@ public class PedidosSegunMesero extends javax.swing.JInternalFrame {
                             entregado = "NO";
                         }
                         hora = aux.getHora().format(horaFormat);
-                        modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,aux.getImporte(),entregado,pagado});
+                        modelo.addRow(new Object[]{aux.getId_pedido(),aux.getMesa().getNumero(),hora,"$"+aux.getImporte(),entregado,pagado});
                     } else {
                         if (aux.isEntregado() && aux.isPagado()) {
                             pagado = "SI";
