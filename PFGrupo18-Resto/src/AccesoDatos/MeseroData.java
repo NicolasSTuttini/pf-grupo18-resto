@@ -4,7 +4,7 @@
  */
 package AccesoDatos;
 
-import Entidades.Mesa;
+
 import Entidades.Mesero;
 import java.sql.*;
 import java.util.ArrayList;
@@ -114,13 +114,13 @@ public class MeseroData {
     
     public void modificarMesero(int id, int dni, String nombre, String apellido) {
         String sql = "UPDATE mesero "
-                + "SET dni = ?, nombre = ?, apellido = ? WHERE id_mesero = ? AND estado = true";
+                + "SET dni = ?, nombre = ?, apellido = ? WHERE id = ? AND estado = true";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, dni);
             ps.setString(2, nombre);
             ps.setString(3, apellido);
-            ps.setInt(4, id);
+            ps.setInt(4,id);
             int modif = ps.executeUpdate();
             if (modif == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificó el/la mesero/a exitosamente.");
@@ -129,8 +129,8 @@ public class MeseroData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "El/la mesero/a no esta disponible");
-        }
+            JOptionPane.showMessageDialog(null, "El DNI ya se encuentra registrado");
+        } 
     }
     public List<Mesero> listarMeseros() {
         List<Mesero> meseros = new ArrayList<>();

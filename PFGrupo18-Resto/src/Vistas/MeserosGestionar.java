@@ -8,6 +8,7 @@ package Vistas;
 import AccesoDatos.MeseroData;
 import Entidades.Mesero;
 import Entidades.PanelPersonalizado;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +40,8 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         agregarCabecera();
         vaciarTabla();
         cargarActivos ();
+        jtTablaMeseros.setSelectionBackground(Color.LIGHT_GRAY);
+        jtTablaMeseros.setRowSelectionAllowed(true);
     }
 
     /**

@@ -34,7 +34,7 @@ public class LoginData {
                }
             ps.close();
             if (user != 1){
-                sql = "SELECT dni FROM mesero";
+                sql = "SELECT dni FROM mesero  WHERE estado = 1";
                 ps =  con.prepareStatement(sql);
                 rs = ps.executeQuery();
                 while (rs.next()) {

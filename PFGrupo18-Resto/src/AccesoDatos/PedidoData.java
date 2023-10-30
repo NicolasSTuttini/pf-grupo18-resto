@@ -76,9 +76,10 @@ public class PedidoData {
         return insertar;
     }
     
-    public void eliminarPedido (int id) {
+    public int eliminarPedido (int id) {
         String sql1 = "DELETE FROM productospedidos WHERE id_pedido = ?" ;   
         String sql = "DELETE FROM pedido WHERE id_pedido = ?";
+        int eliminado = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql1);
             ps.setInt(1, id);
@@ -88,9 +89,7 @@ public class PedidoData {
                 ps = con.prepareStatement(sql);
                 ps.setInt(1, id);
                 if (ps.executeUpdate() > 0) {
-                    JOptionPane.showMessageDialog(null, "Pedido eliminado exitosamente.");
-                }else {
-                    JOptionPane.showMessageDialog(null, "El pedido no existe en base de pedidos.");
+                    eliminado++;
                 }
                 ps.close();
             
@@ -102,6 +101,7 @@ public class PedidoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en consulta sql");
         }
+        return eliminado;
     }
     
     public int entregarPedido (int id) {

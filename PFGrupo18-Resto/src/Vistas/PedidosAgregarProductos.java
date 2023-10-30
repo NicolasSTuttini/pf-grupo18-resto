@@ -8,7 +8,6 @@ import AccesoDatos.ProductoData;
 import AccesoDatos.ProductosPedidosData;
 import Entidades.PanelPersonalizado;
 import Entidades.Producto;
-import Entidades.ProductosPedidos;
 import static Vistas.MenuPrincipal.Escritorio;
 import java.awt.Color;
 import java.util.List;

@@ -533,7 +533,7 @@ public class ProductosModificar extends javax.swing.JInternalFrame {
 private void armarCabecera(){
     modelo.addColumn("ID");
     modelo.addColumn("Nombre");
-    modelo.addColumn("Precio");
+    modelo.addColumn("Precio ($)");
     jtTablaProductos.setModel(modelo);
     jtTablaProductos.setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
       
@@ -555,7 +555,7 @@ private void cargarActivos (){
         for (Producto aux : listaActivos){
             if (aux.isEstado()){
                 if(aux.getNombre().toUpperCase().startsWith(jtNombre.getText().toUpperCase()) || jtNombre.getText().equals("") ) {
-                    modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),"$"+aux.getPrecio()});
+                    modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
                 }
             }
         }
@@ -568,7 +568,7 @@ private void cargarInactivos (){
         for (Producto aux : listaActivos){
             if (!aux.isEstado()){
                 if(aux.getNombre().toUpperCase().startsWith(jtNombre.getText().toUpperCase()) || jtNombre.getText().equals("") ) {
-                modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),"$"+aux.getPrecio()});
+                modelo.addRow(new Object[]{aux.getId_producto(),aux.getNombre(),aux.getPrecio()});
                 }
             }
         }    

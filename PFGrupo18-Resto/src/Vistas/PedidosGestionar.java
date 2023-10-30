@@ -361,28 +361,40 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
 
     private void jbEliminarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarPedidoActionPerformed
         int filas = jtTablaPedidos.getSelectedRowCount();
-        int filaSelec;
-        int id;
+        int[] filaSelec = jtTablaPedidos.getSelectedRows();
+        List<Integer> ids = new ArrayList<>();
         PedidoData pd = new PedidoData();
-        
-        if (filas > 0) {
-            if ( JOptionPane.showConfirmDialog(this, "El pedido se eliminara permanentemente. ¿Desea continuar?","Confirmar",0)== 0) {
-                for (int i = 0; i < filas; i++) {
-                filaSelec = jtTablaPedidos.getSelectedRows()[i];
-                id = Integer.parseInt(jtTablaPedidos.getValueAt(filaSelec, 0).toString());
-                
-                    pd.eliminarPedido(id);
-                    vaciarTabla();
-                    cargarPedidos();
-                    cargarTotalMesa();
-                    pedidosNoEntregados();
-                    comprobarAtendida();
-                }
-            }
+        int eliminados = 0;
+        try {
+            if (filas > 0) {
             
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para eliminar.");
-        }
+                if ( JOptionPane.showConfirmDialog(this, "El pedido se eliminara permanentemente. ¿Desea continuar?","Confirmar",0)== 0) {
+                    
+                    for (int i = 0; i < filas; i++) {
+                        ids.add(Integer.parseInt(jtTablaPedidos.getValueAt(filaSelec[i], 0).toString()));
+                    }
+                    for (int id :ids) {
+                        eliminados += pd.eliminarPedido(id);
+                    }
+                    if(eliminados == 0){
+                         JOptionPane.showMessageDialog(this, "No exite el pedido en la base de datos.");
+                    } else if (eliminados == 1){
+                        JOptionPane.showMessageDialog(this, "Pedido eliminado exitosamente.");
+                    }  else if (eliminados > 1){
+                        JOptionPane.showMessageDialog(this, "Pedidos eliminados exitosamente.");
+                    }   
+                        vaciarTabla();
+                        cargarPedidos();
+                        cargarTotalMesa();
+                        pedidosNoEntregados();
+                        comprobarAtendida();
+                }
+            
+            
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para eliminar.");
+            }
+        }catch (ArrayIndexOutOfBoundsException ex) {}
     }//GEN-LAST:event_jbEliminarPedidoActionPerformed
 
 
