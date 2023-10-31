@@ -42,6 +42,8 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         cargarActivos ();
         jtTablaMeseros.setSelectionBackground(Color.LIGHT_GRAY);
         jtTablaMeseros.setRowSelectionAllowed(true);
+        
+        jbContra.setVisible(false);
     }
 
     /**
@@ -64,6 +66,7 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         jrMActivos = new javax.swing.JRadioButton();
         jrMInactivos = new javax.swing.JRadioButton();
         jbVolver = new javax.swing.JButton();
+        jbContra = new javax.swing.JButton();
 
         setClosable(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -117,6 +120,16 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         ));
         jtTablaMeseros.getTableHeader().setReorderingAllowed(false);
+        jtTablaMeseros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaMeserosMouseClicked(evt);
+            }
+        });
+        jtTablaMeseros.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jtTablaMeserosPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtTablaMeseros);
 
         jbMeserosBaja.setBackground(new java.awt.Color(255, 0, 0));
@@ -223,11 +236,21 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jbContra.setBackground(new java.awt.Color(0, 153, 255));
+        jbContra.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        jbContra.setForeground(new java.awt.Color(255, 255, 255));
+        jbContra.setText("Contraseña");
+        jbContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbContraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -236,18 +259,19 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                         .addComponent(jrMInactivos)
                         .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(152, 152, 152))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbAgregarNuevoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbContra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +287,9 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbContra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -333,6 +359,12 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             jbMeserosBaja.setEnabled(false);
             jbMeserosModif.setEnabled(false);
         }
+        
+        if (jtTablaMeseros.getSelectedRowCount()== 1) {
+            jbContra.setVisible(true);
+        } else {
+           jbContra.setVisible(false);
+        }
     }//GEN-LAST:event_jrMActivosItemStateChanged
 
     private void jrMInactivosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrMInactivosItemStateChanged
@@ -348,6 +380,12 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
             jbMeserosAlta.setEnabled(false);
             jbMeserosBaja.setEnabled(true);
             jbMeserosModif.setEnabled(true);
+        }
+        
+        if (jtTablaMeseros.getSelectedRowCount()== 1) {
+           jbContra.setVisible(true);
+        } else {
+           jbContra.setVisible(false);
         }
     }//GEN-LAST:event_jrMInactivosItemStateChanged
 
@@ -417,12 +455,42 @@ public class MeserosGestionar extends javax.swing.JInternalFrame {
         MenuPrincipal.Escritorio.add(MenuPrincipal.jpBotonesPanel);
     }//GEN-LAST:event_formInternalFrameClosed
 
+    private void jbContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbContraActionPerformed
+        MeseroData md = new MeseroData();
+        if(jtTablaMeseros.getSelectedRowCount() == 1) {
+            int fila = jtTablaMeseros.getSelectedRow();
+            int id = Integer.parseInt(jtTablaMeseros.getValueAt(fila, 0).toString());
+            
+            this.dispose();
+            MenuPrincipal.Escritorio.removeAll();
+            MenuPrincipal.Escritorio.repaint();
+            MeserosContrasenia mc = new MeserosContrasenia(id);
+            mc.setVisible(true);
+            MenuPrincipal.Escritorio.add(mc);
+            MenuPrincipal.Escritorio.moveToFront(mc);
+        }
+        
+    }//GEN-LAST:event_jbContraActionPerformed
+
+    private void jtTablaMeserosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtTablaMeserosPropertyChange
+
+    }//GEN-LAST:event_jtTablaMeserosPropertyChange
+
+    private void jtTablaMeserosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMeserosMouseClicked
+        if (jtTablaMeseros.getSelectedRowCount()== 1) {
+           jbContra.setVisible(true);
+       } else {
+           jbContra.setVisible(false);
+       }
+    }//GEN-LAST:event_jtTablaMeserosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAgregarNuevoMesero;
+    private javax.swing.JButton jbContra;
     private javax.swing.JButton jbMeserosAlta;
     private javax.swing.JButton jbMeserosBaja;
     private javax.swing.JButton jbMeserosModif;

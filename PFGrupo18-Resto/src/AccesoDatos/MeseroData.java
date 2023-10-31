@@ -9,6 +9,8 @@ import Entidades.Mesero;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -179,5 +181,24 @@ public class MeseroData {
             JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
         }
         return mesero;
+    }
+    
+    public void actualizarContrasenia (int id_mesero, String contra) {
+        String sql = "UPDATE mesero SET contrasenia = ? WHERE id_mesero = ?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, contra);
+            ps.setInt(2, id_mesero);
+            ps.executeUpdate();
+            if (ps.executeUpdate() != 0) {
+                JOptionPane.showMessageDialog(null, "Contraseña modificada.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 }

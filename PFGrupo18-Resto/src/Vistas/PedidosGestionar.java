@@ -298,7 +298,6 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         cargarPedidos();
         cargarTotalMesa();
         pedidosNoEntregados();
-        comprobarAtendida();
     }//GEN-LAST:event_jcMesasItemStateChanged
 
     private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
@@ -336,11 +335,12 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                     pd.entregarPedido(id);
                 }
             }
+            
+            comprobarAtendida();
             vaciarTabla();
             cargarPedidos();
             cargarTotalMesa();
             pedidosNoEntregados();
-            comprobarAtendida();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un pedido para entregar.");
         }
@@ -364,7 +364,11 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
         int[] filaSelec = jtTablaPedidos.getSelectedRows();
         List<Integer> ids = new ArrayList<>();
         PedidoData pd = new PedidoData();
+        MesasGestionar mg = new MesasGestionar();
+        
         int eliminados = 0;
+        
+        
         try {
             if (filas > 0) {
             
@@ -383,11 +387,13 @@ public class PedidosGestionar extends javax.swing.JInternalFrame {
                     }  else if (eliminados > 1){
                         JOptionPane.showMessageDialog(this, "Pedidos eliminados exitosamente.");
                     }   
+                        
+                        comprobarAtendida();
                         vaciarTabla();
                         cargarPedidos();
                         cargarTotalMesa();
                         pedidosNoEntregados();
-                        comprobarAtendida();
+                        
                 }
             
             
@@ -582,9 +588,20 @@ private void armarCabecera(){
         MesaData md = new MesaData();
         PedidoData pd = new PedidoData();
         Mesa mesa = (Mesa)jcMesas.getSelectedItem();
-        if (pd.pedidosSinEntregar(mesa.getId_mesa()) == 0 && mesa != null) {
-            md.setOcupadaMesa(2, mesa.getId_mesa());
+        
+        if (mesa != null) {
+            int id_mesa = mesa.getId_mesa();
+            if (pd.pedidoSinPagar(id_mesa)== 0) {
+                md.setOcupadaMesa(0, mesa.getId_mesa());
+                jcMesas.removeItem(mesa);
+            } else if (pd.pedidosSinEntregar(id_mesa) == 0) {
+                md.setOcupadaMesa(2, mesa.getId_mesa());
+            } else {
+                md.setOcupadaMesa(1, mesa.getId_mesa());
+        }
         }
         
+        
     }
+    
 }

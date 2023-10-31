@@ -319,5 +319,21 @@ public class PedidoData {
         return sinEntregar;
     }
     
+    public int pedidoSinPagar (int id_mesa) {
+        String sql = "SELECT id_pedido FROM pedido WHERE id_mesa = ? AND pagado = 0";
+        int sinPagar = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_mesa);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                sinPagar = rs.getInt("id_pedido");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta");
+        }
+        return sinPagar;
+    }
     
 }

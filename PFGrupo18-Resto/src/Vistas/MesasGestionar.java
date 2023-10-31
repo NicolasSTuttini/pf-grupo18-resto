@@ -5,6 +5,7 @@
 package Vistas;
 
 import AccesoDatos.MesaData;
+import AccesoDatos.PedidoData;
 import Entidades.Mesa;
 import Entidades.PanelPersonalizado;
 import java.util.List;
@@ -28,10 +29,14 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
     public MesasGestionar() {
         this.setContentPane(fondo);
         initComponents();
+        comprobarAtendidasLibresOcupadas();
+        
         armarCabecera();
         vaciarTabla();
         cargarActivas();
         mostrarContenido();
+        
+        
     }
 
     /**
@@ -435,17 +440,36 @@ public class MesasGestionar extends javax.swing.JInternalFrame {
             }    
     }
     private void mostrarContenido() {
-    if (MenuPrincipal.mesero) {
-        jbAgregarMesa.setVisible(false);
-        jbAlta.setVisible(false);
-        jbBaja.setVisible(false);
-        jbCambiarNumero.setVisible(false);
-        jrActivas.setVisible(false);
-        jrInactivas.setVisible(false);
-        this.setSize(getWidth(), getHeight()-100);
-        this.setLocation(80, 80);
-    } else {
-        this.setLocation(80, 50);
+        if (MenuPrincipal.mesero) {
+            jbAgregarMesa.setVisible(false);
+            jbAlta.setVisible(false);
+            jbBaja.setVisible(false);
+            jbCambiarNumero.setVisible(false);
+            jrActivas.setVisible(false);
+            jrInactivas.setVisible(false);
+            this.setSize(getWidth(), getHeight()-100);
+            this.setLocation(80, 80);
+        } else {
+            this.setLocation(80, 50);
+        }
     }
-}
+    private void comprobarAtendidasLibresOcupadas() {
+        MesaData md = new MesaData();
+        PedidoData pd = new PedidoData();
+        List<Mesa> mesas = md.listarMesas();
+        int id_mesa;
+        
+        for (Mesa aux :mesas) {
+            id_mesa = aux.getId_mesa();
+            if (pd.pedidoSinPagar(id_mesa) == 0){
+                md.setOcupadaMesa(0, id_mesa);
+            } else if (pd.pedidosSinEntregar(id_mesa) == 0) {
+                md.setOcupadaMesa(2, id_mesa);
+            } else {
+                md.setOcupadaMesa(1, id_mesa);
+            }
+        }
+       
+    }
+    
 }
